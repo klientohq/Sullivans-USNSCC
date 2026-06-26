@@ -347,11 +347,11 @@ a {
 }
 
 .family-action::before {
-  background-image: url("./assets/images/cadets-aboard-ship.png");
+  background-image: url("./assets/images/color-guard-outdoor.jpg");
 }
 
 .resource-action::before {
-  background-image: url("./assets/images/cadets-deck-training.jpg");
+  background-image: url("./assets/images/cadets-cpr-training.jpg");
 }
 
 .recruit-action::before {
@@ -1348,7 +1348,7 @@ p {
   min-height: 100dvh;
   background:
     linear-gradient(rgba(7, 19, 38, 0.78), rgba(7, 19, 38, 0.88)),
-    url("./assets/images/cadets-deck-training.jpg") center / cover;
+    url("./assets/images/cadets-classroom.jpg") center / cover;
 }
 
 .login-shell {
