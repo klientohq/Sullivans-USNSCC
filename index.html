@@ -13,6 +13,13 @@
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
+    <!-- Announcement Banner -->
+    <div class="announce-bar" id="announceBar">
+      <span>📅 Next drill weekend — contact the unit for dates and location.</span>
+      <a href="./contact.html">Ask about joining</a>
+      <button class="announce-close" onclick="document.getElementById('announceBar').style.display='none'" aria-label="Dismiss">✕</button>
+    </div>
+
     <header class="site-header home-header" data-header>
       <a class="brand" href="./index.html" aria-label="The Sullivans USNSCC home">
         <img src="./assets/images/logo.webp" alt="The Sullivans Division USNSCC logo" />
@@ -35,33 +42,71 @@
         <a href="./resource-hub.html">Resource Hub</a>
         <a href="./store.html">Store</a>
         <a href="./contact.html">Contact</a>
+        <a class="nav-cta" href="./contact.html">Join Now</a>
         <a class="nav-login" href="./cadet-dashboard.html">Cadet Login</a>
       </nav>
     </header>
 
     <main id="main">
+
+      <!-- HERO with video background -->
       <section class="hero">
+        <video
+          class="hero-video"
+          src="./assets/video/sea-cadet-recruiting.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          poster="./assets/images/cadets-aboard-ship.png"
+        ></video>
         <img
-          class="hero-media"
+          class="hero-media hero-fallback"
           src="./assets/images/cadets-aboard-ship.png"
           alt="Sea Cadets assembled aboard a ship in Buffalo"
         />
         <div class="hero-overlay"></div>
         <div class="hero-content">
-          <p class="eyebrow">U.S. Naval Sea Cadet Corps</p>
-          <h1>USS Sullivans</h1>
+          <p class="eyebrow">U.S. Naval Sea Cadet Corps — Buffalo, New York</p>
+          <h1>The Sullivans Division</h1>
           <p class="hero-subtitle">We Stick Together.</p>
           <p class="hero-copy">
             A Buffalo-based youth leadership program where cadets ages 10 through high school learn teamwork,
             military customs, seamanship, physical readiness, and the responsibility that comes with wearing the uniform.
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="./about.html">Learn About the Division</a>
-            <a class="button secondary" href="./contact.html">Contact the Unit</a>
+            <a class="button primary" href="./contact.html">Join the Division</a>
+            <a class="button secondary" href="./about.html">Learn More</a>
           </div>
         </div>
       </section>
 
+      <!-- STATS BAR -->
+      <div class="stats-bar">
+        <div class="stats-bar-inner">
+          <div class="stat-item">
+            <strong>1961</strong>
+            <span>Year Founded</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <strong>Ages 10–18</strong>
+            <span>Open Enrollment</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <strong>Buffalo, NY</strong>
+            <span>Naval Marina Park</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <strong>USNSCC</strong>
+            <span>Federally Chartered</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTRO -->
       <section class="section intro-section">
         <div class="section-heading">
           <p class="eyebrow">Buffalo Sea Cadets</p>
@@ -92,6 +137,49 @@
         </div>
       </section>
 
+      <!-- AGE SPLIT SECTION -->
+      <section class="section age-split-section" aria-label="Program levels">
+        <div class="section-heading">
+          <p class="eyebrow">Two programs, one division</p>
+          <h2>Find the right fit for your cadet's age.</h2>
+        </div>
+        <div class="age-split-grid">
+          <article class="age-card nlcc-card">
+            <span class="age-badge">Ages 10–12</span>
+            <h3>Navy League Cadet Corps</h3>
+            <p class="age-abbr">NLCC</p>
+            <p>
+              The entry-level program for younger cadets. NLCC introduces naval customs, teamwork, and discipline in
+              an age-appropriate environment. The foundation for advancing to Sea Cadets.
+            </p>
+            <ul>
+              <li>Introduction to naval customs</li>
+              <li>Basic seamanship skills</li>
+              <li>Drill and uniform standards</li>
+              <li>Community service opportunities</li>
+            </ul>
+            <a class="button primary" href="./contact.html">Ask About NLCC</a>
+          </article>
+          <article class="age-card sea-card">
+            <span class="age-badge">Ages 13–17</span>
+            <h3>Sea Cadets</h3>
+            <p class="age-abbr">NSCC</p>
+            <p>
+              The full Sea Cadet program with advanced training, leadership billets, summer training opportunities,
+              and a direct pathway to military advancement and college readiness.
+            </p>
+            <ul>
+              <li>Advanced naval and maritime training</li>
+              <li>Leadership billets and chain of command</li>
+              <li>Summer training programs nationwide</li>
+              <li>College and military career pathways</li>
+            </ul>
+            <a class="button primary" href="./contact.html">Ask About Sea Cadets</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- ACTION DOCK -->
       <section class="action-dock" aria-label="Quick paths">
         <a class="action-button family-action" href="./about.html">
           <span>For Families</span>
@@ -104,6 +192,7 @@
         </a>
       </section>
 
+      <!-- RECRUIT CARDS -->
       <section class="section recruit-section" id="programs">
         <div>
           <p class="eyebrow">Start here</p>
@@ -131,9 +220,59 @@
         </div>
       </section>
 
-      <section class="section callout join-callout" id="events">
+      <!-- QUOTE / TESTIMONIAL STRIP -->
+      <div class="quote-strip">
+        <div class="quote-strip-inner">
+          <blockquote>
+            "The Sea Cadets gave my son structure, confidence, and a sense of belonging he couldn't find anywhere else. The leaders here genuinely care about these kids."
+          </blockquote>
+          <cite>— Parent of a Sullivans Division Cadet, Buffalo NY</cite>
+        </div>
+      </div>
+
+      <!-- WHERE WE MEET -->
+      <section class="section where-section" id="location">
+        <div class="section-heading">
+          <p class="eyebrow">Where we meet</p>
+          <h2>Located right on the Buffalo waterfront.</h2>
+        </div>
+        <div class="where-grid">
+          <div class="where-info">
+            <div class="where-card">
+              <span>Unit Address</span>
+              <strong>1 Naval Marina Park S<br>Buffalo, NY 14202</strong>
+              <a href="https://maps.google.com/?q=1+Naval+Marina+Park+S+Buffalo+NY+14202" target="_blank" rel="noopener">Get directions →</a>
+            </div>
+            <div class="where-card">
+              <span>Contact</span>
+              <strong>info@thesullivansusnscc.com</strong>
+              <a href="mailto:info@thesullivansusnscc.com">Send an email →</a>
+            </div>
+            <div class="where-card">
+              <span>Drills</span>
+              <strong>Monthly weekend drills</strong>
+              <a href="./contact.html">Ask for the schedule →</a>
+            </div>
+          </div>
+          <div class="map-embed">
+            <iframe
+              title="The Sullivans USNSCC location map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2922.7!2d-78.8784!3d42.8864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d3127d0c0e2f9b%3A0x0!2sNaval%20Park%2C%20Buffalo%2C%20NY%2014202!5e0!3m2!1sen!2sus!4v1"
+              width="100%"
+              height="320"
+              style="border:0; border-radius: 8px;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- JOIN CTA -->
+      <section class="section callout join-callout" id="join">
         <div>
-          <p class="eyebrow">Ready to learn more?</p>
+          <p class="eyebrow">Ready to take the next step?</p>
           <h2>Your first step is simple.</h2>
           <p>
             Send a message to the unit, ask your questions, and get guidance on what to expect before visiting or
@@ -143,35 +282,33 @@
         <a class="button primary" href="./contact.html">Ask About Joining</a>
       </section>
 
-      <section class="section contact-section" id="contact">
-        <div>
-          <p class="eyebrow">Buffalo, New York</p>
-          <h2>Interested in joining or supporting the division?</h2>
-          <p>
-            Reach out to the unit for enrollment questions, drill expectations, sponsorship opportunities, or general
-            information about The Sullivans Division.
-          </p>
-        </div>
-        <div class="contact-card">
-          <span>Unit Location</span>
-          <strong>1 Naval, Marina Park S, Buffalo, NY 14202</strong>
-          <a href="mailto:info@thesullivansusnscc.com">info@thesullivansusnscc.com</a>
-        </div>
-      </section>
     </main>
 
     <footer class="site-footer">
-      <div>
-        <strong>The Sullivans Division USNSCC</strong>
-        <p>Program: The Naval Sea Cadet Corps</p>
+      <div class="footer-brand">
+        <img src="./assets/images/logo.webp" alt="The Sullivans Division USNSCC" width="44" height="44" />
+        <div>
+          <strong>The Sullivans Division USNSCC</strong>
+          <p>Program: The Naval Sea Cadet Corps</p>
+        </div>
       </div>
-      <nav aria-label="Footer navigation">
+      <nav class="footer-nav" aria-label="Footer navigation">
         <a href="./about.html">About</a>
         <a href="./leadership.html">Leadership</a>
+        <a href="./resource-hub.html">Resources</a>
         <a href="./store.html">Store</a>
         <a href="./contact.html">Contact</a>
         <a href="./cadet-dashboard.html">Cadet Login</a>
       </nav>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/TheSullivansUSNSCC" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/sullivansusnscc" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+      <p class="footer-copy">© 2024 The Sullivans Division USNSCC. Buffalo, NY.</p>
     </footer>
 
     <script src="./main.js"></script>
