@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.stopPropagation();
       if (!product) return;
       if (product.type === 'apparel') {
-        openModal(pid);
+        window.open('https://uss-sullivans-usnscc-store.printify.me/', '_blank', 'noopener');
       } else {
         cart.add(pid, null);
       }
