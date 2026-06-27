@@ -1098,7 +1098,7 @@ p {
   margin: 0;
   color: var(--navy-950);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.3rem, 4.7vw, 4.45rem);
+  font-size: clamp(1.4rem, 2.8vw, 2.4rem);
   line-height: 1;
 }
 
@@ -2606,7 +2606,7 @@ p {
 
 .rh-hero {
   background: var(--navy-950);
-  padding: clamp(130px, 12vw, 160px) 0 clamp(60px, 8vw, 96px);
+  padding: 180px 0 clamp(60px, 8vw, 96px);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -2928,6 +2928,7 @@ p {
   transition: box-shadow 180ms ease, transform 180ms ease;
 }
 .product-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.13); transform: translateY(-2px); }
+.product-card--hidden { display: none !important; }
 
 /* Image wrap — bigger, white, clickable */
 .product-img-wrap {

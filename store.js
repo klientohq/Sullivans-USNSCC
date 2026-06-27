@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cards.forEach(card => {
       const show = !cat || getCardCategory(card) === cat;
-      card.hidden = !show;
+      card.classList.toggle('product-card--hidden', !show);
       if (show) visible++;
     });
 
@@ -230,8 +230,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const subEl   = document.getElementById('hero-cart-sub');
     if (!countEl) return;
     const n = cart.count;
-    countEl.textContent = n === 0 ? 'Empty' : n + ' item' + (n === 1 ? '' : 's');
-    if (subEl) subEl.textContent = n > 0 ? money(cart.total) + ' subtotal' : '';
+    countEl.textContent = n + ' item' + (n === 1 ? '' : 's');
+    if (subEl) subEl.textContent = money(cart.total) + ' subtotal';
   }
 
   // Patch renderBadge so hero preview stays in sync with cart changes
