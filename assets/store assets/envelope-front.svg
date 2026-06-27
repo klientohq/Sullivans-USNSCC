@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 340" width="460" height="340" role="img" aria-label="Envelope">
+  <!-- soft shadow -->
+  <rect x="34" y="58" width="392" height="232" rx="14" fill="#1f1a12" opacity="0.08" transform="translate(3,7)"/>
+  <!-- envelope body -->
+  <rect x="34" y="58" width="392" height="232" rx="14" fill="#f4ead6" stroke="#cbb78f" stroke-width="3"/>
+  <!-- bottom corner fold hints -->
+  <path d="M34 282 L210 188" stroke="#dccba2" stroke-width="2.4" fill="none" opacity="0.75"/>
+  <path d="M426 282 L250 188" stroke="#dccba2" stroke-width="2.4" fill="none" opacity="0.75"/>
+  <!-- top flap (closed, facing forward) -->
+  <path d="M34 72 Q34 58 48 58 L412 58 Q426 58 426 72 L230 196 Z"
+        fill="#ece0c5" stroke="#cbb78f" stroke-width="3" stroke-linejoin="round"/>
+  <!-- flap inner highlight -->
+  <path d="M58 70 L230 178 L402 70" fill="none" stroke="#f7efdd" stroke-width="2" opacity="0.7"/>
+</svg>
