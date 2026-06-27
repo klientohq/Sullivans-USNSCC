@@ -145,6 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Apply image fallback (meal plate -> cartoon) to grid cards
   document.querySelectorAll('.product-card[data-product]').forEach(card => {
+    if (card.classList.contains('printify-card')) return;
     const pid = card.dataset.product;
     const product = PRODUCTS.find(p => p.id === pid);
     const cardImg = card.querySelector('.product-img-wrap img');
