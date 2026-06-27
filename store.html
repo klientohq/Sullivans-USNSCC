@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Store | The Sullivans USNSCC</title>
-    <meta name="description" content="Store preview for The Sullivans Division USNSCC with current WooCommerce products and prices." />
+    <meta name="description" content="Official store for The Sullivans Division USNSCC — dues, sea bags, meals, and apparel." />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body class="store-page">
     <a class="skip-link" href="#main">Skip to content</a>
+
     <header class="site-header is-scrolled" data-header>
       <a class="brand" href="./index.html" aria-label="The Sullivans USNSCC home">
         <img src="./assets/images/logo.webp" alt="The Sullivans Division USNSCC logo" />
@@ -31,6 +32,10 @@
           <a href="https://www.youtube.com/@SeaCadetsBuffalo" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.8 8s-.2-1.4-.8-2c-.7-.7-1.5-.7-1.8-.8C17.2 5 12 5 12 5s-5.2 0-7.2.2c-.4.1-1.1.1-1.8.8-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.5C2 14.4 2.2 16 2.2 16s.2 1.4.8 2c.7.7 1.6.7 2 .8C6.6 19 12 19 12 19s5.2 0 7.2-.2c.4-.1 1.1-.1 1.8-.8.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5C22 9.6 21.8 8 21.8 8zM10 15V9l5.2 3-5.2 3z"/></svg></a>
           <a href="https://nextdoor.com/profile/019jHtsYPfSp3x777" target="_blank" rel="noopener" aria-label="Nextdoor"><svg viewBox="0 0 24 24" fill="currentColor"><text x="12" y="18" text-anchor="middle" font-size="16" font-weight="900" font-family="Arial,sans-serif">N</text></svg></a>
         </div>
+        <button id="cart-icon-btn" class="cart-icon-btn" aria-label="Open cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span id="cart-badge" hidden>0</span>
+        </button>
         <a class="nav-cta" href="https://www.seacadets.org/join" target="_blank" rel="noopener">Join Now</a>
         <a class="nav-login" href="./cadet-dashboard.html">Cadet Login</a>
       </nav>
@@ -41,14 +46,8 @@
         <div>
           <p class="eyebrow">Unit store</p>
           <h1>Sullivans Official Store</h1>
-          <p>Browse dues, sea bags, meals, and division apparel. Click any product to view details and place your order with the unit.</p>
+          <p>Browse dues, sea bags, meals, and division apparel. Add items to your cart and check out below.</p>
         </div>
-        <aside class="cart-preview" aria-label="Cart preview">
-          <span>Cart Preview</span>
-          <strong>$0.00</strong>
-          <p>No products selected yet.</p>
-          <button class="button primary" type="button">Checkout Later</button>
-        </aside>
       </section>
 
       <section class="store-shell">
@@ -69,99 +68,248 @@
               <span class="store-label">Published products</span>
               <strong>14 items</strong>
             </div>
-            <p>Official Sullivans Division products.</p>
+            <p>Click any product or apparel image to view details and options.</p>
           </div>
 
           <div class="product-grid">
 
-            <article class="product-card" id="dues">
-              <img src="./assets/store assets/envelope-nobg.png" alt="Sea Cadet and League Cadet Dues" />
-              <div><span>Dues</span><h2>Sea Cadet / League Cadet Dues</h2><strong>$150.00</strong></div>
-              <a class="product-btn" href="https://thesullivansusnscc.com/product/sea-cadet-league-cadet-dues/" target="_blank" rel="noopener">Order Now</a>
+            <!-- DUES -->
+            <article class="product-card" id="dues" data-product="dues-sc-lc">
+              <div class="product-img-wrap envelope-wrap" title="Click to view">
+                <img src="./assets/store assets/envelope-nobg.png" alt="Sea Cadet and League Cadet Dues" />
+                <span class="envelope-label">Sea Cadets</span>
+              </div>
+              <div class="product-info">
+                <span>Dues</span>
+                <h2>Sea Cadet / League Cadet Dues</h2>
+                <strong>$150.00</strong>
+              </div>
+              <button class="product-btn">Add to Cart</button>
             </article>
 
-            <article class="product-card">
-              <img src="./assets/store assets/envelope-nobg.png" alt="Officer Child Dues" />
-              <div><span>Dues</span><h2>Officer Child Dues</h2><strong>$125.00</strong></div>
-              <a class="product-btn" href="https://thesullivansusnscc.com/product/officer-child-dues/" target="_blank" rel="noopener">Order Now</a>
+            <article class="product-card" data-product="dues-officer-child">
+              <div class="product-img-wrap envelope-wrap" title="Click to view">
+                <img src="./assets/store assets/envelope-nobg.png" alt="Officer Child Dues" />
+                <span class="envelope-label">Officer Child</span>
+              </div>
+              <div class="product-info">
+                <span>Dues</span>
+                <h2>Officer Child Dues</h2>
+                <strong>$125.00</strong>
+              </div>
+              <button class="product-btn">Add to Cart</button>
             </article>
 
-            <article class="product-card">
-              <img src="./assets/store assets/envelope-nobg.png" alt="Officer Dues" />
-              <div><span>Dues</span><h2>Officer Dues</h2><strong>$50.00</strong></div>
-              <a class="product-btn" href="https://thesullivansusnscc.com/product/officer-dues/" target="_blank" rel="noopener">Order Now</a>
+            <article class="product-card" data-product="dues-officer">
+              <div class="product-img-wrap envelope-wrap" title="Click to view">
+                <img src="./assets/store assets/envelope-nobg.png" alt="Officer Dues" />
+                <span class="envelope-label">Officer</span>
+              </div>
+              <div class="product-info">
+                <span>Dues</span>
+                <h2>Officer Dues</h2>
+                <strong>$50.00</strong>
+              </div>
+              <button class="product-btn">Add to Cart</button>
             </article>
 
-            <article class="product-card" id="meals">
-              <img src="./assets/store assets/meal-cartoon.svg" alt="Daily Meals – Day Drills" />
-              <div><span>Meals</span><h2>Daily Meals – Day Drills</h2><strong>$5.00</strong></div>
-              <a class="product-btn" href="https://thesullivansusnscc.com/product/daily-meals-day-drills/" target="_blank" rel="noopener">Order Now</a>
+            <!-- MEALS -->
+            <article class="product-card" id="meals" data-product="meal-daily">
+              <div class="product-img-wrap" title="Click to view">
+                <img src="./assets/store assets/meal-cartoon.svg" alt="Daily Meals – Day Drills" />
+              </div>
+              <div class="product-info">
+                <span>Meals</span>
+                <h2>Daily Meals – Day Drills</h2>
+                <strong>$5.00</strong>
+              </div>
+              <button class="product-btn">Add to Cart</button>
             </article>
 
-            <article class="product-card">
-              <img src="./assets/store assets/meal-cartoon.svg" alt="Overnight Meals – Weekend Drills" />
-              <div><span>Meals</span><h2>Overnight Meals – Weekend Drills</h2><strong>$20.00</strong></div>
-              <a class="product-btn" href="https://thesullivansusnscc.com/product/overnight-meals-weekend-drills/" target="_blank" rel="noopener">Order Now</a>
+            <article class="product-card" data-product="meal-overnight">
+              <div class="product-img-wrap" title="Click to view">
+                <img src="./assets/store assets/meal-cartoon.svg" alt="Overnight Meals – Weekend Drills" />
+              </div>
+              <div class="product-info">
+                <span>Meals</span>
+                <h2>Overnight Meals – Weekend Drills</h2>
+                <strong>$20.00</strong>
+              </div>
+              <button class="product-btn">Add to Cart</button>
             </article>
 
-            <article class="product-card" id="sea-bags">
-              <img src="./assets/store assets/new/sea-bag-lc.png" alt="League Cadet Sea Bag" />
-              <div><span>Sea Bags</span><h2>League Cadet Sea Bag</h2><strong>$75.00</strong></div>
-              <a class="product-btn" href="https://thesullivansusnscc.com/product/league-cadet-sea-bag/" target="_blank" rel="noopener">Order Now</a>
+            <!-- SEA BAGS -->
+            <article class="product-card" id="sea-bags" data-product="sea-bag-lc">
+              <div class="product-img-wrap" title="Click to view">
+                <img src="./assets/store assets/new/sea-bag-lc.png" alt="League Cadet Sea Bag" />
+              </div>
+              <div class="product-info">
+                <span>Sea Bags</span>
+                <h2>League Cadet Sea Bag</h2>
+                <strong>$75.00</strong>
+              </div>
+              <button class="product-btn">Add to Cart</button>
             </article>
 
-            <article class="product-card">
-              <img src="./assets/store assets/new/sea-bag-promotion.png" alt="League Cadet Promotion Sea Bag" />
-              <div><span>Sea Bags</span><h2>League Cadet Promotion Sea Bag</h2><strong>$75.00</strong></div>
-              <a class="product-btn" href="https://thesullivansusnscc.com/product/league-cadet-promotion-sea-bag/" target="_blank" rel="noopener">Order Now</a>
+            <article class="product-card" data-product="sea-bag-promotion">
+              <div class="product-img-wrap" title="Click to view">
+                <img src="./assets/store assets/new/sea-bag-promotion.png" alt="League Cadet Promotion Sea Bag" />
+              </div>
+              <div class="product-info">
+                <span>Sea Bags</span>
+                <h2>League Cadet Promotion Sea Bag</h2>
+                <strong>$75.00</strong>
+              </div>
+              <button class="product-btn">Add to Cart</button>
             </article>
 
-            <article class="product-card">
-              <img src="./assets/store assets/new/sea-bag-sc.png" alt="Sea Cadet Sea Bag" />
-              <div><span>Sea Bags</span><h2>Sea Cadet Sea Bag</h2><strong>$150.00</strong></div>
-              <a class="product-btn" href="https://thesullivansusnscc.com/product/sea-cadet-sea-bag/" target="_blank" rel="noopener">Order Now</a>
+            <article class="product-card" data-product="sea-bag-sc">
+              <div class="product-img-wrap" title="Click to view">
+                <img src="./assets/store assets/new/sea-bag-sc.png" alt="Sea Cadet Sea Bag" />
+              </div>
+              <div class="product-info">
+                <span>Sea Bags</span>
+                <h2>Sea Cadet Sea Bag</h2>
+                <strong>$150.00</strong>
+              </div>
+              <button class="product-btn">Add to Cart</button>
             </article>
 
-            <article class="product-card apparel-card" id="apparel">
-              <img src="./assets/store assets/new/navy-hoodie-nobg.png" alt="Sullivans Navy Hoodie" />
-              <div><span>Apparel</span><h2>Sullivans Navy Hoodie</h2><strong>$45.00</strong></div>
-              <a class="product-btn apparel-btn" href="https://thesullivansusnscc.com/product/sullivans-hoodie/" target="_blank" rel="noopener">Select Options</a>
+            <!-- APPAREL -->
+            <article class="product-card apparel-card" id="apparel" data-product="navy-hoodie">
+              <div class="product-img-wrap" title="Click to select size &amp; view details">
+                <img src="./assets/store assets/new/navy-hoodie-nobg.png" alt="Sullivans Navy Hoodie" />
+                <span class="img-hint">Tap to choose size</span>
+              </div>
+              <div class="product-info">
+                <span>Apparel</span>
+                <h2>Sullivans Navy Hoodie</h2>
+                <strong>$45.00</strong>
+              </div>
+              <button class="product-btn apparel-btn">Add to Cart</button>
             </article>
 
-            <article class="product-card apparel-card">
-              <img src="./assets/store assets/new/navy-sweats-nobg.png" alt="USNSCC Navy Sweatpants" />
-              <div><span>Apparel</span><h2>USNSCC Navy Sweatpants</h2><strong>$35.00</strong></div>
-              <a class="product-btn apparel-btn" href="https://thesullivansusnscc.com/product/usnscc-sweat-pants/" target="_blank" rel="noopener">Select Options</a>
+            <article class="product-card apparel-card" data-product="navy-sweats">
+              <div class="product-img-wrap" title="Click to select size &amp; view details">
+                <img src="./assets/store assets/new/navy-sweats-nobg.png" alt="USNSCC Navy Sweatpants" />
+                <span class="img-hint">Tap to choose size</span>
+              </div>
+              <div class="product-info">
+                <span>Apparel</span>
+                <h2>USNSCC Navy Sweatpants</h2>
+                <strong>$35.00</strong>
+              </div>
+              <button class="product-btn apparel-btn">Add to Cart</button>
             </article>
 
-            <article class="product-card apparel-card">
-              <img src="./assets/store assets/new/navy-hoodie-nobg.png" alt="Sullivans Hoodie and Sweatpants Bundle" />
-              <div><span>Bundle</span><h2>Sullivans Hoodie &amp; Sweatpants Bundle</h2><strong>$75.00</strong></div>
-              <a class="product-btn apparel-btn" href="https://thesullivansusnscc.com/product/sullivans-hoodie-usnscc-sweat-pants-bundle/" target="_blank" rel="noopener">Select Options</a>
+            <article class="product-card apparel-card" data-product="bundle">
+              <div class="product-img-wrap" title="Click to select size &amp; view details">
+                <img src="./assets/store assets/new/navy-hoodie-nobg.png" alt="Sullivans Hoodie &amp; Sweatpants Bundle" />
+                <span class="img-hint">Tap to choose size</span>
+              </div>
+              <div class="product-info">
+                <span>Bundle</span>
+                <h2>Sullivans Hoodie &amp; Sweatpants Bundle</h2>
+                <strong>$75.00</strong>
+              </div>
+              <button class="product-btn apparel-btn">Add to Cart</button>
             </article>
 
-            <article class="product-card apparel-card">
-              <img src="./assets/store assets/new/coyote-tee-nobg.png" alt="Sullivans Coyote Brown T-Shirt" />
-              <div><span>Apparel</span><h2>Sullivans Coyote Brown T-Shirt</h2><strong>$20.00</strong></div>
-              <a class="product-btn apparel-btn" href="https://thesullivansusnscc.com/product/sullivans-coyote-brown-t-shirt/" target="_blank" rel="noopener">Select Options</a>
+            <article class="product-card apparel-card" data-product="coyote-tee">
+              <div class="product-img-wrap" title="Click to select size &amp; view details">
+                <img src="./assets/store assets/new/coyote-tee-nobg.png" alt="Sullivans Coyote Brown T-Shirt" />
+                <span class="img-hint">Tap to choose size</span>
+              </div>
+              <div class="product-info">
+                <span>Apparel</span>
+                <h2>Sullivans Coyote Brown T-Shirt</h2>
+                <strong>$20.00</strong>
+              </div>
+              <button class="product-btn apparel-btn">Add to Cart</button>
             </article>
 
-            <article class="product-card apparel-card">
-              <img src="./assets/store assets/new/coyote-hoodie-nobg.png" alt="Sullivans Coyote Brown Hoodie" />
-              <div><span>Apparel</span><h2>Sullivans Coyote Brown Hoodie</h2><strong>$40.00</strong></div>
-              <a class="product-btn apparel-btn" href="https://thesullivansusnscc.com/product/sullivans-coyote-brown-hoodie/" target="_blank" rel="noopener">Select Options</a>
+            <article class="product-card apparel-card" data-product="coyote-hoodie">
+              <div class="product-img-wrap" title="Click to select size &amp; view details">
+                <img src="./assets/store assets/new/coyote-hoodie-nobg.png" alt="Sullivans Coyote Brown Hoodie" />
+                <span class="img-hint">Tap to choose size</span>
+              </div>
+              <div class="product-info">
+                <span>Apparel</span>
+                <h2>Sullivans Coyote Brown Hoodie</h2>
+                <strong>$40.00</strong>
+              </div>
+              <button class="product-btn apparel-btn">Add to Cart</button>
             </article>
 
-            <article class="product-card" id="admin">
-              <img src="./assets/store assets/new/usnscc-id-nobg.png" alt="Replacement ID Card" />
-              <div><span>Admin</span><h2>Replacement ID</h2><strong>$10.00</strong></div>
-              <a class="product-btn" href="https://thesullivansusnscc.com/product/replacement-id-card/" target="_blank" rel="noopener">Order Now</a>
+            <!-- ADMIN -->
+            <article class="product-card" id="admin" data-product="replacement-id">
+              <div class="product-img-wrap" title="Click to view">
+                <img src="./assets/store assets/new/usnscc-id-nobg.png" alt="Replacement ID Card" />
+              </div>
+              <div class="product-info">
+                <span>Admin</span>
+                <h2>Replacement ID</h2>
+                <strong>$10.00</strong>
+              </div>
+              <button class="product-btn">Add to Cart</button>
             </article>
 
           </div>
         </section>
       </section>
     </main>
+
+    <!-- ── Product Modal ─────────────────────────────── -->
+    <div id="product-modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-name">
+      <div class="modal-overlay"></div>
+      <div class="modal-box">
+        <button class="modal-close" aria-label="Close">&times;</button>
+        <div class="modal-gallery">
+          <button class="gallery-prev" aria-label="Previous image">&#8249;</button>
+          <div class="modal-img-wrap">
+            <img id="modal-img" src="" alt="" />
+            <span id="modal-img-label"></span>
+          </div>
+          <button class="gallery-next" aria-label="Next image">&#8250;</button>
+          <div class="gallery-dots"></div>
+        </div>
+        <div class="modal-info">
+          <span id="modal-category" class="modal-category"></span>
+          <h2 id="modal-name"></h2>
+          <p id="modal-price" class="modal-price"></p>
+          <div class="size-picker" hidden>
+            <p class="size-label">Select Size</p>
+            <div class="size-options"></div>
+          </div>
+          <button id="modal-add-cart" class="modal-add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Cart Drawer ───────────────────────────────── -->
+    <div id="cart-drawer" hidden role="dialog" aria-modal="true" aria-label="Shopping cart">
+      <div class="cart-overlay"></div>
+      <div class="cart-panel">
+        <div class="cart-header">
+          <h2>Your Cart</h2>
+          <button class="cart-close" aria-label="Close cart">&times;</button>
+        </div>
+        <div id="cart-items">
+          <p class="cart-empty">Your cart is empty.</p>
+        </div>
+        <div class="cart-footer">
+          <div class="cart-total-row">
+            <span>Total</span>
+            <strong id="cart-total">$0.00</strong>
+          </div>
+          <button class="checkout-btn" disabled>Checkout — Coming Soon</button>
+          <p class="cart-note">Payment coming soon. Items saved to your browser.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Toast ─────────────────────────────────────── -->
+    <div id="cart-toast" role="status" aria-live="polite"></div>
 
     <footer class="site-footer">
       <div class="footer-inner">
@@ -197,7 +345,9 @@
         <a class="join-footer" href="https://www.seacadets.org/join" target="_blank" rel="noopener">Join Now &#8594;</a>
       </div>
     </footer>
+
     <script src="./main.js"></script>
+    <script src="./store.js"></script>
     <a class="sticky-join" href="https://www.seacadets.org/join" target="_blank" rel="noopener">Join Now &#8594;</a>
   </body>
 </html>
