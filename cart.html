@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Cart | The Sullivans USNSCC</title>
+    <meta name="description" content="Your shopping cart — The Sullivans Division USNSCC store." />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="store-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header is-scrolled" data-header>
+      <a class="brand" href="./index.html" aria-label="The Sullivans USNSCC home">
+        <img src="./assets/images/logo.webp" alt="The Sullivans Division USNSCC logo" />
+        <span><strong>The Sullivans</strong><small>USNSCC Buffalo, NY</small></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="primary-nav" data-nav>
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./leadership.html">Leadership</a>
+        <a href="./resource-hub.html">Resource Hub</a>
+        <a href="./store.html">Store</a>
+        <a href="./contact.html">Contact</a>
+        <div class="nav-social" aria-label="Social media">
+          <a href="https://www.instagram.com/seacadetsbuffalo_official/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.tiktok.com/@seacadetsbuffalo" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.73a8.18 8.18 0 0 0 4.78 1.52V6.8a4.85 4.85 0 0 1-1.01-.11z"/></svg></a>
+          <a href="https://www.facebook.com/SeaCadetsBuffalo" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://www.youtube.com/@SeaCadetsBuffalo" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.8 8s-.2-1.4-.8-2c-.7-.7-1.5-.7-1.8-.8C17.2 5 12 5 12 5s-5.2 0-7.2.2c-.4.1-1.1.1-1.8.8-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.5C2 14.4 2.2 16 2.2 16s.2 1.4.8 2c.7.7 1.6.7 2 .8C6.6 19 12 19 12 19s5.2 0 7.2-.2c.4-.1 1.1-.1 1.8-.8.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5C22 9.6 21.8 8 21.8 8zM10 15V9l5.2 3-5.2 3z"/></svg></a>
+          <a href="https://nextdoor.com/profile/019jHtsYPfSp3x777" target="_blank" rel="noopener" aria-label="Nextdoor"><svg viewBox="0 0 24 24" fill="currentColor"><text x="12" y="18" text-anchor="middle" font-size="16" font-weight="900" font-family="Arial,sans-serif">N</text></svg></a>
+        </div>
+        <a href="./cart.html" id="cart-icon-btn" class="cart-icon-btn" aria-current="page" aria-label="View cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span id="cart-badge" hidden>0</span>
+        </a>
+        <a class="nav-cta" href="https://www.seacadets.org/join" target="_blank" rel="noopener">Join Now</a>
+        <a class="nav-login" href="./cadet-dashboard.html">Cadet Login</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="store-hero">
+        <div>
+          <p class="eyebrow">Checkout</p>
+          <h1>Your Cart</h1>
+          <p>Review your items, then continue to checkout.</p>
+        </div>
+      </section>
+
+      <section class="cart-page">
+        <!-- Empty state -->
+        <div id="cart-empty-state" class="cart-empty-state" hidden>
+          <p>Your cart is empty.</p>
+          <a class="btn-primary" href="./store.html">&#8592; Continue Shopping</a>
+        </div>
+
+        <!-- Cart layout -->
+        <div id="cart-layout" class="cart-layout" hidden>
+          <div class="cart-table-wrap">
+            <table class="cart-table">
+              <thead>
+                <tr>
+                  <th class="ct-product">Product</th>
+                  <th class="ct-qty">Quantity</th>
+                  <th class="ct-sub">Subtotal</th>
+                </tr>
+              </thead>
+              <tbody id="cart-rows"></tbody>
+            </table>
+            <div class="cart-table-actions">
+              <a class="cart-continue" href="./store.html">&#8592; Continue Shopping</a>
+            </div>
+          </div>
+
+          <aside class="cart-totals">
+            <h2>Cart Totals</h2>
+            <div class="cart-totals-row">
+              <span>Subtotal</span>
+              <strong id="ct-subtotal">$0.00</strong>
+            </div>
+            <div class="cart-totals-row cart-totals-grand">
+              <span>Total</span>
+              <strong id="ct-total">$0.00</strong>
+            </div>
+            <a id="proceed-checkout" class="checkout-cta" href="./checkout.html">Proceed to Checkout</a>
+            <p class="cart-note">Secure checkout &middot; Payment options coming soon.</p>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <!-- ── Toast ─────────────────────────────────────── -->
+    <div id="cart-toast" role="status" aria-live="polite"></div>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="./assets/images/logo.webp" alt="The Sullivans Division USNSCC" width="118" height="118" />
+          <div class="footer-brand-text">
+            <strong>The Sullivans Division</strong>
+            <p>U.S. Naval Sea Cadet Corps<br>Buffalo, New York</p>
+            <p>Building leaders and patriots since 1961.</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Site</p>
+          <nav class="footer-col-nav"><a href="./index.html">Home</a><a href="./about.html">About</a><a href="./leadership.html">Leadership</a><a href="./resource-hub.html">Resource Hub</a><a href="./store.html">Store</a><a href="./contact.html">Contact</a></nav>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Programs</p>
+          <nav class="footer-col-nav"><a href="./about.html">Navy League (NLCC)</a><a href="./about.html">Sea Cadets (NSCC)</a><a href="https://www.seacadets.org/join" target="_blank" rel="noopener">Join the Division</a><a href="./cadet-dashboard.html">Cadet Login</a><a href="https://www.seacadets.org/" target="_blank" rel="noopener">National USNSCC &#8599;</a></nav>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Follow Us</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/seacadetsbuffalo_official/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.tiktok.com/@seacadetsbuffalo" target="_blank" rel="noopener">TikTok</a>
+            <a href="https://www.facebook.com/SeaCadetsBuffalo" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://www.youtube.com/@SeaCadetsBuffalo" target="_blank" rel="noopener">YouTube</a>
+            <a href="https://nextdoor.com/profile/019jHtsYPfSp3x777" target="_blank" rel="noopener">Nextdoor</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&#169; 2026 The Sullivans Division USNSCC &middot; Buffalo, NY &middot; A federally chartered youth organization.</p>
+        <a class="join-footer" href="https://www.seacadets.org/join" target="_blank" rel="noopener">Join Now &#8594;</a>
+      </div>
+    </footer>
+
+    <script src="./main.js"></script>
+    <script src="./cart-core.js"></script>
+    <script>
+      function renderCartPage() {
+        const empty  = document.getElementById('cart-empty-state');
+        const layout = document.getElementById('cart-layout');
+        const rows   = document.getElementById('cart-rows');
+
+        if (!cart.items.length) {
+          empty.hidden  = false;
+          layout.hidden = true;
+          return;
+        }
+        empty.hidden  = true;
+        layout.hidden = false;
+
+        rows.innerHTML = cart.items.map(item => `
+          <tr data-key="${item.key}">
+            <td class="ct-product">
+              <button class="ct-remove" data-remove="${item.key}" aria-label="Remove">&times;</button>
+              <img src="${item.img}" alt="${item.name}" />
+              <div class="ct-product-info">
+                <p class="ct-name">${item.name}</p>
+                ${item.size ? `<p class="ct-meta">Size: <strong>${item.size}</strong></p>` : ''}
+                <p class="ct-meta">${money(item.price)} each</p>
+              </div>
+            </td>
+            <td class="ct-qty">
+              <div class="ct-qty-control">
+                <button data-dec="${item.key}" aria-label="Decrease">&minus;</button>
+                <span>${item.qty}</span>
+                <button data-inc="${item.key}" aria-label="Increase">+</button>
+              </div>
+            </td>
+            <td class="ct-sub">${money(item.price * item.qty)}</td>
+          </tr>
+        `).join('');
+
+        document.getElementById('ct-subtotal').textContent = money(cart.total);
+        document.getElementById('ct-total').textContent    = money(cart.total);
+      }
+
+      document.addEventListener('click', (e) => {
+        const inc = e.target.closest('[data-inc]');
+        const dec = e.target.closest('[data-dec]');
+        const rem = e.target.closest('[data-remove]');
+        if (inc) { const k = inc.dataset.inc; const it = cart.items.find(i => i.key === k); cart.updateQty(k, it.qty + 1); renderCartPage(); }
+        if (dec) { const k = dec.dataset.dec; const it = cart.items.find(i => i.key === k); cart.updateQty(k, it.qty - 1); renderCartPage(); }
+        if (rem) { cart.remove(rem.dataset.remove); renderCartPage(); }
+      });
+
+      document.addEventListener('DOMContentLoaded', renderCartPage);
+    </script>
+    <a class="sticky-join" href="https://www.seacadets.org/join" target="_blank" rel="noopener">Join Now &#8594;</a>
+  </body>
+</html>
