@@ -1227,9 +1227,9 @@ p {
 
 .product-card img {
   width: 100%;
-  aspect-ratio: 1 / 0.78;
-  object-fit: cover;
-  background: var(--blue-100);
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  background: var(--paper);
 }
 
 .product-card div {
@@ -2817,53 +2817,41 @@ p {
   text-transform: uppercase !important;
   padding-bottom: 10px !important;
   margin-bottom: 16px !important;
-  border-bottom: 2px solid #c6a22c !important;
+  border-bottom: none !important;
+  text-decoration: underline !important;
+  text-underline-offset: 5px !important;
+  text-decoration-color: #c6a22c !important;
   display: block !important;
 }
 
-/* Footer social — simple vertical list, icon left, name right */
+/* Footer social — plain text links, no icons */
 .footer-social {
   display: flex !important;
   flex-direction: column !important;
-  gap: 10px !important;
+  gap: 8px !important;
   margin-top: 4px !important;
 }
-.footer-social-link {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  gap: 12px !important;
+.footer-social a {
   color: rgba(255,255,255,0.75) !important;
   font-size: 0.9rem !important;
   font-weight: 500 !important;
   text-decoration: none !important;
   text-transform: none !important;
   letter-spacing: 0 !important;
+  display: block !important;
+  padding: 2px 0 !important;
   width: auto !important;
-  text-align: left !important;
-  padding: 3px 0 !important;
 }
-.footer-social-link:hover { color: #fff !important; }
-.footer-social-icon {
-  width: 32px !important;
-  height: 32px !important;
-  min-width: 32px !important;
-  flex-shrink: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  border-radius: 50% !important;
-  border: 1.5px solid rgba(255,255,255,0.22) !important;
-  background: rgba(255,255,255,0.06) !important;
-}
-.footer-social-icon svg { width: 15px !important; height: 15px !important; display: block !important; }
-.footer-social-link span:last-child {
-  white-space: nowrap !important;
-  overflow: visible !important;
-  flex: none !important;
+.footer-social a:hover { color: #fff !important; text-decoration: underline !important; }
+.footer-social-icon { display: none !important; }
+.footer-social-link {
+  display: block !important;
+  color: rgba(255,255,255,0.75) !important;
   font-size: 0.9rem !important;
   font-weight: 500 !important;
+  text-decoration: none !important;
 }
+.footer-social-link:hover { color: #fff !important; }
 
 /* Footer grid */
 .footer-inner {
