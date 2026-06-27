@@ -4,67 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Store | The Sullivans USNSCC</title>
-    <meta name="description" content="Official store for The Sullivans Division USNSCC — dues, sea bags, uniforms, and apparel." />
+    <meta name="description" content="Store preview for The Sullivans Division USNSCC with current WooCommerce products and prices." />
     <link rel="stylesheet" href="./styles.css" />
-    <style>
-      .store-hero{background:var(--navy-950);color:var(--white);padding:72px clamp(18px,4vw,64px) 48px;text-align:center}
-      .store-hero h1{font-size:clamp(2rem,4vw,3rem);margin-bottom:12px}
-      .store-hero p{color:rgba(255,255,255,0.72);max-width:600px;margin:0 auto}
-      .store-section{padding:56px clamp(18px,4vw,64px);max-width:1280px;margin:0 auto}
-      .store-section-title{font-size:1rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#0d1b3e;padding-bottom:10px;margin-bottom:32px;border-bottom:3px solid #c6a22c;display:inline-block}
-      .product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:24px}
-      .product-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.08);cursor:pointer;transition:transform 180ms ease,box-shadow 180ms ease;border:1px solid rgba(0,0,0,.07);display:flex;flex-direction:column}
-      .product-card:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(0,0,0,.14)}
-      .product-card-img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:#f3f4f6}
-      .product-card-body{padding:16px;flex:1;display:flex;flex-direction:column}
-      .product-card-tag{font-size:.7rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#1a4587;margin-bottom:6px}
-      .product-card-name{font-size:.95rem;font-weight:700;color:#0d1b3e;margin:0 0 10px;line-height:1.3;flex:1}
-      .product-card-price{font-size:1.1rem;font-weight:900;color:#0d1b3e;margin-bottom:10px}
-      .product-card-cta{display:block;width:100%;padding:10px;background:#0d1b3e;color:#fff;border:none;border-radius:8px;font-size:.85rem;font-weight:700;cursor:pointer;transition:background 160ms ease;text-align:center}
-      .product-card-cta:hover{background:#1a4587}
-      .bundle-card-imgs{display:flex;width:100%;aspect-ratio:1;overflow:hidden}
-      .bundle-card-imgs img{width:50%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform 400ms ease}
-      .product-card:hover .bundle-card-imgs img:first-child{transform:scale(1.04) translateX(-2%)}
-      .product-card:hover .bundle-card-imgs img:last-child{transform:scale(1.04) translateX(2%)}
-      .product-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:900;align-items:center;justify-content:center;padding:24px}
-      .product-modal-overlay.is-open{display:flex}
-      .product-modal{background:#fff;border-radius:16px;max-width:860px;width:100%;max-height:90vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.35)}
-      @media(max-width:680px){.product-modal{grid-template-columns:1fr}}
-      .modal-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border:none;background:rgba(0,0,0,.1);border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;color:#333;line-height:1}
-      .modal-close:hover{background:rgba(0,0,0,.2)}
-      .modal-slideshow{position:relative;background:#f0f2f5;border-radius:16px 0 0 16px;overflow:hidden;min-height:380px;display:flex;align-items:center;justify-content:center}
-      @media(max-width:680px){.modal-slideshow{border-radius:16px 16px 0 0;min-height:240px}}
-      .slide{display:none;width:100%;height:100%;object-fit:contain;padding:20px;box-sizing:border-box;position:absolute;inset:0}
-      .slide.active{display:block}
-      .slide-dots{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:5}
-      .slide-dot{width:8px;height:8px;border-radius:50%;background:rgba(0,0,0,.22);border:none;cursor:pointer;padding:0;transition:background 160ms ease}
-      .slide-dot.active{background:#1a4587}
-      .slide-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.9);border:none;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;color:#0d1b3e;box-shadow:0 2px 8px rgba(0,0,0,.12);z-index:5}
-      .slide-nav.prev{left:10px}.slide-nav.next{right:10px}
-      .modal-info{padding:40px 32px 32px;display:flex;flex-direction:column;gap:14px}
-      @media(max-width:680px){.modal-info{padding:24px 20px}}
-      .modal-tag{font-size:.7rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#1a4587}
-      .modal-name{font-size:1.4rem;font-weight:900;color:#0d1b3e;line-height:1.2;margin:0}
-      .modal-price{font-size:1.7rem;font-weight:900;color:#0d1b3e}
-      .modal-desc{font-size:.9rem;color:#4a4a4a;line-height:1.7}
-      .modal-sizes{display:flex;flex-direction:column;gap:10px}
-      .modal-sizes label{font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#888}
-      .size-options{display:flex;flex-wrap:wrap;gap:7px}
-      .size-btn{padding:7px 12px;border:2px solid #d1d5db;border-radius:7px;background:#fff;font-size:.82rem;font-weight:700;cursor:pointer;transition:all 160ms ease;color:#0d1b3e}
-      .size-btn:hover{border-color:#1a4587}
-      .size-btn.selected{border-color:#1a4587;background:#1a4587;color:#fff}
-      .modal-actions{display:flex;flex-direction:column;gap:10px;margin-top:4px}
-      .modal-btn-national{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px 18px;background:#c6a22c;color:#0d1b3e;border:none;border-radius:10px;font-size:.9rem;font-weight:900;cursor:pointer;text-align:center;text-decoration:none;transition:background 160ms ease}
-      .modal-btn-national:hover{background:#b8911f}
-      .modal-btn-sullivans{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px 18px;background:#fff;color:#0d1b3e;border:2px solid #0d1b3e;border-radius:10px;font-size:.88rem;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;transition:all 160ms ease}
-      .modal-btn-sullivans:hover{background:#0d1b3e;color:#fff}
-      .modal-cta-divider{display:flex;align-items:center;gap:10px;color:#aaa;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
-      .modal-cta-divider::before,.modal-cta-divider::after{content:'';flex:1;height:1px;background:#e0e0e0}
-      .modal-cta-note{font-size:.73rem;color:#999;text-align:center;line-height:1.5}
-      .printify-note{background:#eff6ff;border-left:4px solid #1a4587;border-radius:0 8px 8px 0;padding:10px 14px;font-size:.8rem;color:#1a4587;font-weight:600}
-      @media(max-width:640px){.product-grid{grid-template-columns:1fr 1fr;gap:14px}.product-modal-overlay{padding:10px}}
-      @media(max-width:400px){.product-grid{grid-template-columns:1fr}}
-    </style>
   </head>
   <body class="store-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -96,179 +37,135 @@
     </header>
 
     <main id="main">
-      <div class="store-hero">
-        <p class="eyebrow">Official Unit Store</p>
-        <h1>The Sullivans Division Store</h1>
-        <p>Dues, sea bags, uniform items, and division apparel. Click any product to view full details and order.</p>
-      </div>
-
-      <div class="store-section">
-        <span class="store-section-title">Dues &amp; Fees</span>
-        <div class="product-grid">
-          <div class="product-card" onclick="openModal('sc-lc-dues')">
-            <img class="product-card-img" src="./assets/store assets/meals-dues/cadet-dues.jpg" alt="Cadet Dues" />
-            <div class="product-card-body">
-              <p class="product-card-tag">Dues</p>
-              <p class="product-card-name">Sea Cadet / League Cadet Dues</p>
-              <p class="product-card-price">$150.00</p>
-              <button class="product-card-cta">View Details</button>
-            </div>
-          </div>
-          <div class="product-card" onclick="openModal('officer-child-dues')">
-            <img class="product-card-img" src="./assets/store assets/meals-dues/cadet-dues.jpg" alt="Officer Child Dues" />
-            <div class="product-card-body">
-              <p class="product-card-tag">Dues</p>
-              <p class="product-card-name">Officer Child Dues</p>
-              <p class="product-card-price">$125.00</p>
-              <button class="product-card-cta">View Details</button>
-            </div>
-          </div>
-          <div class="product-card" onclick="openModal('officer-dues')">
-            <img class="product-card-img" src="./assets/store assets/meals-dues/cadet-dues.jpg" alt="Officer Dues" />
-            <div class="product-card-body">
-              <p class="product-card-tag">Dues</p>
-              <p class="product-card-name">Officer Dues</p>
-              <p class="product-card-price">$50.00</p>
-              <button class="product-card-cta">View Details</button>
-            </div>
-          </div>
+      <section class="store-hero">
+        <div>
+          <p class="eyebrow">Unit store</p>
+          <h1>Sullivans Official Store</h1>
+          <p>Browse dues, sea bags, meals, and division apparel. Click any product to view details and place your order with the unit.</p>
         </div>
-      </div>
+        <aside class="cart-preview" aria-label="Cart preview">
+          <span>Cart Preview</span>
+          <strong>$0.00</strong>
+          <p>No products selected yet.</p>
+          <button class="button primary" type="button">Checkout Later</button>
+        </aside>
+      </section>
 
-      <div class="store-section" style="padding-top:0">
-        <span class="store-section-title">Meals</span>
-        <div class="product-grid">
-          <div class="product-card" onclick="openModal('daily-meals')">
-            <img class="product-card-img" src="./assets/store assets/meals-dues/daily-meals.jpg" alt="Daily Meals" />
-            <div class="product-card-body">
-              <p class="product-card-tag">Meals</p>
-              <p class="product-card-name">Daily Meals – Day Drills</p>
-              <p class="product-card-price">$5.00</p>
-              <button class="product-card-cta">View Details</button>
-            </div>
+      <section class="store-shell">
+        <aside class="store-sidebar" aria-label="Store filters">
+          <div>
+            <span class="store-label">Categories</span>
+            <a href="#dues">Dues</a>
+            <a href="#meals">Meals</a>
+            <a href="#sea-bags">Sea Bags</a>
+            <a href="#apparel">Apparel</a>
+            <a href="#admin">Admin</a>
           </div>
-          <div class="product-card" onclick="openModal('overnight-meals')">
-            <img class="product-card-img" src="./assets/store assets/meals-dues/overnight-meals.jpg" alt="Overnight Meals" />
-            <div class="product-card-body">
-              <p class="product-card-tag">Meals</p>
-              <p class="product-card-name">Overnight Meals – Weekend Drills</p>
-              <p class="product-card-price">$20.00</p>
-              <button class="product-card-cta">View Details</button>
-            </div>
+          <div>
+            <span class="store-label">Payment</span>
+            <p>Contact the unit directly to place orders. Printify apparel ships directly to you after order confirmation.</p>
           </div>
-        </div>
-      </div>
+        </aside>
 
-      <div class="store-section" style="padding-top:0">
-        <span class="store-section-title">Sea Bags</span>
-        <div class="product-grid">
-          <div class="product-card" onclick="openModal('lc-sea-bag')">
-            <img class="product-card-img" src="./assets/store assets/new/Sea Bag (League Cadet).png" alt="League Cadet Sea Bag" style="object-fit:contain;padding:12px;background:#f0f2f5" />
-            <div class="product-card-body">
-              <p class="product-card-tag">Sea Bags</p>
-              <p class="product-card-name">League Cadet Sea Bag</p>
-              <p class="product-card-price">$75.00</p>
-              <button class="product-card-cta">View Details</button>
+        <section class="product-area" aria-label="Products">
+          <div class="store-toolbar">
+            <div>
+              <span class="store-label">Published products</span>
+              <strong>14 items</strong>
             </div>
+            <p>Official Sullivans Division products.</p>
           </div>
-          <div class="product-card" onclick="openModal('lc-promotion-bag')">
-            <img class="product-card-img" src="./assets/store assets/new/Sea Bag (SC --> LC).png" alt="League Cadet Promotion Sea Bag" style="object-fit:contain;padding:12px;background:#f0f2f5" />
-            <div class="product-card-body">
-              <p class="product-card-tag">Sea Bags</p>
-              <p class="product-card-name">League Cadet Promotion Sea Bag</p>
-              <p class="product-card-price">$75.00</p>
-              <button class="product-card-cta">View Details</button>
-            </div>
-          </div>
-          <div class="product-card" onclick="openModal('sc-sea-bag')">
-            <img class="product-card-img" src="./assets/store assets/new/Sea Bag (Sea Cadet).png" alt="Sea Cadet Sea Bag" style="object-fit:contain;padding:12px;background:#f0f2f5" />
-            <div class="product-card-body">
-              <p class="product-card-tag">Sea Bags</p>
-              <p class="product-card-name">Sea Cadet Sea Bag</p>
-              <p class="product-card-price">$150.00</p>
-              <button class="product-card-cta">View Details</button>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="store-section" style="padding-top:0">
-        <span class="store-section-title">Apparel</span>
-        <div class="product-grid">
-          <div class="product-card" onclick="openModal('navy-hoodie')">
-            <img class="product-card-img" src="./assets/store assets/new/TSD Navy Set - Hoodie (front).png" alt="Sullivans Navy Hoodie" style="object-fit:contain;padding:8px;background:#f0f2f5" />
-            <div class="product-card-body">
-              <p class="product-card-tag">Apparel · Printify</p>
-              <p class="product-card-name">The Sullivans Navy Hoodie</p>
-              <p class="product-card-price">$10.00</p>
-              <button class="product-card-cta">View Details &amp; Sizes</button>
-            </div>
-          </div>
-          <div class="product-card" onclick="openModal('navy-sweats')">
-            <img class="product-card-img" src="./assets/store assets/new/USNSCC Navy Sweats.png" alt="USNSCC Navy Sweatpants" style="object-fit:contain;padding:8px;background:#f0f2f5" />
-            <div class="product-card-body">
-              <p class="product-card-tag">Apparel · Printify</p>
-              <p class="product-card-name">USNSCC Navy Sweatpants</p>
-              <p class="product-card-price">$10.00</p>
-              <button class="product-card-cta">View Details &amp; Sizes</button>
-            </div>
-          </div>
-          <div class="product-card" onclick="openModal('bundle')">
-            <div class="bundle-card-imgs">
-              <img src="./assets/store assets/new/TSD Navy Set - Hoodie (front).png" alt="Sullivans Navy Hoodie" style="object-fit:contain;padding:8px;background:#f0f2f5" />
-              <img src="./assets/store assets/new/USNSCC Navy Sweats.png" alt="USNSCC Navy Sweatpants" style="object-fit:contain;padding:8px;background:#f0f2f5" />
-            </div>
-            <div class="product-card-body">
-              <p class="product-card-tag">Bundle · Printify</p>
-              <p class="product-card-name">Navy Set – Hoodie &amp; Sweatpants Bundle</p>
-              <p class="product-card-price">$15.00 <span style="font-size:.75rem;color:#888;font-weight:500">Save $5</span></p>
-              <button class="product-card-cta">View Details &amp; Sizes</button>
-            </div>
-          </div>
-          <div class="product-card" onclick="openModal('coyote-hoodie')">
-            <img class="product-card-img" src="./assets/store assets/new/Sullivans Coyote Brown Hoodie (front).png" alt="Sullivans Coyote Brown Hoodie" style="object-fit:contain;padding:8px;background:#f0f2f5" />
-            <div class="product-card-body">
-              <p class="product-card-tag">Apparel · Printify</p>
-              <p class="product-card-name">Sullivans Coyote Brown Hoodie</p>
-              <p class="product-card-price">$40.00</p>
-              <button class="product-card-cta">View Details &amp; Sizes</button>
-            </div>
-          </div>
-          <div class="product-card" onclick="openModal('coyote-tee')">
-            <img class="product-card-img" src="./assets/store assets/new/Sullivans Coyote Brown shirt (front).png" alt="Sullivans Coyote Brown T-Shirt" style="object-fit:contain;padding:8px;background:#f0f2f5" />
-            <div class="product-card-body">
-              <p class="product-card-tag">Apparel · Printify</p>
-              <p class="product-card-name">Sullivans Coyote Brown T-Shirt</p>
-              <p class="product-card-price">$20.00</p>
-              <button class="product-card-cta">View Details &amp; Sizes</button>
-            </div>
-          </div>
-        </div>
-      </div>
+          <div class="product-grid">
 
-      <div class="store-section" style="padding-top:0">
-        <span class="store-section-title">Admin</span>
-        <div class="product-grid">
-          <div class="product-card" onclick="openModal('replacement-id')">
-            <img class="product-card-img" src="./assets/store assets/new/USNSCC ID.png" alt="Replacement ID Card" style="object-fit:contain;padding:16px;background:#f0f2f5" />
-            <div class="product-card-body">
-              <p class="product-card-tag">Admin</p>
-              <p class="product-card-name">Replacement ID Card</p>
-              <p class="product-card-price">$10.00</p>
-              <button class="product-card-cta">View Details</button>
-            </div>
+            <article class="product-card" id="dues">
+              <img src="./assets/store assets/dues-sc-lc.svg" alt="Sea Cadet and League Cadet Dues" />
+              <div><span>Dues</span><h2>Sea Cadet / League Cadet Dues</h2><strong>$150.00</strong></div>
+              <button type="button">Contact Unit to Order</button>
+            </article>
+
+            <article class="product-card">
+              <img src="./assets/store assets/dues-officer-child.svg" alt="Officer Child Dues" />
+              <div><span>Dues</span><h2>Officer Child Dues</h2><strong>$125.00</strong></div>
+              <button type="button">Contact Unit to Order</button>
+            </article>
+
+            <article class="product-card">
+              <img src="./assets/store assets/dues-officer.svg" alt="Officer Dues" />
+              <div><span>Dues</span><h2>Officer Dues</h2><strong>$50.00</strong></div>
+              <button type="button">Contact Unit to Order</button>
+            </article>
+
+            <article class="product-card" id="meals">
+              <img src="./assets/store assets/meal-daily.svg" alt="Daily Meals – Day Drills" />
+              <div><span>Meals</span><h2>Daily Meals – Day Drills</h2><strong>$5.00</strong></div>
+              <button type="button">Contact Unit to Order</button>
+            </article>
+
+            <article class="product-card">
+              <img src="./assets/store assets/meal-overnight.svg" alt="Overnight Meals – Weekend Drills" />
+              <div><span>Meals</span><h2>Overnight Meals – Weekend Drills</h2><strong>$20.00</strong></div>
+              <button type="button">Contact Unit to Order</button>
+            </article>
+
+            <article class="product-card" id="sea-bags">
+              <img src="./assets/store assets/new/sea-bag-lc.png" alt="League Cadet Sea Bag" />
+              <div><span>Sea Bags</span><h2>League Cadet Sea Bag</h2><strong>$75.00</strong></div>
+              <button type="button">Contact Unit to Order</button>
+            </article>
+
+            <article class="product-card">
+              <img src="./assets/store assets/new/sea-bag-promotion.png" alt="League Cadet Promotion Sea Bag" />
+              <div><span>Sea Bags</span><h2>League Cadet Promotion Sea Bag</h2><strong>$75.00</strong></div>
+              <button type="button">Contact Unit to Order</button>
+            </article>
+
+            <article class="product-card">
+              <img src="./assets/store assets/new/sea-bag-sc.png" alt="Sea Cadet Sea Bag" />
+              <div><span>Sea Bags</span><h2>Sea Cadet Sea Bag</h2><strong>$150.00</strong></div>
+              <button type="button">Contact Unit to Order</button>
+            </article>
+
+            <article class="product-card apparel-card" id="apparel">
+              <img src="./assets/store assets/new/navy-hoodie-front.png" alt="Sullivans Navy Hoodie" />
+              <div><span>Apparel</span><h2>Sullivans Navy Hoodie</h2><strong>$10.00</strong></div>
+              <button type="button">Select Options</button>
+            </article>
+
+            <article class="product-card apparel-card">
+              <img src="./assets/store assets/new/navy-sweats.png" alt="USNSCC Navy Sweatpants" />
+              <div><span>Apparel</span><h2>USNSCC Navy Sweatpants</h2><strong>$10.00</strong></div>
+              <button type="button">Select Options</button>
+            </article>
+
+            <article class="product-card apparel-card">
+              <img src="./assets/store assets/new/navy-hoodie-front.png" alt="Sullivans Hoodie and Sweatpants Bundle" />
+              <div><span>Bundle</span><h2>Sullivans Hoodie &amp; Sweatpants Bundle</h2><strong>$15.00</strong></div>
+              <button type="button">Select Options</button>
+            </article>
+
+            <article class="product-card apparel-card">
+              <img src="./assets/store assets/new/coyote-tee-front.png" alt="Sullivans Coyote Brown T-Shirt" />
+              <div><span>Apparel</span><h2>Sullivans Coyote Brown T-Shirt</h2><strong>$20.00</strong></div>
+              <button type="button">Select Options</button>
+            </article>
+
+            <article class="product-card apparel-card">
+              <img src="./assets/store assets/new/coyote-hoodie-front.png" alt="Sullivans Coyote Brown Hoodie" />
+              <div><span>Apparel</span><h2>Sullivans Coyote Brown Hoodie</h2><strong>$40.00</strong></div>
+              <button type="button">Select Options</button>
+            </article>
+
+            <article class="product-card" id="admin">
+              <img src="./assets/store assets/new/usnscc-id.png" alt="Replacement ID Card" />
+              <div><span>Admin</span><h2>Replacement ID</h2><strong>$10.00</strong></div>
+              <button type="button">Contact Unit to Order</button>
+            </article>
+
           </div>
-        </div>
-      </div>
+        </section>
+      </section>
     </main>
-
-    <div class="product-modal-overlay" id="modal-overlay" onclick="closeModalOnOverlay(event)">
-      <div class="product-modal" id="modal-box" role="dialog" aria-modal="true">
-        <button class="modal-close" onclick="closeModal()" aria-label="Close">&#x2715;</button>
-        <div class="modal-slideshow" id="modal-slideshow"></div>
-        <div class="modal-info" id="modal-info"></div>
-      </div>
-    </div>
 
     <footer class="site-footer">
       <div class="footer-inner">
@@ -306,68 +203,5 @@
     </footer>
     <script src="./main.js"></script>
     <a class="sticky-join" href="https://www.seacadets.org/join" target="_blank" rel="noopener">Join Now &#8594;</a>
-
-    <script>
-    const PRODUCTS={
-      'sc-lc-dues':{tag:'Dues',name:'Sea Cadet / League Cadet Dues',price:'$150.00',images:['./assets/store assets/meals-dues/cadet-dues.jpg'],desc:'Annual dues covering enrollment, training materials, uniform issuance, and administrative costs for the division. Required annually for all active Sea Cadets (NSCC) and Navy League Cadets (NLCC). Dues fund drill operations, unit supplies, and program support.',sizes:null,printify:false},
-      'officer-child-dues':{tag:'Dues',name:'Officer Child Dues',price:'$125.00',images:['./assets/store assets/meals-dues/cadet-dues.jpg'],desc:'Annual dues for children of adult volunteer officers enrolled in the program. The discounted rate recognizes the family contribution of parents serving the unit as volunteer officers.',sizes:null,printify:false},
-      'officer-dues':{tag:'Dues',name:'Officer Dues',price:'$50.00',images:['./assets/store assets/meals-dues/cadet-dues.jpg'],desc:'Annual dues for adult volunteer officers. Officers are the backbone of The Sullivans Division — this fee supports the administrative and training costs associated with maintaining officer status in the USNSCC.',sizes:null,printify:false},
-      'daily-meals':{tag:'Meals',name:'Daily Meals – Day Drills',price:'$5.00',images:['./assets/store assets/meals-dues/daily-meals.jpg'],desc:'Covers the cost of meals served during single-day drill weekends. Meals are provided on-site at the unit. Pay this fee for each day-drill you plan to attend.',sizes:null,printify:false},
-      'overnight-meals':{tag:'Meals',name:'Overnight Meals – Weekend Drills',price:'$20.00',images:['./assets/store assets/meals-dues/overnight-meals.jpg'],desc:'Covers all meals provided over a full weekend drill — breakfast, lunch, and dinner for the Saturday–Sunday overnight stay. Pay this fee for each full weekend drill you attend.',sizes:null,printify:false},
-      'lc-sea-bag':{tag:'Sea Bags',name:'League Cadet Sea Bag',price:'$75.00',images:['./assets/store assets/new/Sea Bag (League Cadet).png'],desc:'Complete starter kit for new Navy League Cadets (NLCC). Includes all uniform items and division-issued materials required to begin training and participate in drills. Everything a new cadet needs to get started on day one.',sizes:null,printify:false},
-      'lc-promotion-bag':{tag:'Sea Bags',name:'League Cadet Promotion Sea Bag',price:'$75.00',images:['./assets/store assets/new/Sea Bag (SC --> LC).png'],desc:'For League Cadets being promoted to full Sea Cadet (NSCC) status. When a cadet advances from LC to SC, they already have the materials from their original LC Sea Bag. This promotion bag covers only the additional uniform items and equipment required at the Sea Cadet level — a cost-effective bridge for cadets moving up in the program.',sizes:null,printify:false},
-      'sc-sea-bag':{tag:'Sea Bags',name:'Sea Cadet Sea Bag',price:'$150.00',images:['./assets/store assets/new/Sea Bag (Sea Cadet).png'],desc:'Full uniform kit and materials for new Sea Cadets (NSCC) entering the program directly at the Sea Cadet level. Includes the complete set of uniform items, division materials, and equipment needed for Sea Cadet-level training. Required for all newly enrolled NSCC cadets.',sizes:null,printify:false},
-      'navy-hoodie':{tag:'Apparel · Printify',name:'The Sullivans Navy Hoodie',price:'$10.00',images:['./assets/store assets/new/TSD Navy Set - Hoodie (front).png','./assets/store assets/new/TSD Navy Set - Hoodie (back).png'],desc:'Official The Sullivans Division navy blue pullover hoodie. Comfortable heavyweight fleece with division branding front and back. Show your unit pride on and off the field. Fulfilled by Printify — printed and shipped directly to your address.',sizes:['XS','S','M','L','XL','2XL','3XL'],printify:true},
-      'navy-sweats':{tag:'Apparel · Printify',name:'USNSCC Navy Sweatpants',price:'$10.00',images:['./assets/store assets/new/USNSCC Navy Sweats.png'],desc:'Official USNSCC navy blue sweatpants with division emblem. Comfortable for training and casual wear. Pairs perfectly with the Sullivans Navy Hoodie to complete the full Navy Set. Fulfilled by Printify — ships directly to you.',sizes:['XS','S','M','L','XL','2XL','3XL'],printify:true},
-      'bundle':{tag:'Bundle · Printify',name:'Navy Set – Hoodie & Sweatpants Bundle',price:'$15.00',images:['./assets/store assets/new/TSD Navy Set - Hoodie (front).png','./assets/store assets/new/USNSCC Navy Sweats.png','./assets/store assets/new/TSD Navy Set - Hoodie (back).png'],desc:'Get the Sullivans Navy Hoodie and USNSCC Navy Sweatpants together at a bundled price — save $5 vs. buying separately. Select your size when contacting us to order. Both items fulfilled by Printify and shipped directly to your address.',sizes:['XS','S','M','L','XL','2XL','3XL'],printify:true},
-      'coyote-hoodie':{tag:'Apparel · Printify',name:'Sullivans Coyote Brown Hoodie',price:'$40.00',images:['./assets/store assets/new/Sullivans Coyote Brown Hoodie (front).png','./assets/store assets/new/Sullivans Coyote Brown Hoodie (back).png'],desc:'Official Sullivans Division coyote brown pullover hoodie. Full division emblem on the front, unit designation on the back. Premium heavyweight fleece — a sharp look that represents the division on and off the field. Fulfilled by Printify — ships directly to you.',sizes:['XS','S','M','L','XL','2XL','3XL'],printify:true},
-      'coyote-tee':{tag:'Apparel · Printify',name:'Sullivans Coyote Brown T-Shirt',price:'$20.00',images:['./assets/store assets/new/Sullivans Coyote Brown shirt (front).png','./assets/store assets/new/Sullivans Coyote Brown shirt (back).png'],desc:'Official Sullivans Division coyote brown t-shirt. Division emblem on the front, unit designation on the back. Lightweight and comfortable for training and casual wear. Fulfilled by Printify — ships directly to you.',sizes:['XS','S','M','L','XL','2XL','3XL'],printify:true},
-      'replacement-id':{tag:'Admin',name:'Replacement ID Card',price:'$10.00',images:['./assets/store assets/new/USNSCC ID.png'],desc:'Official replacement unit ID card for The Sullivans Division USNSCC. Required if your issued ID is lost, damaged, or stolen. Contact the unit to submit an updated photo before purchasing.',sizes:null,printify:false}
-    };
-
-    let currentSlide=0,currentProductId=null;
-
-    function openModal(id){
-      const p=PRODUCTS[id];if(!p)return;
-      currentProductId=id;currentSlide=0;
-      const ss=document.getElementById('modal-slideshow');
-      const multi=p.images.length>1;
-      ss.innerHTML=p.images.map((src,i)=>`<img class="slide${i===0?' active':''}" src="${src}" alt="${p.name}" />`).join('')
-        +(multi?`<div class="slide-dots">${p.images.map((_,i)=>`<button class="slide-dot${i===0?' active':''}" onclick="goToSlide(${i})"></button>`).join('')}</div>`:'')
-        +(multi?`<button class="slide-nav prev" onclick="changeSlide(-1)">&#8249;</button><button class="slide-nav next" onclick="changeSlide(1)">&#8250;</button>`:'');
-      const sizesHtml=p.sizes?`<div class="modal-sizes"><label>Select Size</label><div class="size-options">${p.sizes.map(s=>`<button class="size-btn" onclick="selectSize(this)">${s}</button>`).join('')}</div></div>`:'';
-      const printHtml=p.printify?`<div class="printify-note">&#x1F5A8; Fulfilled by Printify &mdash; printed and shipped directly to your address after order confirmation.</div>`:'';
-      document.getElementById('modal-info').innerHTML=`
-        <p class="modal-tag">${p.tag}</p>
-        <h2 class="modal-name">${p.name}</h2>
-        <p class="modal-price">${p.price}</p>
-        <p class="modal-desc">${p.desc}</p>
-        ${sizesHtml}${printHtml}
-        <div class="modal-actions">
-          <a class="modal-btn-sullivans" href="./contact.html">&#x2709;&#xFE0F; Contact The Sullivans Division to Order</a>
-          <p class="modal-cta-note">Reach out directly to our unit to place your order, ask questions, or arrange payment.</p>
-        </div>`;
-      document.getElementById('modal-overlay').classList.add('is-open');
-      document.body.style.overflow='hidden';
-    }
-
-    function closeModal(){document.getElementById('modal-overlay').classList.remove('is-open');document.body.style.overflow='';}
-    function closeModalOnOverlay(e){if(e.target===document.getElementById('modal-overlay'))closeModal();}
-
-    function changeSlide(dir){
-      const p=PRODUCTS[currentProductId];
-      const slides=document.querySelectorAll('.slide'),dots=document.querySelectorAll('.slide-dot');
-      slides[currentSlide].classList.remove('active');if(dots[currentSlide])dots[currentSlide].classList.remove('active');
-      currentSlide=(currentSlide+dir+p.images.length)%p.images.length;
-      slides[currentSlide].classList.add('active');if(dots[currentSlide])dots[currentSlide].classList.add('active');
-    }
-    function goToSlide(i){
-      const slides=document.querySelectorAll('.slide'),dots=document.querySelectorAll('.slide-dot');
-      slides[currentSlide].classList.remove('active');if(dots[currentSlide])dots[currentSlide].classList.remove('active');
-      currentSlide=i;slides[currentSlide].classList.add('active');if(dots[currentSlide])dots[currentSlide].classList.add('active');
-    }
-    function selectSize(btn){document.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');}
-    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
-    </script>
   </body>
 </html>
