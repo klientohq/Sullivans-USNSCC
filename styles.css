@@ -3811,15 +3811,15 @@ p {
    Appended last so it wins the cascade.
    ================================================================ */
 
-/* Nav logo: large, circular, no white surround */
+/* Nav logo: transparent patch (white background removed), shown in full */
 .brand img {
   width: 116px !important;
   height: 116px !important;
-  border-radius: 50% !important;
-  object-fit: cover !important;
+  border-radius: 0 !important;
+  object-fit: contain !important;
   object-position: center !important;
   background: transparent !important;
-  transform: scale(1.06);
+  clip-path: none !important;
   image-rendering: -webkit-optimize-contrast;
 }
 
@@ -3835,13 +3835,13 @@ p {
   grid-column: auto !important;
 }
 .footer-brand img {
-  width: 150px !important;
-  height: 150px !important;
-  border-radius: 50% !important;
-  object-fit: cover !important;
+  width: 152px !important;
+  height: 152px !important;
+  border-radius: 0 !important;
+  object-fit: contain !important;
   object-position: center !important;
   background: transparent !important;
-  transform: scale(1.06);
+  clip-path: none !important;
   flex-shrink: 0 !important;
   margin: 0 !important;
 }
@@ -3863,23 +3863,31 @@ p {
   display: block !important;
 }
 
-/* Footer social: plain text links (kill old circular icon styling) */
+/* Footer social: icon + name text links (kill old circular icon styling) */
 .footer-social { align-items: flex-start !important; }
 .footer-social a {
   width: auto !important;
   height: auto !important;
   border: 0 !important;
   border-radius: 0 !important;
-  display: block !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
   justify-content: flex-start !important;
   color: rgba(255,255,255,0.72) !important;
   padding: 3px 0 !important;
 }
+.footer-social a svg {
+  width: 17px !important;
+  height: 17px !important;
+  flex-shrink: 0 !important;
+  display: block !important;
+}
 .footer-social a:hover {
   background: transparent !important;
   color: #fff !important;
-  text-decoration: underline !important;
 }
+.footer-social a:hover span { text-decoration: underline; }
 
 /* Sticky Join — always-on gold pill, bottom-left, every page */
 .sticky-join {
@@ -4187,3 +4195,47 @@ p {
   .reasons-grid { grid-template-columns: 1fr; }
   .contact-form .field-row { flex-direction: column; gap: 0; }
 }
+
+/* ================================================================
+   Store — category color dots, all-blue buttons, white hover hint
+   ================================================================ */
+/* Sidebar category dots */
+.store-sidebar a { display: flex !important; align-items: center; }
+.store-sidebar a::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 11px;
+  flex-shrink: 0;
+  background: #c9ced8;
+}
+.store-sidebar a[href="#dues"]::before     { background: #2f6fed; }
+.store-sidebar a[href="#meals"]::before    { background: #d8362f; }
+.store-sidebar a[href="#sea-bags"]::before { background: #e3a72e; }
+.store-sidebar a[href="#apparel"]::before  { background: #8a93a3; }
+.store-sidebar a[href="#admin"]::before    { background: #e8772e; }
+
+/* Category dot on each product card (color set inline by store.js) */
+.cat-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+
+/* All "Add to Cart" buttons blue — grid + modal, no red */
+.product-btn,
+.apparel-btn { background: #0a1f4e !important; color: #fff !important; }
+.product-btn:hover,
+.apparel-btn:hover { background: #14306e !important; color: #fff !important; }
+.modal-add-btn { background: #0a1f4e !important; }
+.modal-add-btn:hover { background: #14306e !important; }
+
+/* Hover hint text — white, not red */
+.img-hint { color: #fff !important; }

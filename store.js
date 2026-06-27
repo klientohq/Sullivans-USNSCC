@@ -8,6 +8,16 @@ let currentProduct  = null;
 let currentImgIndex = 0;
 let selectedSize    = null;
 
+/* Category color coding (matches the sidebar dots) */
+const CAT_COLORS = {
+  'Dues': '#2f6fed',      // blue
+  'Meals': '#d8362f',     // red
+  'Sea Bags': '#e3a72e',  // yellow
+  'Apparel': '#8a93a3',   // gray
+  'Bundle': '#8a93a3',    // gray (apparel set)
+  'Admin': '#e8772e'      // orange
+};
+
 function _imgFallback(imgEl, product) {
   imgEl.onerror = product && product.fallback
     ? function () { this.onerror = null; this.src = product.fallback; }
@@ -139,6 +149,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const product = PRODUCTS.find(p => p.id === pid);
     const cardImg = card.querySelector('.product-img-wrap img');
     if (cardImg && product) _imgFallback(cardImg, product);
+
+    // Color-code the category label + add a matching dot
+    const catSpan = card.querySelector('.product-info span');
+    if (catSpan && product) {
+      const color = CAT_COLORS[product.category] || '#8a93a3';
+      catSpan.style.color = color;
+      if (!catSpan.querySelector('.cat-dot')) {
+        catSpan.insertAdjacentHTML('afterbegin', '<i class="cat-dot" style="background:' + color + '"></i>');
+      }
+    }
 
     // Click anywhere on the card (except the button) opens the detail overlay
     card.querySelector('.product-img-wrap')?.addEventListener('click', () => openModal(pid));
