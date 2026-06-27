@@ -1098,7 +1098,7 @@ p {
   margin: 0;
   color: var(--navy-950);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.4rem, 2.8vw, 2.4rem);
+  font-size: clamp(1.6rem, 3.6vw, 3rem);
   line-height: 1;
 }
 
@@ -4250,10 +4250,15 @@ p {
   margin-bottom: 2px;
 }
 
-/* Filter active state */
+/* Filter active state — shadowed/pressed look for selected categories */
 .store-sidebar a.filter-active {
+  background: rgba(47, 111, 237, 0.09);
+  border-radius: 7px;
+  padding-left: 6px !important;
+  padding-right: 8px !important;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.14), 0 0 0 1.5px rgba(47,111,237,0.25);
   color: var(--navy-950) !important;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 /* Clear filter button */

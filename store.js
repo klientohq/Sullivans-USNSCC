@@ -193,23 +193,26 @@ document.addEventListener('DOMContentLoaded', () => {
     return null;
   }
 
-  function filterProducts(cat) {
+  const selectedCats = new Set();
+
+  function filterProducts() {
     const cards    = document.querySelectorAll('.product-card');
     const clearBtn = document.getElementById('filter-clear');
     const countEl  = document.querySelector('.store-toolbar strong');
     let visible = 0;
 
     cards.forEach(card => {
-      const show = !cat || getCardCategory(card) === cat;
+      const show = selectedCats.size === 0 || selectedCats.has(getCardCategory(card));
       card.classList.toggle('product-card--hidden', !show);
       if (show) visible++;
     });
 
     document.querySelectorAll('.store-sidebar a').forEach(a => {
-      a.classList.toggle('filter-active', !!cat && a.getAttribute('href') === '#' + cat);
+      const cat = a.getAttribute('href').slice(1);
+      a.classList.toggle('filter-active', selectedCats.has(cat));
     });
 
-    if (clearBtn) clearBtn.hidden = !cat;
+    if (clearBtn) clearBtn.hidden = selectedCats.size === 0;
     if (countEl)  countEl.textContent = visible + ' item' + (visible === 1 ? '' : 's');
   }
 
@@ -217,12 +220,20 @@ document.addEventListener('DOMContentLoaded', () => {
     a.addEventListener('click', e => {
       e.preventDefault();
       const cat = a.getAttribute('href').slice(1);
-      filterProducts(cat);
+      if (selectedCats.has(cat)) {
+        selectedCats.delete(cat);
+      } else {
+        selectedCats.add(cat);
+      }
+      filterProducts();
     });
   });
 
   const clearBtn = document.getElementById('filter-clear');
-  if (clearBtn) clearBtn.addEventListener('click', () => filterProducts(null));
+  if (clearBtn) clearBtn.addEventListener('click', () => {
+    selectedCats.clear();
+    filterProducts();
+  });
 
   // ── Hero cart preview ───────────────────────────────
   function renderHeroCart() {
