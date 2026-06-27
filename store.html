@@ -48,12 +48,21 @@
           <h1>Sullivans Official Store</h1>
           <p>Browse dues, sea bags, meals, and division apparel. Add items to your cart and check out below.</p>
         </div>
+        <div class="cart-preview" id="hero-cart-preview" aria-live="polite">
+          <span>Your Cart</span>
+          <strong id="hero-cart-count">Empty</strong>
+          <p id="hero-cart-sub"></p>
+          <a href="./cart.html" class="button">View Cart</a>
+        </div>
       </section>
 
       <section class="store-shell">
         <aside class="store-sidebar" aria-label="Store filters">
           <div>
-            <span class="store-label">Categories</span>
+            <div class="sidebar-label-row">
+              <span class="store-label">Categories</span>
+              <button class="filter-clear-btn" id="filter-clear" hidden>Clear</button>
+            </div>
             <a href="#dues">Dues</a>
             <a href="#meals">Meals</a>
             <a href="#sea-bags">Sea Bags</a>
