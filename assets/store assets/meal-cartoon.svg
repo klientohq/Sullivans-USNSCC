@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- White background -->
+  <rect width="400" height="400" fill="#ffffff"/>
+
+  <!-- Plate shadow -->
+  <ellipse cx="200" cy="215" rx="158" ry="18" fill="#e0e0e0" opacity="0.5"/>
+
+  <!-- Plate outer ring -->
+  <circle cx="200" cy="200" r="155" fill="#f0f5f0" stroke="#7daa7d" stroke-width="6"/>
+  <!-- Plate inner rim -->
+  <circle cx="200" cy="200" r="138" fill="#ffffff" stroke="#b8d4b8" stroke-width="2"/>
+
+  <!-- === FOOD ITEMS === -->
+
+  <!-- Black beans (bottom left arc) -->
+  <ellipse cx="120" cy="248" rx="28" ry="16" fill="#2d1a0e" rx="6"/>
+  <ellipse cx="148" cy="255" rx="22" ry="14" fill="#3a2010"/>
+  <ellipse cx="100" cy="258" rx="18" ry="12" fill="#2d1a0e"/>
+
+  <!-- Green salad / spinach (left) -->
+  <ellipse cx="108" cy="195" rx="32" ry="22" fill="#4a8a3a" transform="rotate(-15,108,195)"/>
+  <ellipse cx="90" cy="185" rx="22" ry="15" fill="#5aaa44" transform="rotate(10,90,185)"/>
+  <ellipse cx="118" cy="178" rx="20" ry="14" fill="#3a7a2a" transform="rotate(-20,118,178)"/>
+  <!-- Salad highlight -->
+  <ellipse cx="100" cy="190" rx="10" ry="6" fill="#72c255" opacity="0.6" transform="rotate(-10,100,190)"/>
+
+  <!-- Tomato slices (bottom center-left) -->
+  <circle cx="155" cy="268" r="20" fill="#cc2222"/>
+  <circle cx="155" cy="268" r="20" fill="none" stroke="#aa1818" stroke-width="2"/>
+  <!-- Tomato segments -->
+  <line x1="155" y1="248" x2="155" y2="288" stroke="#aa1818" stroke-width="1.5" opacity="0.6"/>
+  <line x1="135" y1="268" x2="175" y2="268" stroke="#aa1818" stroke-width="1.5" opacity="0.6"/>
+  <line x1="141" y1="254" x2="169" y2="282" stroke="#aa1818" stroke-width="1" opacity="0.5"/>
+  <line x1="169" y1="254" x2="141" y2="282" stroke="#aa1818" stroke-width="1" opacity="0.5"/>
+  <!-- Tomato seeds -->
+  <ellipse cx="148" cy="262" rx="4" ry="2.5" fill="#ffcc88" opacity="0.8"/>
+  <ellipse cx="163" cy="275" rx="4" ry="2.5" fill="#ffcc88" opacity="0.8"/>
+
+  <!-- Steak / burger patty (top left) -->
+  <ellipse cx="155" cy="160" rx="48" ry="32" fill="#5a2a0a" transform="rotate(-10,155,160)"/>
+  <ellipse cx="155" cy="155" rx="42" ry="26" fill="#7a3810" transform="rotate(-10,155,155)"/>
+  <!-- Grill marks on steak -->
+  <line x1="136" y1="148" x2="148" y2="168" stroke="#3a1a05" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+  <line x1="150" y1="143" x2="162" y2="163" stroke="#3a1a05" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+  <line x1="164" y1="142" x2="174" y2="160" stroke="#3a1a05" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+  <!-- Steak highlight -->
+  <ellipse cx="148" cy="152" rx="16" ry="8" fill="#9a5020" opacity="0.5" transform="rotate(-10,148,152)"/>
+
+  <!-- Fried egg (center) -->
+  <!-- Egg white -->
+  <ellipse cx="208" cy="195" rx="40" ry="30" fill="#f8f5ee"/>
+  <ellipse cx="200" cy="198" rx="35" ry="25" fill="#fffdf5"/>
+  <!-- Yolk -->
+  <circle cx="208" cy="195" r="16" fill="#f5a800"/>
+  <circle cx="208" cy="195" r="16" fill="none" stroke="#e09000" stroke-width="1.5"/>
+  <!-- Yolk highlight -->
+  <circle cx="203" cy="190" r="5" fill="#ffd050" opacity="0.7"/>
+
+  <!-- French fries (top right) -->
+  <!-- Fry group -->
+  <rect x="240" y="138" width="14" height="52" rx="4" fill="#f5c842"/>
+  <rect x="257" y="132" width="14" height="58" rx="4" fill="#e8b830"/>
+  <rect x="274" y="140" width="14" height="50" rx="4" fill="#f5c842"/>
+  <rect x="291" y="135" width="12" height="54" rx="4" fill="#e8b830"/>
+  <!-- Fry tops (browned) -->
+  <rect x="240" y="138" width="14" height="10" rx="4" fill="#c8902a"/>
+  <rect x="257" y="132" width="14" height="10" rx="4" fill="#c8902a"/>
+  <rect x="274" y="140" width="14" height="10" rx="4" fill="#c8902a"/>
+  <rect x="291" y="135" width="12" height="10" rx="4" fill="#c8902a"/>
+
+  <!-- Rice / grain (right side) -->
+  <ellipse cx="285" cy="230" rx="42" ry="30" fill="#f5f0e0"/>
+  <!-- Rice grains texture -->
+  <ellipse cx="272" cy="222" rx="7" ry="3" fill="#e8e0c8" transform="rotate(20,272,222)"/>
+  <ellipse cx="288" cy="218" rx="7" ry="3" fill="#e8e0c8" transform="rotate(-10,288,218)"/>
+  <ellipse cx="298" cy="228" rx="7" ry="3" fill="#e8e0c8" transform="rotate(35,298,228)"/>
+  <ellipse cx="275" cy="234" rx="7" ry="3" fill="#e8e0c8" transform="rotate(-25,275,234)"/>
+  <ellipse cx="290" cy="238" rx="7" ry="3" fill="#e8e0c8" transform="rotate(15,290,238)"/>
+  <ellipse cx="268" cy="230" rx="7" ry="3" fill="#e8e0c8" transform="rotate(40,268,230)"/>
+  <ellipse cx="300" cy="215" rx="6" ry="3" fill="#e8e0c8" transform="rotate(-5,300,215)"/>
+  <ellipse cx="280" cy="245" rx="6" ry="3" fill="#e8e0c8" transform="rotate(30,280,245)"/>
+</svg>

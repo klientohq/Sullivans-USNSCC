@@ -1229,7 +1229,9 @@ p {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: contain;
-  background: var(--paper);
+  background: #ffffff;
+  padding: 12px;
+  box-sizing: border-box;
 }
 
 .product-card div {
@@ -1260,7 +1262,9 @@ p {
   line-height: 1;
 }
 
-.product-card button {
+.product-card button,
+.product-btn {
+  display: block;
   min-height: 48px;
   margin: 0 18px 18px;
   border: 0;
@@ -1268,18 +1272,28 @@ p {
   background: var(--navy-900);
   color: var(--white);
   font: inherit;
+  font-size: 0.9rem;
   font-weight: 900;
   cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  line-height: 48px;
+  padding: 0 12px;
 }
 
 .product-card button:hover,
-.product-card button:focus-visible {
+.product-card button:focus-visible,
+.product-btn:hover,
+.product-btn:focus-visible {
   background: var(--red-700);
+  color: var(--white);
 }
 
-.apparel-card button {
+.apparel-card button,
+.apparel-btn {
   background: var(--red-700);
 }
+.apparel-btn:hover { background: #a01020 !important; }
 
 .site-footer {
   display: flex;
