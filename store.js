@@ -7,6 +7,7 @@
 let currentProduct  = null;
 let currentImgIndex = 0;
 let selectedSize    = null;
+let modalTrigger    = null;
 
 /* Category color coding (matches the sidebar dots) */
 const CAT_COLORS = {
@@ -24,7 +25,7 @@ function _imgFallback(imgEl, product) {
     : null;
 }
 
-function openModal(productId) {
+function openModal(productId, trigger = document.activeElement) {
   const product = PRODUCTS.find(p => p.id === productId);
   if (!product) return;
   currentProduct  = product;
@@ -33,6 +34,7 @@ function openModal(productId) {
 
   const modal = document.getElementById('product-modal');
   if (!modal) return;
+  modalTrigger = trigger;
 
   // Info
   modal.querySelector('#modal-category').textContent = product.category;
@@ -47,7 +49,7 @@ function openModal(productId) {
   // Dots
   const dotsEl = modal.querySelector('.gallery-dots');
   dotsEl.innerHTML = product.images.map((_, i) =>
-    `<span class="dot${i === 0 ? ' active' : ''}" data-i="${i}"></span>`
+    `<button type="button" class="dot${i === 0 ? ' active' : ''}" data-i="${i}" aria-label="Show image ${i + 1} of ${product.images.length}" aria-pressed="${i === 0}"></button>`
   ).join('');
   dotsEl.querySelectorAll('.dot').forEach(dot => {
     dot.addEventListener('click', () => {
@@ -61,43 +63,29 @@ function openModal(productId) {
   modal.querySelector('.gallery-next').style.display = multi ? '' : 'none';
   dotsEl.style.display = multi ? '' : 'none';
 
-  // Size picker
+  // Product options are selected on WooCommerce so availability stays authoritative.
   const sizeSection = modal.querySelector('.size-picker');
   const sizeOpts    = modal.querySelector('.size-options');
-  if (product.type === 'apparel' && product.sizes) {
-    sizeSection.hidden = false;
-    sizeOpts.innerHTML = product.sizes.map(s =>
-      `<button class="size-btn" data-size="${s}">${s}</button>`
-    ).join('');
-    sizeOpts.querySelectorAll('.size-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        sizeOpts.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        selectedSize = btn.dataset.size;
-      });
-    });
-  } else {
-    sizeSection.hidden = true;
-  }
+  sizeSection.hidden = true;
+  sizeOpts.innerHTML = '';
 
-  // Add to cart
+  // Hand off to WooCommerce, which owns variants, payment, and fulfillment.
   const addBtn = modal.querySelector('#modal-add-cart');
+  addBtn.textContent = product.type === 'apparel' ? 'Choose Options' : 'Add to Secure Cart';
   addBtn.onclick = () => {
-    if (product.type === 'apparel' && !selectedSize) {
-      sizeOpts.classList.add('shake');
-      sizeOpts.style.outline = '2px solid #c62828';
-      setTimeout(() => {
-        sizeOpts.classList.remove('shake');
-        sizeOpts.style.outline = '';
-      }, 600);
+    if (product.type === 'apparel') {
+      window.location.assign(product.wooUrl || 'https://uss-sullivans-usnscc-store.printify.me/');
       return;
     }
-    cart.add(product.id, selectedSize);
-    closeModal();
+    window.location.assign(`https://thesullivansusnscc.com/store/?add-to-cart=${product.wooId}`);
   };
 
   modal.removeAttribute('hidden');
+  document.querySelectorAll('body > header, body > main, body > footer, body > .sticky-join').forEach(el => {
+    el.inert = true;
+  });
   document.body.style.overflow = 'hidden';
+  modal.querySelector('.modal-close').focus();
 }
 
 function _setModalImg() {
@@ -113,14 +101,23 @@ function _setModalImg() {
     label.textContent = lbl;
     label.style.display = lbl ? '' : 'none';
   }
-  modal.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === currentImgIndex));
+  modal.querySelectorAll('.dot').forEach((d, i) => {
+    const active = i === currentImgIndex;
+    d.classList.toggle('active', active);
+    d.setAttribute('aria-pressed', String(active));
+  });
 }
 
 function closeModal() {
   const modal = document.getElementById('product-modal');
   if (modal) modal.setAttribute('hidden', '');
+  document.querySelectorAll('body > header, body > main, body > footer, body > .sticky-join').forEach(el => {
+    el.inert = false;
+  });
   document.body.style.overflow = '';
   currentProduct = null;
+  modalTrigger?.focus();
+  modalTrigger = null;
 }
 
 /* ── Init ──────────────────────────────────────────── */
@@ -162,24 +159,53 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Click anywhere on the card (except the button) opens the detail overlay
-    card.querySelector('.product-img-wrap')?.addEventListener('click', () => openModal(pid));
-    card.querySelector('.product-info')?.addEventListener('click', () => openModal(pid));
+    [card.querySelector('.product-img-wrap'), card.querySelector('.product-info')].forEach(trigger => {
+      if (!trigger) return;
+      trigger.setAttribute('role', 'button');
+      trigger.setAttribute('tabindex', '0');
+      trigger.setAttribute('aria-label', `View details for ${product.name}`);
+      trigger.addEventListener('click', () => openModal(pid, trigger));
+      trigger.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openModal(pid, trigger);
+        }
+      });
+    });
 
-    // Add to Cart button: apparel needs a size (open overlay); simple adds straight away
+    // WooCommerce remains the order source of truth for every live-site product.
     card.querySelector('.product-btn')?.addEventListener('click', (e) => {
       e.stopPropagation();
       if (!product) return;
       if (product.type === 'apparel') {
-        window.open('https://uss-sullivans-usnscc-store.printify.me/', '_blank', 'noopener');
+        window.location.assign(product.wooUrl || 'https://uss-sullivans-usnscc-store.printify.me/');
       } else {
-        cart.add(pid, null);
+        window.location.assign(`https://thesullivansusnscc.com/store/?add-to-cart=${product.wooId}`);
       }
     });
   });
 
   // Keyboard: Escape closes overlay
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeModal();
+    const openModalEl = document.getElementById('product-modal');
+    if (!openModalEl || openModalEl.hasAttribute('hidden')) return;
+    if (e.key === 'Escape') {
+      closeModal();
+      return;
+    }
+    if (e.key !== 'Tab') return;
+    const focusable = [...openModalEl.querySelectorAll('button:not([hidden]), a[href], [tabindex]:not([tabindex="-1"])')]
+      .filter(el => !el.disabled && el.offsetParent !== null);
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
   });
 
   // ── Category filtering ──────────────────────────────
@@ -235,19 +261,4 @@ document.addEventListener('DOMContentLoaded', () => {
     filterProducts();
   });
 
-  // ── Hero cart preview ───────────────────────────────
-  function renderHeroCart() {
-    const countEl = document.getElementById('hero-cart-count');
-    const subEl   = document.getElementById('hero-cart-sub');
-    if (!countEl) return;
-    const n = cart.count;
-    countEl.textContent = n + ' item' + (n === 1 ? '' : 's');
-    if (subEl) subEl.textContent = money(cart.total) + ' subtotal';
-  }
-
-  // Patch renderBadge so hero preview stays in sync with cart changes
-  const _origBadge = cart.renderBadge.bind(cart);
-  cart.renderBadge = function () { _origBadge(); renderHeroCart(); };
-
-  renderHeroCart();
 });

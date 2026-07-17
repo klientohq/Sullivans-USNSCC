@@ -13,6 +13,8 @@ const PRODUCTS = [
     name: 'Sea Cadet / League Cadet Dues',
     category: 'Dues',
     price: 150,
+    wooId: 31191,
+    wooUrl: 'https://thesullivansusnscc.com/product/sea-cadet-league-cadet-dues/',
     images: ['./assets/store assets/envelope-nobg.png'],
     type: 'simple',
     envelopeLabel: 'Sea Cadets',
@@ -23,6 +25,8 @@ const PRODUCTS = [
     name: 'Officer Child Dues',
     category: 'Dues',
     price: 125,
+    wooId: 33245,
+    wooUrl: 'https://thesullivansusnscc.com/product/officer-child-dues/',
     images: ['./assets/store assets/envelope-nobg.png'],
     type: 'simple',
     envelopeLabel: 'Officer Child',
@@ -33,6 +37,8 @@ const PRODUCTS = [
     name: 'Officer Dues',
     category: 'Dues',
     price: 50,
+    wooId: 32268,
+    wooUrl: 'https://thesullivansusnscc.com/product/officer-dues/',
     images: ['./assets/store assets/envelope-nobg.png'],
     type: 'simple',
     envelopeLabel: 'Officer',
@@ -43,6 +49,8 @@ const PRODUCTS = [
     name: 'Daily Meals – Day Drills',
     category: 'Meals',
     price: 5,
+    wooId: 31200,
+    wooUrl: 'https://thesullivansusnscc.com/product/daily-meals-day-drills/',
     images: [MEAL_IMG],
     type: 'simple',
     description: 'Meals for single-day drills. Price reflects the per-drill cost.'
@@ -52,6 +60,8 @@ const PRODUCTS = [
     name: 'Overnight Meals – Weekend Drills',
     category: 'Meals',
     price: 20,
+    wooId: 31202,
+    wooUrl: 'https://thesullivansusnscc.com/product/overnight-meals-weekend-drills/',
     images: [MEAL_IMG],
     type: 'simple',
     description: 'Meals for overnight (weekend) drills. Price reflects the per-weekend cost.'
@@ -61,6 +71,8 @@ const PRODUCTS = [
     name: 'League Cadet Sea Bag',
     category: 'Sea Bags',
     price: 75,
+    wooId: 31193,
+    wooUrl: 'https://thesullivansusnscc.com/product/league-cadet-sea-bag/',
     images: ['./assets/store assets/new/sea-bag-lc.png'],
     type: 'simple',
     description: 'The required uniform and gear set for new League Cadets (NLCC).'
@@ -70,6 +82,8 @@ const PRODUCTS = [
     name: 'League Cadet Promotion Sea Bag',
     category: 'Sea Bags',
     price: 75,
+    wooId: 31198,
+    wooUrl: 'https://thesullivansusnscc.com/product/league-cadet-promotion-sea-bag/',
     images: ['./assets/store assets/new/sea-bag-promotion.png'],
     type: 'simple',
     description: 'Additional uniform items for League Cadets advancing to the next level.'
@@ -79,6 +93,8 @@ const PRODUCTS = [
     name: 'Sea Cadet Sea Bag',
     category: 'Sea Bags',
     price: 150,
+    wooId: 31196,
+    wooUrl: 'https://thesullivansusnscc.com/product/sea-cadet-sea-bag/',
     images: ['./assets/store assets/new/sea-bag-sc.png'],
     type: 'simple',
     description: 'The required uniform and gear set for Sea Cadets (NSCC).'
@@ -88,6 +104,7 @@ const PRODUCTS = [
     name: 'Sullivans Navy Hoodie',
     category: 'Apparel',
     price: 45,
+    commerceStatus: 'needs-printify-audit',
     images: [
       './assets/store assets/new/navy-hoodie-nobg.png',
       './assets/store assets/new/navy-hoodie-back-nobg.png'
@@ -102,6 +119,7 @@ const PRODUCTS = [
     name: 'USNSCC Navy Sweatpants',
     category: 'Apparel',
     price: 35,
+    commerceStatus: 'needs-printify-audit',
     images: ['./assets/store assets/new/navy-sweats-nobg.png'],
     imageLabels: ['Front'],
     type: 'apparel',
@@ -113,6 +131,7 @@ const PRODUCTS = [
     name: 'Sullivans Hoodie & Sweatpants Bundle',
     category: 'Bundle',
     price: 75,
+    commerceStatus: 'needs-printify-audit',
     images: [
       './assets/store assets/new/navy-hoodie-nobg.png',
       './assets/store assets/new/navy-sweats-nobg.png'
@@ -127,6 +146,7 @@ const PRODUCTS = [
     name: 'Sullivans Coyote Brown T-Shirt',
     category: 'Apparel',
     price: 20,
+    commerceStatus: 'needs-printify-audit',
     images: [
       './assets/store assets/new/coyote-tee-nobg.png',
       './assets/store assets/new/coyote-tee-back-nobg.png'
@@ -141,6 +161,7 @@ const PRODUCTS = [
     name: 'Sullivans Coyote Brown Hoodie',
     category: 'Apparel',
     price: 40,
+    commerceStatus: 'needs-printify-audit',
     images: [
       './assets/store assets/new/coyote-hoodie-nobg.png',
       './assets/store assets/new/coyote-hoodie-back-nobg.png'
@@ -155,6 +176,8 @@ const PRODUCTS = [
     name: 'Replacement ID',
     category: 'Admin',
     price: 10,
+    wooId: 31990,
+    wooUrl: 'https://thesullivansusnscc.com/product/replacement-id-card/',
     images: ['./assets/store assets/USNSCC store page ID.png'],
     type: 'simple',
     description: 'Replacement USNSCC identification card for cadets who have lost or damaged their ID.'

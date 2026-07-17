@@ -1,3 +1,8 @@
 .DS_Store
 **/.DS_Store
 .claude/
+
+# Internal planning docs — not part of the published website
+project-work/
+scripts/
+SULLIVANS_SITE_BRIEF.md
