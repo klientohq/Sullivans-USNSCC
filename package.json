@@ -1,0 +1,12 @@
+{
+  "name": "sullivans-usnscc-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The Sullivans Division USNSCC - static site. Source in _src/, built output at the repo root.",
+  "scripts": {
+    "build": "node _src/build.js",
+    "verify": "node _src/verify.js",
+    "gate": "npm run build && npm run verify"
+  },
+  "license": "UNLICENSED"
+}

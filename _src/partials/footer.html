@@ -1,0 +1,41 @@
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="./assets/images/logo.webp" alt="" width="52" height="52" />
+          <div class="footer-brand-text">
+            <strong>{{ site.name }}</strong>
+            <p>U.S. Naval Sea Cadet Corps<br />{{ site.locality }}, {{ site.regionName }}</p>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-col-title">Site</p>
+          <nav class="footer-col-nav" aria-label="Footer navigation">
+            {{#each nav}}<a href="{{ href }}">{{ label }}</a>
+            {{/each}}
+          </nav>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-col-title">Program</p>
+          <nav class="footer-col-nav" aria-label="Footer program links">
+            <a href="{{ site.nationalJoinUrl }}" target="_blank" rel="noopener">Enroll at Sea Cadets national<span class="u-visually-hidden"> (opens in a new tab)</span></a>
+            <a href="{{ site.nationalUrl }}" target="_blank" rel="noopener">About the U.S. Naval Sea Cadet Corps<span class="u-visually-hidden"> (opens in a new tab)</span></a>
+            <a href="mailto:{{ site.email }}">Email {{ site.email }}</a>
+          </nav>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-col-title">Follow the division</p>
+          <div class="footer-social">
+            {{#each site.social}}<a href="{{ href }}" target="_blank" rel="noopener">{{{ svg }}}<span>{{ label }}<span class="u-visually-hidden"> (opens in a new tab)</span></span></a>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 {{ site.name }} USNSCC &middot; {{ site.locality }}, {{ site.region }} &middot; A congressionally chartered youth program. Not military enlistment.</p>
+        <a class="join-footer" href="./join.html">Join the Division</a>
+      </div>
+    </footer>

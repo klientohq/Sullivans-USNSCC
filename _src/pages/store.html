@@ -1,0 +1,101 @@
+---
+{
+  "title": "Division Store | The Sullivans USNSCC Buffalo",
+  "description": "Unit essentials and division merchandise for cadets and families of The Sullivans Division, U.S. Naval Sea Cadet Corps in Buffalo, New York.",
+  "ogTitle": "Division Store",
+  "ogDescription": "Unit essentials arranged through the division, and division merchandise printed and shipped by Printify.",
+  "ogImageAlt": "Division merchandise for The Sullivans Division, U.S. Naval Sea Cadet Corps.",
+  "priority": "0.7",
+  "changefreq": "monthly"
+}
+---
+<section class="store-masthead">
+        <div class="store-masthead-inner">
+          <p class="eyebrow">Division store</p>
+          <h1>Two counters, one division.</h1>
+          <p class="lede">
+            Unit essentials are handled by the division itself. Division merchandise is printed and
+            shipped by our print partner. They are separate for a reason: different people, different
+            fulfilment, and a separate checkout for each.
+          </p>
+          <nav class="store-jump" aria-label="Store sections">
+            <a href="#essentials">
+              <span class="store-jump-label">Unit essentials</span>
+              <span class="store-jump-note">ID cards, meals, sea bag, uniform items</span>
+            </a>
+            <a href="#merchandise">
+              <span class="store-jump-label">Division merchandise</span>
+              <span class="store-jump-note">{{ merch.items.length }} items, shipped to you</span>
+            </a>
+          </nav>
+        </div>
+      </section>
+
+      <!-- Unit essentials. ADR-005 routes these to Square hosted checkout, which
+           the commanding officer must create first. Until that account exists we
+           publish what is true today and no prices, since costs to families are
+           not confirmed (Rule 3). -->
+      <section class="store-section" id="essentials" aria-labelledby="essentials-title">
+        <div class="store-section-inner">
+          <header class="store-section-head">
+            <h2 id="essentials-title">Unit essentials</h2>
+            <p class="store-section-meta">Handled by the division</p>
+          </header>
+          <p class="store-section-lede">
+            Cadet ID cards, drill meals, the sea bag, and uniform items are issued by the division
+            and handed over at drill rather than shipped. Ask the unit for current pricing and to
+            arrange payment.
+          </p>
+
+          <ul class="essentials-list">
+            <li><h3>Cadet ID card</h3><p>Issued by the division for new and renewing cadets.</p></li>
+            <li><h3>Drill meals</h3><p>Meal plan covering scheduled drill weekends.</p></li>
+            <li><h3>Sea bag</h3><p>The standard issue kit bag cadets carry to training.</p></li>
+            <li><h3>Uniform items</h3><p>Uniform components issued and fitted through the unit.</p></li>
+          </ul>
+
+          <div class="store-cta-row">
+            <a class="button primary" href="mailto:{{ site.email }}?subject=Unit%20essentials%20enquiry">Ask about unit essentials</a>
+            <p class="store-note">Online payment for these items is being set up with the division's payment provider. Until then the unit arranges it directly.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Division merchandise. Printify hosts the cart and the checkout; we never
+           collect a payment or hold a card. Prices come from _src/data/merch.json,
+           pulled from the live storefront. -->
+      <section class="store-section store-section--merch" id="merchandise" aria-labelledby="merch-title">
+        <div class="store-section-inner">
+          <header class="store-section-head">
+            <h2 id="merch-title">Division merchandise</h2>
+            <p class="store-section-meta">Printed and shipped by our print partner</p>
+          </header>
+          <p class="store-section-lede">
+            Every item below opens on our print partner's storefront, where the order and the payment
+            are completed. Prices shown were checked against that storefront on {{ merch.verifiedOn }}.
+          </p>
+
+          <ul class="merch-grid">
+            {{#each merch.items}}<li class="merch-item">
+              <a class="merch-link" href="{{ url }}" target="_blank" rel="noopener">
+                <span class="merch-media">
+                  <img src="{{ image }}" alt="{{ alt }}" loading="lazy" decoding="async" width="600" height="600" />
+                </span>
+                <span class="merch-body">
+                  <span class="merch-category">{{ category }}</span>
+                  <span class="merch-title">{{ title }}</span>
+                  <span class="merch-price">{{ price }}</span>
+                </span>
+                <span class="u-visually-hidden">Opens on the print partner storefront in a new tab.</span>
+              </a>
+            </li>
+            {{/each}}
+          </ul>
+
+          <div class="store-cta-row">
+            <a class="button secondary" href="{{ merch.source }}" target="_blank" rel="noopener">
+              Browse the full merchandise storefront<span class="u-visually-hidden"> (opens in a new tab)</span>
+            </a>
+          </div>
+        </div>
+      </section>

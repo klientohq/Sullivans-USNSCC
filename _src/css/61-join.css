@@ -1,0 +1,301 @@
+/* ============================================================================
+   JOIN PAGE
+   Mode: persuade. The reader is a parent deciding whether to trust this program
+   with their child, usually on a phone, arriving from a flyer QR code.
+   Every section answers one question and hands off to one action.
+   ========================================================================= */
+
+.page-join main { padding-top: var(--header-height); }
+
+/* --- Hero -------------------------------------------------------------------
+   Asymmetric: the photograph carries the emotion, the type carries the promise.
+   Never a centred headline over a gradient. */
+.join-hero {
+  display: grid;
+  gap: var(--space-xl);
+  align-items: center;
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  padding: var(--space-xl) var(--gutter) var(--section-y-tight);
+}
+
+.join-hero-media {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--navy-900);
+}
+
+.join-hero-media img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: 50% 74%;
+}
+
+.join-hero-body h1 {
+  font-size: var(--text-3xl);
+  line-height: var(--leading-3xl);
+  max-width: 15ch;
+  margin-bottom: var(--space-md);
+}
+
+.join-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-lg);
+}
+
+@media (min-width: 900px) {
+  .join-hero {
+    grid-template-columns: 1.05fr 1fr;
+    gap: var(--space-3xl);
+    padding-block: var(--space-xl) var(--section-y);
+  }
+  .join-hero-media { order: 2; }
+  .join-hero-media img { aspect-ratio: 5 / 6; }
+}
+
+/* --- The four answers -------------------------------------------------------
+   A definition list, not a card grid. Hairlines separate the questions; the
+   question is the heading and the answer is real prose a parent can act on. */
+.join-answers {
+  padding: var(--section-y) var(--gutter);
+  background: var(--surface-raised);
+  border-block: var(--border);
+}
+
+.join-answers-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.join-answers h2 {
+  max-width: var(--measure-narrow);
+  margin-bottom: var(--space-xl);
+}
+
+.answer-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+}
+
+.answer {
+  display: grid;
+  gap: var(--space-2xs) var(--space-2xl);
+  padding-block: var(--space-lg);
+  border-top: var(--border);
+}
+
+.answer:last-child { border-bottom: var(--border); }
+
+.answer dt {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  line-height: var(--leading-lg);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-snug);
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.answer dd {
+  margin: 0;
+  max-width: var(--measure);
+  color: var(--ink-secondary);
+}
+
+.answer dd strong {
+  color: var(--ink);
+  font-weight: var(--weight-bold);
+}
+
+@media (min-width: 860px) {
+  .answer { grid-template-columns: minmax(16rem, 22rem) 1fr; }
+}
+
+/* --- Full-bleed plate -------------------------------------------------------
+   One photograph at scale, with a caption that says what is happening. This is
+   the section that answers "what does my child actually do" without adjectives. */
+.join-plate {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  background: var(--surface-inverse);
+  color: var(--ink-inverse);
+}
+
+.join-plate img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.join-plate figcaption {
+  display: grid;
+  align-content: center;
+  padding: var(--section-y-tight) var(--gutter);
+}
+
+.join-plate figcaption p {
+  max-width: var(--measure-narrow);
+  margin: 0;
+  color: var(--ink-inverse-muted);
+  font-size: var(--text-md);
+  line-height: var(--leading-md);
+}
+
+@media (min-width: 900px) {
+  .join-plate { grid-template-columns: 1.4fr 1fr; }
+  .join-plate img { aspect-ratio: auto; min-height: 26rem; }
+  .join-plate figcaption { padding-inline: var(--space-2xl); }
+}
+
+/* --- Enrollment steps -------------------------------------------------------
+   Numbered because the order genuinely matters: step two is where a prospect is
+   lost to another division, so it is the loudest thing on the page. */
+.join-steps {
+  padding: var(--section-y) var(--gutter);
+}
+
+.join-steps-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.join-steps h2 {
+  max-width: 24ch;
+}
+
+.step-list {
+  counter-reset: step;
+  list-style: none;
+  margin: var(--space-2xl) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.step {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-sm) var(--space-md);
+  padding-top: var(--space-lg);
+  border-top: var(--border);
+}
+
+.step::before {
+  content: counter(step, decimal-leading-zero);
+  grid-row: 1 / span 3;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-muted);
+  line-height: 1.15;
+}
+
+.step h3 { margin: 0; }
+.step p { margin: 0; color: var(--ink-secondary); max-width: var(--measure); }
+.step p + p { margin-top: var(--space-xs); }
+
+/* Step two decides whether the inquiry reaches this division at all. */
+.step--critical { border-top-color: var(--accent); }
+.step--critical::before { color: var(--accent); }
+
+.step-callout {
+  justify-self: start;
+  padding: var(--space-2xs) var(--space-sm);
+  background: var(--blue-050);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: var(--text-md);
+  color: var(--ink) !important;
+}
+
+.step-callout strong { font-weight: var(--weight-bold); }
+
+.step-action {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-lg);
+  border-top: var(--border);
+  display: grid;
+  gap: var(--space-sm);
+  justify-items: start;
+}
+
+.step-action-note {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--ink-muted);
+}
+
+.step-action-note strong { color: var(--ink); font-weight: var(--weight-semibold); }
+
+/* --- Secondary path ---------------------------------------------------------
+   For the parent who is interested but not ready. Quiet on purpose: it must not
+   compete with enrollment. */
+.join-ask {
+  padding: var(--section-y) var(--gutter);
+  background: var(--surface-sunken);
+  border-top: var(--border);
+}
+
+.join-ask-inner {
+  max-width: var(--max-text);
+  margin: 0 auto;
+}
+
+.join-ask h2 { font-size: var(--text-xl); line-height: var(--leading-xl); }
+.join-ask p { color: var(--ink-secondary); }
+.join-ask .button { margin-top: var(--space-2xs); }
+
+/* --- Buttons used by this page ---------------------------------------------
+   Sized for a 44px minimum tap target and a single-line label at every width. */
+.page-join .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: var(--space-xs) var(--space-lg);
+  border-radius: var(--radius);
+  font-family: var(--font-text);
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-snug);
+  text-align: center;
+  border: 1px solid transparent;
+  transition:
+    background var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.page-join .button.primary {
+  background: var(--accent);        /* 7.4:1 against white text */
+  color: var(--white);
+}
+
+.page-join .button.primary:hover { background: var(--accent-hover); }
+
+.page-join .button.secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+
+.page-join .button.secondary:hover {
+  background: var(--surface-raised);
+  border-color: var(--ink);
+}
+
+.page-join .button--lg {
+  min-height: 56px;
+  padding-inline: var(--space-xl);
+  font-size: var(--text-md);
+}

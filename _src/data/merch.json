@@ -1,0 +1,169 @@
+{
+  "source": "https://uss-sullivans-usnscc-store.printify.me/",
+  "verifiedOn": "2026-08-22",
+  "note": "Pulled from the live Printify storefront, one request per product. Never hand-edit a price; re-run the fetch. 6 further products remain Hidden in the Printify admin and appear here once the XO publishes them.",
+  "items": [
+    {
+      "id": "29584568",
+      "title": "Officers Alternate Working Uniform Polo | The Sullivans Division | Adult",
+      "price": "$83.55",
+      "image": "https://images-api.printify.com/mockup/6a1616431ed16e38b30180f0/107412/103815/officers-alternate-working-uniform-polo-the-sullivans-division-adult.jpg?camera_label=front&revision=1782543612962",
+      "url": "https://uss-sullivans-usnscc-store.printify.me/product/29584568",
+      "category": "Apparel",
+      "alt": "Officers Alternate Working Uniform Polo shown as a product mockup."
+    },
+    {
+      "id": "29584570",
+      "title": "Officers Alternate Uniform Polo | Training Ship Little Rock | Adult",
+      "price": "$83.55",
+      "image": "https://images-api.printify.com/mockup/6a16169cd4fccb2f800a27b5/107412/103815/officers-alternate-uniform-polo-training-ship-little-rock-adult.jpg?camera_label=front&revision=1782543613322",
+      "url": "https://uss-sullivans-usnscc-store.printify.me/product/29584570",
+      "category": "Apparel",
+      "alt": "Officers Alternate Uniform Polo shown as a product mockup."
+    },
+    {
+      "id": "29584569",
+      "title": "Business Casual Vest | The Sullivans Division | Adult",
+      "price": "$72.00",
+      "image": "https://images-api.printify.com/mockup/6a161b46d4fccb2f800a2a8e/121762/120815/business-casual-vest-the-sullivans-division-adult.jpg?camera_label=front&revision=1782543613165",
+      "url": "https://uss-sullivans-usnscc-store.printify.me/product/29584569",
+      "category": "Apparel",
+      "alt": "Business Casual Vest shown as a product mockup."
+    },
+    {
+      "id": "29584529",
+      "title": "Physical Training (PT) Joggers | Training Ship Little Rock | All Sizes",
+      "price": "$39.25",
+      "image": "https://images-api.printify.com/mockup/6a162c1b34f3316d75020006/119189/109585/physical-training-pt-joggers-training-ship-little-rock-all-sizes.jpg?camera_label=front&revision=1782543609418",
+      "url": "https://uss-sullivans-usnscc-store.printify.me/product/29584529",
+      "category": "Apparel",
+      "alt": "Physical Training (PT) Joggers shown as a product mockup."
+    },
+    {
+      "id": "29584558",
+      "title": "Physical Training (PT) Joggers | The Sullivans Division | All Sizes",
+      "price": "$39.25",
+      "image": "https://images-api.printify.com/mockup/6a162bae58376a55e40e5620/119189/109585/physical-training-pt-joggers-the-sullivans-division-all-sizes.jpg?camera_label=front&revision=1782543609428",
+      "url": "https://uss-sullivans-usnscc-store.printify.me/product/29584558",
+      "category": "Apparel",
+      "alt": "Physical Training (PT) Joggers shown as a product mockup."
+    },
+    {
+      "id": "29584561",
+      "title": "Navy Working Uniform T-Shirt \u201cBack with A Vengeance\u201d | Training Ship Little Rock | Adult",
+      "price": "$30.02",
+      "image": "https://images-api.printify.com/mockup/6a162220adc2e860a90e80fe/79083/98445/navy-working-uniform-t-shirt-back-with-a-vengeance-training-ship-little-rock-adult.jpg?camera_label=front&revision=1782543611294",
+      "url": "https://uss-sullivans-usnscc-store.printify.me/product/29584561",
+      "category": "Apparel",
+      "alt": "Navy Working Uniform T-Shirt \u201cBack with A Vengeance\u201d shown as a product mockup."
+    },
+    {
+      "id": "29584563",
+      "title": "Navy Working Uniform T-Shirt \u201cThe Sullivans 5\u201d | The Sullivans Division | Adult",
+      "price": "$30.02",
+      "image": "https://images-api.printify.com/mockup/6a16216dd4fccb2f800a2db1/78998/98445/navy-working-uniform-t-shirt-the-sullivans-5-the-sullivans-division-adult.jpg?camera_label=front&revision=1782543611735",
+      "url": "https://uss-sullivans-usnscc-store.printify.me/product/29584563",
+      "category": "Apparel",
+      "alt": "Navy Working Uniform T-Shirt \u201cThe Sullivans 5\u201d shown as a product mockup."
+    },
+    {
+      "id": "29584519",
+      "title": "Navy Working Uniform T-Shirt \u201cNavy250\u201d | The Sullivans Division | Adult",
+      "price": "$20.00",
+      "image": "https://images-api.printify.com/mockup/6a16265fb6a250a097086ff2/79083/98445/navy-working-uniform-t-shirt-navy250-the-sullivans-division-adult.jpg?camera_label=front&revision=1782543605154",
+      "url": "https://uss-sullivans-usnscc-store.printify.me/product/29584519",
+      "category": "Apparel",
+      "alt": "Navy Working Uniform T-Shirt \u201cNavy250\u201d shown as a product mockup."
+    },
+    {
+      "id": "29584528",
+      "title": "Hockey Puck | The Sullivans Division",
+      "price": "$30.00",
+      "image": "https://images-api.printify.com/mockup/6a162cc81ed16e38b3018e97/91951/70112/hockey-puck-the-sullivans-division.jpg?camera_label=front&revision=1782543609253",
+      "url": "https://uss-sullivans-usnscc-store.printify.me/product/29584528",
+      "category": "Gifts",
+      "alt": "Hockey Puck shown as a product mockup."
+    },
+    {
+      "id": "29584526",
+      "title": "Air Pod Case | Navy250 | The Sullivans Division",
+      "price": "$27.99",
+      "image": "https://images-api.printify.com/mockup/6a1631eb9189cf2ce00d90a5/120657/110507/air-pod-case-navy250-the-sullivans-division.jpg?camera_label=context&revision=1782543608929",
+      "url": "https://uss-sullivans-usnscc-store.printify.me/product/29584526",
+      "category": "Gifts",
+      "alt": "Air Pod Case shown as a product mockup."
+    },
+    {
+      "id": "29584527",
+      "title": "\u201cBack With A Vengeance\u201d Double Sided Flag | Training Ship Little Rock",
+      "price": "$27.99",
+      "image": "https://images-api.printify.com/mockup/6a162f4c58376a55e40e5818/113601/110314/back-with-a-vengeance-double-sided-flag-training-ship-little-rock.jpg?camera_label=front&revision=1782543609108",
+      "url": "https://uss-sullivans-usnscc-store.printify.me/product/29584527",
+      "category": "Gifts",
+      "alt": "\u201cBack With A Vengeance\u201d Double Sided Flag shown as a product mockup."
+    },
+    {
+      "id": "29584521",
+      "title": "Playing Cards | Training Ship Little Rock",
+      "price": "$25.99",
+      "image": "https://images-api.printify.com/mockup/6a163716b55c424ca60bfa75/72763/16651/playing-cards-training-ship-little-rock.jpg?camera_label=front-2&revision=1782543606287",
+      "url": "https://uss-sullivans-usnscc-store.printify.me/product/29584521",
+      "category": "Gifts",
+      "alt": "Playing Cards shown as a product mockup."
+    },
+    {
+      "id": "29584522",
+      "title": "Playing Cards | The Sullivans Division",
+      "price": "$25.99",
+      "image": "https://images-api.printify.com/mockup/6a163608d4fccb2f800a38e5/72763/16651/playing-cards-the-sullivans-division.jpg?camera_label=front-2&revision=1782543607609",
+      "url": "https://uss-sullivans-usnscc-store.printify.me/product/29584522",
+      "category": "Gifts",
+      "alt": "Playing Cards shown as a product mockup."
+    },
+    {
+      "id": "29584523",
+      "title": "US Naval Sea Cadet Corps Hardcover Journal",
+      "price": "$16.05",
+      "image": "https://images-api.printify.com/mockup/6a16354219e9d95eb60b2a7e/65223/7340/us-naval-sea-cadet-corps-hardcover-journal.jpg?camera_label=opened&revision=1782543607970",
+      "url": "https://uss-sullivans-usnscc-store.printify.me/product/29584523",
+      "category": "Gifts",
+      "alt": "US Naval Sea Cadet Corps Hardcover Journal shown as a product mockup."
+    },
+    {
+      "id": "29584520",
+      "title": "Navy Working Uniform Ball Cap Cover | The Sullivans Division | One Size Fits All",
+      "price": "$55.13",
+      "image": "https://images-api.printify.com/mockup/6a160220d4fccb2f800a1bc5/104280/53890/navy-working-uniform-ball-cap-cover-the-sullivans-division-one-size-fits-all.jpg?camera_label=front&revision=1782543605835",
+      "url": "https://uss-sullivans-usnscc-store.printify.me/product/29584520",
+      "category": "Headwear",
+      "alt": "Navy Working Uniform Ball Cap Cover shown as a product mockup."
+    },
+    {
+      "id": "29584525",
+      "title": "Navy Working Uniform Ball Cap Cover \u201cNavy250\u201d | The Sullivans Division | One Size Fits All",
+      "price": "$55.13",
+      "image": "https://images-api.printify.com/mockup/6a1632e8d4fccb2f800a3713/104280/53890/navy-working-uniform-ball-cap-cover-navy250-the-sullivans-division-one-size-fits-all.jpg?camera_label=front&revision=1782543608482",
+      "url": "https://uss-sullivans-usnscc-store.printify.me/product/29584525",
+      "category": "Headwear",
+      "alt": "Navy Working Uniform Ball Cap Cover \u201cNavy250\u201d shown as a product mockup."
+    },
+    {
+      "id": "29584524",
+      "title": "Navy Working Uniform Ball Cap Cover \u201cNavy250\u201d | Training Ship Little Rock | One Size Fits All",
+      "price": "$42.93",
+      "image": "https://images-api.printify.com/mockup/6a1633bf58376a55e40e5a5a/104280/53890/navy-working-uniform-ball-cap-cover-navy250-training-ship-little-rock-one-size-fits-all.jpg?camera_label=front&revision=1782543608369",
+      "url": "https://uss-sullivans-usnscc-store.printify.me/product/29584524",
+      "category": "Headwear",
+      "alt": "Navy Working Uniform Ball Cap Cover \u201cNavy250\u201d shown as a product mockup."
+    },
+    {
+      "id": "29584562",
+      "title": "Navy Working Uniform Ball Cap Cover | Training Ship Little Rock | One Size Fits All",
+      "price": "$42.93",
+      "image": "https://images-api.printify.com/mockup/6a161731b6a250a0970865dd/104280/53890/navy-working-uniform-ball-cap-cover-training-ship-little-rock-one-size-fits-all.jpg?camera_label=front&revision=1782543611757",
+      "url": "https://uss-sullivans-usnscc-store.printify.me/product/29584562",
+      "category": "Headwear",
+      "alt": "Navy Working Uniform Ball Cap Cover shown as a product mockup."
+    }
+  ]
+}

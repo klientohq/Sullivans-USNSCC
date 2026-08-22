@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+{{> head }}
+  </head>
+  <body class="page-{{ slug }}{{#if bodyClass}} {{ bodyClass }}{{/if}}">
+    <a class="skip-link" href="#main">Skip to content</a>
+{{#if announce}}{{> announce }}{{/if}}
+{{> header }}
+
+    <main id="main">
+{{{ content }}}
+    </main>
+{{#if hasAfterMain}}{{{ afterMain }}}{{/if}}
+{{> footer }}
+{{#unless hideStickyJoin}}
+    <a class="sticky-join" href="./join.html" data-sticky-join>Join the Division</a>
+{{/unless}}
+{{> scripts }}
+  </body>
+</html>

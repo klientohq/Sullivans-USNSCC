@@ -1,0 +1,181 @@
+/* ============================================================================
+   HEADER STACK - announcement bar, masthead, primary navigation, sticky CTA.
+   Rebuilt from tokens. Supersedes the legacy rules for these components; the
+   originals were deleted rather than left to drift.
+   ========================================================================= */
+
+/* --- Announcement bar ------------------------------------------------------
+   Scrolls away with the document on purpose. It is drill-date specific and
+   dismissible, so pinning it would cost 43px of every mobile viewport
+   permanently. The header reclaims that space instead (see BUG-001). */
+.announce-bar {
+  position: relative;
+  z-index: var(--z-announce);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-2xs) calc(var(--gutter) + var(--space-lg));
+  background: var(--red-800);
+  color: var(--white);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  text-align: center;
+}
+
+.announce-bar[hidden] { display: none; }
+
+.announce-text {
+  margin: 0;
+  max-width: none;
+  font-weight: var(--weight-medium);
+}
+
+.announce-link {
+  color: var(--white);
+  font-weight: var(--weight-semibold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  white-space: nowrap;
+}
+
+.announce-link:hover { text-decoration-thickness: 2px; }
+
+.announce-close {
+  position: absolute;
+  right: var(--space-2xs);
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 44px;               /* 44x44 minimum tap target */
+  height: 44px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--white);
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.announce-close svg { width: 14px; height: 14px; }
+.announce-close:hover { opacity: 1; }
+
+/* --- Masthead --------------------------------------------------------------
+   BUG-001: `top` is driven per frame by main.js, which sets
+   --announcement-offset to max(0, barHeight - scrollY). At rest the header sits
+   below the bar; once the bar has scrolled away the header is flush at 0 and
+   there is no strip of exposed page above it. */
+.site-header {
+  position: fixed;
+  top: var(--announcement-offset, 0px);
+  right: 0;
+  left: 0;
+  z-index: var(--z-header);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-xs) var(--gutter);
+  color: var(--ink-inverse);
+  background: var(--navy-900);
+  box-shadow: var(--shadow-header);
+  transition:
+    background var(--duration) var(--ease-out),
+    box-shadow var(--duration) var(--ease-out);
+}
+
+/* The homepage header floats over the hero video until the page is scrolled. */
+.site-header.home-header {
+  background: transparent;
+  box-shadow: none;
+}
+
+.site-header.is-scrolled,
+.site-header.home-header.is-scrolled,
+.site-header:has(.primary-nav.is-open) {
+  background: var(--navy-900);
+  box-shadow: var(--shadow-header);
+}
+
+/* --- Sticky Join pill ------------------------------------------------------
+   BUG-002: previously fixed to the lower left with no gutter, so it covered the
+   intro paragraph. It now sits in the bottom-right safe area and stays hidden
+   until the in-page call to action has scrolled out of view, so the two never
+   compete and it can never sit on top of copy the reader is mid-sentence in. */
+.sticky-join {
+  position: fixed;
+  right: max(var(--space-md), env(safe-area-inset-right));
+  bottom: max(var(--space-md), env(safe-area-inset-bottom));
+  z-index: var(--z-float);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  min-height: 48px;
+  padding: var(--space-xs) var(--space-md);
+  background: var(--red-700);
+  color: var(--white);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-text);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-snug);
+  box-shadow: var(--shadow-lg);
+  transition:
+    opacity var(--duration) var(--ease-out),
+    transform var(--duration) var(--ease-out),
+    background var(--duration-fast) var(--ease-out);
+}
+
+.sticky-join.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.sticky-join:hover { background: var(--accent-hover); }
+
+/* Hidden-until-scrolled only where scripting can reveal it again. With JS
+   unavailable the pill simply stays visible rather than becoming unreachable. */
+@media (scripting: enabled) {
+  .sticky-join {
+    opacity: 0;
+    transform: translateY(0.75rem);
+    pointer-events: none;
+  }
+
+  .sticky-join.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+/* The pill matters most on a phone: recruiting traffic arrives from a flyer QR
+   code or a social post. The legacy sheet hid it below 640px to work around
+   BUG-002; with the overlap fixed it belongs there more than anywhere. */
+@media (max-width: 640px) {
+  .sticky-join {
+    right: max(var(--space-sm), env(safe-area-inset-right));
+    bottom: max(var(--space-sm), env(safe-area-inset-bottom));
+    padding: var(--space-xs) var(--space-sm);
+  }
+}
+
+/* The bar wraps rather than stacking into a column: forcing a column made it
+   97px tall on a phone, a tenth of the viewport, before a word was read. */
+.announce-bar {
+  flex-wrap: wrap;
+  row-gap: var(--space-3xs);
+}
+
+@media (max-width: 560px) {
+  .announce-bar {
+    padding-inline: var(--space-sm) 52px;
+    font-size: var(--text-xs);
+    text-align: left;
+    justify-content: flex-start;
+  }
+}

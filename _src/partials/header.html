@@ -1,0 +1,23 @@
+    <header class="site-header{{#if transparentHeader}} home-header{{/if}}" data-header>
+      <a class="brand" href="./index.html" aria-label="{{ site.name }} USNSCC home">
+        <img src="./assets/images/logo.webp" alt="" width="58" height="58" />
+        <span>
+          <strong>{{ site.shortName }}</strong>
+          <small>USNSCC {{ site.locality }}, {{ site.region }}</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation" data-nav-toggle>
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="primary-nav" id="primary-navigation" data-nav aria-label="Primary">
+        {{#each nav}}<a href="{{ href }}"{{#if current}} aria-current="page"{{/if}}>{{ label }}</a>
+        {{/each}}
+        <div class="nav-social">
+          {{#each site.social}}<a href="{{ href }}" target="_blank" rel="noopener" aria-label="{{ label }} (opens in a new tab)">{{{ svg }}}</a>
+          {{/each}}
+        </div>
+        <a class="nav-cta" href="./join.html">Join the Division</a>
+      </nav>
+    </header>
