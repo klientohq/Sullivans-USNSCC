@@ -59,3 +59,41 @@
   text-transform: uppercase;
   color: var(--white);
 }
+
+/* ============================================================================
+   FORM STATES
+   The contact form previously had no error or confirmation state at all.
+   ========================================================================= */
+
+.field-error {
+  display: block;
+  margin-top: var(--space-3xs);
+  color: var(--red-800);          /* 7.9:1 on white */
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+.contact-form [aria-invalid="true"] {
+  border-color: var(--red-700);
+  outline-color: var(--red-700);
+}
+
+.contact-msg {
+  margin: var(--space-sm) 0 0;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+}
+
+.contact-msg[data-state="ok"] {
+  background: var(--blue-050);
+  border-left: 3px solid var(--navy-600);
+  color: var(--ink);
+}
+
+.contact-msg[data-state="error"] {
+  background: #fdeef1;
+  border-left: 3px solid var(--red-700);
+  color: var(--red-800);
+}

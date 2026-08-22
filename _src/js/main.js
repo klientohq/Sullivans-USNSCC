@@ -121,6 +121,98 @@
     }
   }
 
+
+  /* --- Contact form -------------------------------------------------------
+     The form's own copy promises it "opens your email app with everything
+     filled in", and no handler existed, so it silently did nothing. A form
+     that lies about what it does is worse than no form at all.
+
+     It composes a mailto: draft. Nothing is transmitted, nothing is stored,
+     and no third party sees the message. Phase 4 replaces this with a
+     Cloudflare Worker plus Turnstile that posts server-side and still stores
+     nothing; the markup and validation below carry over unchanged. */
+  const contactForm = document.querySelector("#contact-form");
+
+  if (contactForm) {
+    const status = contactForm.querySelector("#contact-msg");
+    const inbox = contactForm.dataset.inbox || "info@thesullivansusnscc.com";
+
+    const showError = (field, message) => {
+      const label = field.closest(".field") || field.parentElement;
+      let error = label.querySelector(".field-error");
+      if (!error) {
+        error = document.createElement("span");
+        error.className = "field-error";
+        error.id = `${field.name}-error`;
+        label.appendChild(error);
+      }
+      error.textContent = message;
+      field.setAttribute("aria-invalid", "true");
+      field.setAttribute("aria-describedby", error.id);
+    };
+
+    const clearError = (field) => {
+      const label = field.closest(".field") || field.parentElement;
+      label.querySelector(".field-error")?.remove();
+      field.removeAttribute("aria-invalid");
+      field.removeAttribute("aria-describedby");
+    };
+
+    contactForm.addEventListener("input", (event) => {
+      if (event.target.hasAttribute("aria-invalid")) clearError(event.target);
+    });
+
+    contactForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = new FormData(contactForm);
+      const value = (name) => String(data.get(name) || "").trim();
+
+      const problems = [];
+      for (const field of contactForm.querySelectorAll("[required]")) {
+        clearError(field);
+        const entered = String(data.get(field.name) || "").trim();
+        if (!entered) {
+          showError(field, "This one is needed before we can reply.");
+          problems.push(field);
+        } else if (field.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(entered)) {
+          showError(field, "Check this address; we could not read it.");
+          problems.push(field);
+        }
+      }
+
+      if (problems.length) {
+        status.hidden = false;
+        status.textContent = `Add the missing ${problems.length === 1 ? "field" : "fields"} above and send again.`;
+        status.dataset.state = "error";
+        problems[0].focus();
+        return;
+      }
+
+      const name = [value("firstName"), value("lastName")].filter(Boolean).join(" ");
+      const lines = [
+        `From: ${name}`,
+        `Email: ${value("email")}`,
+        value("phone") && `Phone: ${value("phone")}`,
+        value("reason") && `Reason: ${value("reason")}`,
+        "",
+        value("message"),
+      ].filter(Boolean);
+
+      const href =
+        `mailto:${inbox}` +
+        `?subject=${encodeURIComponent(value("subject"))}` +
+        `&body=${encodeURIComponent(lines.join("\n"))}`;
+
+      status.hidden = false;
+      status.dataset.state = "ok";
+      status.textContent =
+        `Your email app should now be open with the message ready to send to ${inbox}. ` +
+        "It is not sent until you send it. If nothing opened, email us directly.";
+
+      window.location.href = href;
+    });
+  }
+
   /* --- Respect prefers-reduced-motion for the hero video ------------------ */
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const applyMotionPreference = () => {
