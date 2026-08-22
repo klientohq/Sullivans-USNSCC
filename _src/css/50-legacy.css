@@ -1991,28 +1991,6 @@ p {
   gap: 20px;
 }
 
-.footer-bottom p {
-  margin: 0;
-  color: rgba(255,255,255,0.35);
-  font-size: 0.78rem;
-}
-
-.join-footer {
-  background: var(--gold-500);
-  color: var(--navy-950);
-  padding: 10px 22px;
-  border-radius: var(--radius);
-  font-weight: 900;
-  font-size: 0.88rem;
-  white-space: nowrap;
-  transition: background 160ms ease, transform 160ms ease;
-}
-
-.join-footer:hover {
-  background: #bf9520;
-  transform: translateY(-1px);
-}
-
 /* ── Chart Your Course Section ── */
 .chart-section {
   background: var(--navy-900);
