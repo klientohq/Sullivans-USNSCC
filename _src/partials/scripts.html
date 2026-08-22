@@ -1,3 +1,5 @@
+    <!-- Cloudflare Web Analytics: no cookies, no consent banner needed (ADR: Phase 4) -->
+    <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "22ea3736346a4de7a2803c250f422bff"}'></script>
     <script src="./main.js?v={{ site.assetVersion }}"></script>
 {{#each scripts}}    <script src="./{{ this }}?v={{ site.assetVersion }}"></script>
 {{/each}}
