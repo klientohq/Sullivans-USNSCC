@@ -147,3 +147,31 @@ p {
 .skip-link:focus {
   transform: translateY(0);
 }
+
+/* --- Inverted surfaces ------------------------------------------------------
+   Dark sections redefine the ink ROLES rather than overriding colour on each
+   element inside them. Anything written in terms of var(--ink) is then correct
+   on a dark background automatically, including components added later.
+
+   This is the fix for a real regression: .hero set `color: white` and relied on
+   h1 inheriting it. An explicit `h1 { color: var(--ink) }` beats inheritance no
+   matter how low its specificity, so the hero headline turned near-black on a
+   dark video. Redefining the token fixes the whole class of bug at once.
+
+   Custom properties resolve where they are declared, so --muted is redefined
+   here too; inheriting the alias alone would carry the light-surface value in. */
+.u-on-dark,
+.hero,
+.announce-bar,
+.site-header,
+.site-footer,
+.join-plate {
+  --ink: var(--white);
+  --ink-secondary: var(--ink-inverse-muted);
+  --ink-muted: var(--ink-inverse-muted);
+  --muted: var(--ink-inverse-muted);
+  --accent: var(--accent-on-dark);
+  --line: var(--line-inverse);
+  --line-strong: rgba(255, 255, 255, 0.42);
+  color: var(--ink);
+}

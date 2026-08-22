@@ -388,6 +388,34 @@ p {
   transform: translateY(0);
 }
 
+/* --- Inverted surfaces ------------------------------------------------------
+   Dark sections redefine the ink ROLES rather than overriding colour on each
+   element inside them. Anything written in terms of var(--ink) is then correct
+   on a dark background automatically, including components added later.
+
+   This is the fix for a real regression: .hero set `color: white` and relied on
+   h1 inheriting it. An explicit `h1 { color: var(--ink) }` beats inheritance no
+   matter how low its specificity, so the hero headline turned near-black on a
+   dark video. Redefining the token fixes the whole class of bug at once.
+
+   Custom properties resolve where they are declared, so --muted is redefined
+   here too; inheriting the alias alone would carry the light-surface value in. */
+.u-on-dark,
+.hero,
+.announce-bar,
+.site-header,
+.site-footer,
+.join-plate {
+  --ink: var(--white);
+  --ink-secondary: var(--ink-inverse-muted);
+  --ink-muted: var(--ink-inverse-muted);
+  --muted: var(--ink-inverse-muted);
+  --accent: var(--accent-on-dark);
+  --line: var(--line-inverse);
+  --line-strong: rgba(255, 255, 255, 0.42);
+  color: var(--ink);
+}
+
 
 /* @source _src/css/50-legacy.css */
 /* ============================================================================
@@ -403,14 +431,6 @@ p {
   gap: 12px;
   min-height: 48px;
   font-weight: 800;
-}
-
-.brand img {
-  width: 58px;
-  height: 58px;
-  object-fit: contain;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.92);
 }
 
 .brand span {
@@ -2718,10 +2738,6 @@ p {
     padding: 12px 16px;
   }
 
-  .brand img {
-    width: 48px;
-    height: 48px;
-  }
 
   .brand small {
     display: none;
@@ -3049,14 +3065,6 @@ p {
 /* ===== DEFINITIVE OVERRIDES ===== */
 
 /* Logo nav */
-.brand img {
-  width: 110px !important;
-  height: 110px !important;
-  object-fit: contain !important;
-  background: transparent !important;
-  border-radius: 0 !important;
-}
-
 /* Logo footer */
 .footer-brand img {
   width: 130px !important;
@@ -3145,7 +3153,6 @@ p {
 /* Sticky join */
 
 @media (max-width: 640px) {
-  .brand img { width: 60px !important; height: 60px !important; }
   .footer-inner { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
 }
 @media (max-width: 480px) {
@@ -3919,17 +3926,6 @@ p {
    ================================================================ */
 
 /* Nav logo: transparent patch (white background removed), shown in full */
-.brand img {
-  width: 116px !important;
-  height: 116px !important;
-  border-radius: 0 !important;
-  object-fit: contain !important;
-  object-position: center !important;
-  background: transparent !important;
-  clip-path: none !important;
-  image-rendering: -webkit-optimize-contrast;
-}
-
 /* Footer brand block: logo middle-left, much bigger, text beside it */
 .footer-inner {
   grid-template-columns: 2.4fr 1fr 1fr 1.2fr !important;
@@ -4001,7 +3997,6 @@ p {
   .footer-brand { grid-column: 1 / -1 !important; margin-bottom: 8px; }
 }
 @media (max-width: 640px) {
-  .brand img { width: 76px !important; height: 76px !important; }
   .footer-inner { grid-template-columns: 1fr 1fr !important; gap: 28px !important; }
   .footer-brand { grid-column: 1 / -1 !important; }
   .footer-brand img { width: 120px !important; height: 120px !important; }
@@ -4558,6 +4553,7 @@ p {
 .announce-text {
   margin: 0;
   max-width: none;
+  color: var(--white);
   font-weight: var(--weight-medium);
 }
 
@@ -4708,6 +4704,43 @@ p {
     text-align: left;
     justify-content: flex-start;
   }
+}
+
+/* --- Brand mark -------------------------------------------------------------
+   One rule. The legacy sheet had five, escalating 58 -> 48 -> 110 -> 60 -> 116
+   -> 76px with !important as each tried to beat the last, which is why the
+   masthead was 140px tall at tablet width. */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  min-height: 44px;
+}
+
+.brand img {
+  width: clamp(44px, 6vw, 56px);
+  height: clamp(44px, 6vw, 56px);
+  object-fit: contain;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  flex: none;
+}
+
+.brand span { display: grid; line-height: 1.15; }
+
+.brand strong {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-snug);
+}
+
+.brand small {
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--ink-inverse-muted);
 }
 
 

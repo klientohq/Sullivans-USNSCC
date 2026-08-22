@@ -28,6 +28,7 @@
 .announce-text {
   margin: 0;
   max-width: none;
+  color: var(--white);
   font-weight: var(--weight-medium);
 }
 
@@ -178,4 +179,41 @@
     text-align: left;
     justify-content: flex-start;
   }
+}
+
+/* --- Brand mark -------------------------------------------------------------
+   One rule. The legacy sheet had five, escalating 58 -> 48 -> 110 -> 60 -> 116
+   -> 76px with !important as each tried to beat the last, which is why the
+   masthead was 140px tall at tablet width. */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  min-height: 44px;
+}
+
+.brand img {
+  width: clamp(44px, 6vw, 56px);
+  height: clamp(44px, 6vw, 56px);
+  object-fit: contain;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  flex: none;
+}
+
+.brand span { display: grid; line-height: 1.15; }
+
+.brand strong {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-snug);
+}
+
+.brand small {
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--ink-inverse-muted);
 }

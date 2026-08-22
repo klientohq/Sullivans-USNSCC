@@ -13,14 +13,6 @@
   font-weight: 800;
 }
 
-.brand img {
-  width: 58px;
-  height: 58px;
-  object-fit: contain;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.92);
-}
-
 .brand span {
   display: grid;
   line-height: 1.1;
@@ -2326,10 +2318,6 @@ p {
     padding: 12px 16px;
   }
 
-  .brand img {
-    width: 48px;
-    height: 48px;
-  }
 
   .brand small {
     display: none;
@@ -2657,14 +2645,6 @@ p {
 /* ===== DEFINITIVE OVERRIDES ===== */
 
 /* Logo nav */
-.brand img {
-  width: 110px !important;
-  height: 110px !important;
-  object-fit: contain !important;
-  background: transparent !important;
-  border-radius: 0 !important;
-}
-
 /* Logo footer */
 .footer-brand img {
   width: 130px !important;
@@ -2753,7 +2733,6 @@ p {
 /* Sticky join */
 
 @media (max-width: 640px) {
-  .brand img { width: 60px !important; height: 60px !important; }
   .footer-inner { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
 }
 @media (max-width: 480px) {
@@ -3527,17 +3506,6 @@ p {
    ================================================================ */
 
 /* Nav logo: transparent patch (white background removed), shown in full */
-.brand img {
-  width: 116px !important;
-  height: 116px !important;
-  border-radius: 0 !important;
-  object-fit: contain !important;
-  object-position: center !important;
-  background: transparent !important;
-  clip-path: none !important;
-  image-rendering: -webkit-optimize-contrast;
-}
-
 /* Footer brand block: logo middle-left, much bigger, text beside it */
 .footer-inner {
   grid-template-columns: 2.4fr 1fr 1fr 1.2fr !important;
@@ -3609,7 +3577,6 @@ p {
   .footer-brand { grid-column: 1 / -1 !important; margin-bottom: 8px; }
 }
 @media (max-width: 640px) {
-  .brand img { width: 76px !important; height: 76px !important; }
   .footer-inner { grid-template-columns: 1fr 1fr !important; gap: 28px !important; }
   .footer-brand { grid-column: 1 / -1 !important; }
   .footer-brand img { width: 120px !important; height: 120px !important; }
