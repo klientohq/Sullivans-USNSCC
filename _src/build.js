@@ -8,6 +8,7 @@
  * Pages. Nothing here runs at request time.
  */
 const fs = require('node:fs');
+const crypto = require('node:crypto');
 const path = require('node:path');
 
 const SRC = __dirname;
@@ -100,8 +101,15 @@ function parsePage(source, file) {
   return [meta, match[2]];
 }
 
+// --- cache busting -----------------------------------------------------------
+// assetVersion is derived from the built bytes, never hand-maintained. A
+// hand-set version silently serves stale CSS to every returning visitor after a
+// deploy, which is exactly what happened on 2026-08-22.
+const fingerprint = (contents) => crypto.createHash('sha256').update(contents).digest('hex').slice(0, 10);
+
 // --- scripts ----------------------------------------------------------------
-fs.copyFileSync(path.join(SRC, 'js', 'main.js'), path.join(ROOT, 'main.js'));
+const mainJs = read(path.join(SRC, 'js', 'main.js'));
+fs.writeFileSync(path.join(ROOT, 'main.js'), mainJs);
 
 // --- stylesheet -------------------------------------------------------------
 // Concatenated in order so the cascade is explicit: tokens, then fonts, then
@@ -112,6 +120,8 @@ const cssDir = path.join(SRC, 'css');
 const cssOrder = fs.readdirSync(cssDir).filter((n) => n.endsWith('.css')).sort();
 const cssBundle = cssOrder.map((n) => `/* @source _src/css/${n} */\n${read(path.join(cssDir, n))}`).join('\n\n');
 fs.writeFileSync(path.join(ROOT, 'styles.css'), cssBundle);
+
+site.assetVersion = fingerprint(cssBundle + mainJs);
 
 const pagesDir = path.join(SRC, 'pages');
 const pageFiles = fs.readdirSync(pagesDir).filter((n) => n.endsWith('.html')).sort();
@@ -223,6 +233,6 @@ fs.writeFileSync(
   ].join('\n')
 );
 
-console.log(`Built styles.css from ${cssOrder.length} layers (${(cssBundle.length / 1024).toFixed(1)} KB)`);
+console.log(`Built styles.css from ${cssOrder.length} layers (${(cssBundle.length / 1024).toFixed(1)} KB), asset version ${site.assetVersion}`);
 console.log(`Built ${written.length} pages: ${written.join(', ')}`);
 console.log(`Wrote sitemap.xml (${indexable.length} urls) and robots.txt`);

@@ -180,6 +180,23 @@ if (rawZ.length) {
 }
 if (/z-index:[^;]*!important/.test(css)) fail('styles.css: z-index with !important - the ladder should make this unnecessary');
 
+// --- 9b. Cache busting actually busts ----------------------------------------
+// A stale ?v= string serves old CSS to every returning visitor after a deploy.
+const crypto = require('node:crypto');
+const expectedVersion = crypto
+  .createHash('sha256')
+  .update(read(path.join(ROOT, 'styles.css')) + read(path.join(ROOT, 'main.js')))
+  .digest('hex')
+  .slice(0, 10);
+for (const file of builtPages) {
+  const source = read(path.join(ROOT, file));
+  for (const [, asset, version] of source.matchAll(/\.\/(styles\.css|main\.js)\?v=([\w.-]+)/g)) {
+    if (version !== expectedVersion) {
+      fail(`${file}: ${asset} is cache-busted with "${version}" but the built bytes hash to "${expectedVersion}" - rebuild`);
+    }
+  }
+}
+
 // --- 10. Generated artefacts exist -------------------------------------------
 for (const artefact of ['sitemap.xml', 'robots.txt', 'styles.css', 'main.js']) {
   if (!fs.existsSync(path.join(ROOT, artefact))) fail(`missing ${artefact}`);
