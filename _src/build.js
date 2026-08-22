@@ -101,6 +101,21 @@ function parsePage(source, file) {
   return [meta, match[2]];
 }
 
+// Canonical URL shape. GitHub Pages needs the .html extension; Cloudflare Pages
+// 308-normalises .html to extensionless. site.prettyUrls follows the canonical
+// host and flips at DNS cutover alongside site.url.
+const urlFor = (slug) => {
+  if (slug === 'index') return `${site.url}/`;
+  return site.prettyUrls ? `${site.url}/${slug}` : `${site.url}/${slug}.html`;
+};
+
+// --- platform files -----------------------------------------------------------
+// _headers and _redirects are Cloudflare Pages configuration. GitHub Pages
+// ignores them, so committing them at the root is harmless there.
+for (const platformFile of ['_headers', '_redirects', 'llms.txt']) {
+  fs.copyFileSync(path.join(SRC, platformFile), path.join(ROOT, platformFile));
+}
+
 // --- cache busting -----------------------------------------------------------
 // assetVersion is derived from the built bytes, never hand-maintained. A
 // hand-set version silently serves stale CSS to every returning visitor after a
@@ -154,7 +169,7 @@ const breadcrumb = (page) => ({
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: `${site.url}/` },
-    { '@type': 'ListItem', position: 2, name: page.meta.ogTitle || page.meta.title, item: `${site.url}/${page.slug}.html` },
+    { '@type': 'ListItem', position: 2, name: page.meta.ogTitle || page.meta.title, item: urlFor(page.slug) },
   ],
 });
 
@@ -165,7 +180,7 @@ for (const page of pages) {
 
   // Nav is data-driven so the active item can never drift out of sync.
   const nav = site.nav.map((item) => ({ ...item, current: item.slug === slug }));
-  const canonical = `${site.url}/${slug === 'index' ? '' : `${slug}.html`}`;
+  const canonical = urlFor(slug);
   const ogImage = meta.ogImage ? `${site.url}/${meta.ogImage}` : `${site.url}/${site.defaultOgImage}`;
 
   const ctx = {
@@ -210,7 +225,7 @@ for (const page of pages) {
 const indexable = pages.filter((p) => p.meta.noindex !== true);
 const urls = indexable
   .map((p) => {
-    const loc = `${site.url}/${p.slug === 'index' ? '' : `${p.slug}.html`}`;
+    const loc = urlFor(p.slug);
     const priority = p.meta.priority || (p.slug === 'index' ? '1.0' : '0.7');
     return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${site.buildDate}</lastmod>\n    <changefreq>${p.meta.changefreq || 'monthly'}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
   })

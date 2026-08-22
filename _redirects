@@ -1,0 +1,45 @@
+# 301 map: every URL the old WordPress site exposes (enumerated from its live
+# sitemaps, 146 URLs, 2026-08-22) to its equivalent on this site. Takes effect
+# when thesullivansusnscc.com points at Cloudflare Pages; dormant until then.
+# ADR-003: never cut over without this map. Order matters: exact before splat.
+
+# --- Real content, mapped one to one -----------------------------------------
+/contact/                        /contact                 301
+/enrollment-forms/               /join                    301
+/frequently-asked-questions/     /join                    301
+/cadets/                         /cadet-dashboard         301
+/my-account/                     /cadet-dashboard         301
+/officer-staff/                  /about                   301
+/2024-2025-drill-schedule/       /contact                 301
+/unit-calendar/                  /contact                 301
+/usnscc-events/                  /contact                 301
+/the-sullivans-newsletters/      /resource-hub            301
+/privacy-policy/                 /about                   301
+/terms-conditions/               /about                   301
+
+# --- Commerce: store, cart, checkout, every product ---------------------------
+/store/                          /store                   301
+/cart/                           /store                   301
+/checkout/                       /store                   301
+/product/*                       /store                   301
+/product-category/*              /store                   301
+
+# --- Content with no equivalent yet: posts, galleries, categories -------------
+/gallery/*                       /                             301
+/category/*                      /                             301
+/awards-and-christmas-party/     /                             301
+/december-drill-event/           /                             301
+/november-drill-event/           /                             301
+/october-drill-event/            /                             301
+/november-newsletter/            /                             301
+/welcome-to-our-new-site/        /                             301
+
+# --- TheGem theme demo pages: 90 junk URLs indexed on the unit's domain -------
+/pf/*                            /                             301
+
+# --- WordPress infrastructure paths -------------------------------------------
+/wp-content/*                    /                             301
+/wp-admin/*                      /                             301
+/wp-login.php                    /                             301
+/feed/*                          /                             301
+/comments/*                      /                             301

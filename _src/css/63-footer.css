@@ -97,3 +97,29 @@
   border-left: 3px solid var(--red-700);
   color: var(--red-800);
 }
+
+/* ============================================================================
+   404 - kept quiet and useful. Its presence also switches Cloudflare Pages
+   from SPA fallback (every bad URL soft-404s as the homepage) to real 404s.
+   ========================================================================= */
+
+.page-404 main { padding-top: var(--header-height); }
+.notfound { padding: var(--section-y) var(--gutter) var(--section-y); }
+.notfound-inner { max-width: var(--max-text); margin: 0 auto; }
+
+.notfound-links {
+  display: grid;
+  gap: 0;
+  margin-top: var(--space-lg);
+}
+
+.notfound-links a {
+  padding: var(--space-sm) 0;
+  border-top: var(--border);
+  font-weight: var(--weight-semibold);
+  color: var(--ink);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.notfound-links a:last-child { border-bottom: var(--border); }
+.notfound-links a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }

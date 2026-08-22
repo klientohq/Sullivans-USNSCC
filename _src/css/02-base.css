@@ -175,3 +175,11 @@ p {
   --line-strong: rgba(255, 255, 255, 0.42);
   color: var(--ink);
 }
+
+/* Utility spacing + the classes that replaced the last inline style attributes,
+   so the CSP can ship without style-src-attr 'unsafe-inline'. */
+.u-mt-md { margin-top: var(--space-md); }
+.u-mt-lg { margin-top: var(--space-lg); }
+.map-embed { border: 0; border-radius: var(--radius); }
+.age-badge--nlcc { background: var(--blue-100); color: var(--navy-600); }
+.age-badge--nscc { background: rgba(196, 18, 48, 0.08); color: var(--red-700); }

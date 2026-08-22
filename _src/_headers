@@ -1,0 +1,28 @@
+# Security headers (ADR-001: the reason we left GitHub Pages).
+# Served by Cloudflare Pages; GitHub Pages ignores this file.
+
+/*
+  Content-Security-Policy: default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' https://images-api.printify.com; font-src 'self'; media-src 'self'; connect-src 'self'; frame-src https://maps.google.com https://www.google.com; manifest-src 'self'; form-action 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Cross-Origin-Opener-Policy: same-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# Fingerprinted by the ?v= content hash, so a year of immutable caching is safe:
+# changed bytes arrive under a new query string.
+/styles.css
+  Cache-Control: public, max-age=31536000, immutable
+/main.js
+  Cache-Control: public, max-age=31536000, immutable
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Photos and video can be replaced under the same name; a week is enough.
+/assets/images/*
+  Cache-Control: public, max-age=604800
+/assets/video/*
+  Cache-Control: public, max-age=604800
+/assets/social/*
+  Cache-Control: public, max-age=604800
