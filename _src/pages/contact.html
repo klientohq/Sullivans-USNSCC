@@ -57,6 +57,7 @@
             </label>
             <label class="field"><span>Subject *</span><input type="text" name="subject" required placeholder="How can we help?" /></label>
             <label class="field"><span>Message *</span><textarea name="message" rows="5" required placeholder="Tell us a bit more…"></textarea></label>
+            <div class="turnstile-mount" data-turnstile data-sitekey="{{ site.turnstileSitekey }}"></div>
             <button type="submit" class="send-btn">Open Email Draft</button>
             <p class="form-note">Prefer email? Write us directly at info@thesullivansusnscc.com.</p>
             <p id="contact-msg" class="contact-msg" role="status" aria-live="polite" hidden></p>
@@ -187,3 +188,5 @@
           </div>
         </div>
       </section>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileReady&render=explicit" async defer></script>

@@ -34,7 +34,7 @@
     <link rel="preload" href="./assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="./assets/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-    <link rel="stylesheet" href="./styles.css?v=c101265e6e" />
+    <link rel="stylesheet" href="./styles.css?v=cde7e5b35c" />
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://klientohq.github.io/Sullivans-USNSCC/"},{"@type":"ListItem","position":2,"name":"Contact the Division","item":"https://klientohq.github.io/Sullivans-USNSCC/contact.html"}]}</script>
 
   </head>
@@ -123,6 +123,7 @@
             </label>
             <label class="field"><span>Subject *</span><input type="text" name="subject" required placeholder="How can we help?" /></label>
             <label class="field"><span>Message *</span><textarea name="message" rows="5" required placeholder="Tell us a bit more…"></textarea></label>
+            <div class="turnstile-mount" data-turnstile data-sitekey="0x4AAAAAAEZXhSkyx-040huN"></div>
             <button type="submit" class="send-btn">Open Email Draft</button>
             <p class="form-note">Prefer email? Write us directly at info@thesullivansusnscc.com.</p>
             <p id="contact-msg" class="contact-msg" role="status" aria-live="polite" hidden></p>
@@ -254,6 +255,8 @@
         </div>
       </section>
 
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileReady&render=explicit" async defer></script>
+
     </main>
 
     <footer class="site-footer">
@@ -311,7 +314,7 @@
 
     <!-- Cloudflare Web Analytics: no cookies, no consent banner needed (ADR: Phase 4) -->
     <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "22ea3736346a4de7a2803c250f422bff"}'></script>
-    <script src="./main.js?v=c101265e6e"></script>
+    <script src="./main.js?v=cde7e5b35c"></script>
 
   </body>
 </html>

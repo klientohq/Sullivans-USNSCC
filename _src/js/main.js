@@ -132,8 +132,24 @@
      Cloudflare Worker plus Turnstile that posts server-side and still stores
      nothing; the markup and validation below carry over unchanged. */
   const contactForm = document.querySelector("#contact-form");
+  let turnstileWidgetId = null;
 
   if (contactForm) {
+    /* Turnstile renders explicitly, not automatically, so the form works the
+       instant it is parsed and the challenge attaches when its script lands.
+       An auto-rendered widget would have made the submit button depend on a
+       third-party script loading first. */
+    const turnstileMount = contactForm.querySelector("[data-turnstile]");
+    window.onTurnstileReady = () => {
+      if (!turnstileMount || !window.turnstile) return;
+      turnstileWidgetId = window.turnstile.render(turnstileMount, {
+        sitekey: turnstileMount.dataset.sitekey,
+        action: "contact",
+        theme: "light",
+      });
+    };
+    if (window.turnstile) window.onTurnstileReady();
+
     const status = contactForm.querySelector("#contact-msg");
     const inbox = contactForm.dataset.inbox || "info@thesullivansusnscc.com";
 
@@ -162,7 +178,10 @@
       if (event.target.hasAttribute("aria-invalid")) clearError(event.target);
     });
 
-    contactForm.addEventListener("submit", (event) => {
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const submitLabel = submitBtn ? submitBtn.textContent : "";
+
+    contactForm.addEventListener("submit", async (event) => {
       event.preventDefault();
       const data = new FormData(contactForm);
       const value = (name) => String(data.get(name) || "").trim();
@@ -203,13 +222,71 @@
         `?subject=${encodeURIComponent(value("subject"))}` +
         `&body=${encodeURIComponent(lines.join("\n"))}`;
 
-      status.hidden = false;
-      status.dataset.state = "ok";
-      status.textContent =
-        `Your email app should now be open with the message ready to send to ${inbox}. ` +
-        "It is not sent until you send it. If nothing opened, email us directly.";
+      const openDraft = () => {
+        status.hidden = false;
+        status.dataset.state = "ok";
+        status.textContent =
+          `Your email app should now be open with the message ready to send to ${inbox}. ` +
+          "It is not sent until you send it. If nothing opened, email us directly.";
+        window.location.href = href;
+      };
 
-      window.location.href = href;
+      /* The challenge only exists where it is configured. On any other host,
+         and if the widget script was blocked, fall straight through to the mail
+         draft rather than trapping someone behind a check that cannot run. */
+      const token = window.turnstile && turnstileWidgetId !== null
+        ? window.turnstile.getResponse(turnstileWidgetId)
+        : null;
+
+      if (!token) {
+        openDraft();
+        return;
+      }
+
+      status.hidden = false;
+      status.dataset.state = "";
+      status.textContent = "Checking, one moment.";
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = "Checking..."; }
+
+      let result = null;
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            token,
+            firstName: value("firstName"),
+            email: value("email"),
+            subject: value("subject"),
+            message: value("message"),
+          }),
+        });
+        result = await res.json();
+      } catch {
+        /* Network trouble is not the visitor's problem to solve. */
+      } finally {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = submitLabel; }
+        window.turnstile.reset(turnstileWidgetId);
+      }
+
+      if (result && result.ok === false && result.error === "challenge_failed") {
+        status.dataset.state = "error";
+        status.textContent =
+          "The security check did not pass. Try once more, or email us directly at " + inbox + ".";
+        return;
+      }
+
+      /* delivered:true arrives only once Email Routing is live (ADR-017). Until
+         then the server verifies and the draft still does the delivering. */
+      if (result && result.ok && result.delivered) {
+        status.dataset.state = "ok";
+        status.textContent =
+          "Thank you, your message is on its way to the division. We usually reply within two days.";
+        contactForm.reset();
+        return;
+      }
+
+      openDraft();
     });
   }
 

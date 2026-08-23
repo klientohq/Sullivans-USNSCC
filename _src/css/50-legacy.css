@@ -2167,3 +2167,9 @@ p {
   .tier-grid {
     grid-template-columns: 1fr;
   }}
+/* Turnstile mount. The widget sizes itself; this only reserves room so it does
+   not shove the submit button down when it renders. */
+.turnstile-mount {
+  min-height: 65px;
+  margin-block: var(--space-sm);
+}

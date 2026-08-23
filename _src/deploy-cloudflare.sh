@@ -23,6 +23,7 @@ rsync -a \
   --include='/_headers' \
   --include='/_redirects' \
   --include='/assets/***' \
+  --include='/functions/***' \
   --exclude='*' \
   ./ "$STAGE/"
 
