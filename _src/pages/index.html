@@ -11,20 +11,27 @@
   "ogImageAlt": "Cadets of The Sullivans Division, U.S. Naval Sea Cadet Corps, in formation."
 }
 ---
-<!-- HERO with video background -->
+<!-- HERO with video background.
+
+     The source is in data-src, not src, on purpose. header-video.mp4 is 20 MB,
+     and most recruiting traffic arrives on a phone from a flyer QR code, where
+     that is a genuine cost to the family. main.js attaches the src only on a
+     wide viewport, with motion allowed and Save-Data off. Until it does, the
+     video has no src, so `.hero-video:not([src])` hides it and the poster image
+     below carries the hero for 214 KB instead of 20 MB. -->
       <section class="hero">
         <video
           class="hero-video"
-          src="./assets/video/header-video.mp4"
+          data-src="./assets/video/header-video.mp4"
           autoplay
           muted
           loop
           playsinline
-          poster="./assets/images/cadets-deck-formation.png"
+          poster="./assets/images/cadets-deck-formation.webp"
         ></video>
         <img
           class="hero-media hero-fallback"
-          src="./assets/images/cadets-deck-formation.png"
+          src="./assets/images/cadets-deck-formation.webp"
           alt="The Sullivans Division cadets in formation on ship deck"
         />
         <div class="hero-overlay"></div>
@@ -76,7 +83,7 @@
             <h2>Challenge, purpose, and belonging for future leaders.</h2>
           </div>
           <figure class="intro-photo">
-            <img src="./assets/images/color-guard-outdoor.jpg" alt="The Sullivans Division color guard in white dress uniforms" />
+            <img src="./assets/images/color-guard-outdoor.webp" alt="The Sullivans Division color guard in white dress uniforms" />
           </figure>
         </div>
         <div class="intro-grid">
@@ -107,15 +114,15 @@
       <!-- PHOTO STRIP -->
       <div class="media-band" aria-label="Division photo gallery">
         <figure>
-          <img src="./assets/images/color-guard-arena.jpg" alt="Sullivans color guard performing at a Buffalo Sabres game" loading="lazy" />
+          <img src="./assets/images/color-guard-arena.webp" alt="Sullivans color guard performing at a Buffalo Sabres game" loading="lazy" />
           <figcaption><span>Community</span><strong>Color Guard, Buffalo Sabres</strong></figcaption>
         </figure>
         <figure>
-          <img src="./assets/images/cadets-first-aid.jpg" alt="Cadet practicing first aid and bandaging techniques" loading="lazy" />
+          <img src="./assets/images/cadets-first-aid.webp" alt="Cadet practicing first aid and bandaging techniques" loading="lazy" />
           <figcaption><span>Training</span><strong>First Aid &amp; Medical Skills</strong></figcaption>
         </figure>
         <figure>
-          <img src="./assets/images/cadets-cpr-training.jpg" alt="Cadets practicing CPR during medical training" loading="lazy" />
+          <img src="./assets/images/cadets-cpr-training.webp" alt="Cadets practicing CPR during medical training" loading="lazy" />
           <figcaption><span>Training</span><strong>CPR Certification</strong></figcaption>
         </figure>
       </div>
@@ -165,15 +172,15 @@
       <!-- ACTION DOCK -->
       <section class="action-dock" aria-label="Quick paths">
         <a class="action-button family-action" href="./about.html">
-          <img src="./assets/images/cadets-aboard-ship.jpg" alt="" class="action-img" />
+          <img src="./assets/images/cadets-aboard-ship.webp" alt="" class="action-img" />
           <span>For Families</span>
         </a>
         <a class="action-button resource-action" href="./resource-hub.html">
-          <img src="./assets/images/cadets-classroom.jpg" alt="" class="action-img" />
+          <img src="./assets/images/cadets-classroom.webp" alt="" class="action-img" />
           <span>Resource Hub</span>
         </a>
         <a class="action-button recruit-action" href="./contact.html">
-          <img src="./assets/images/color-guard-field.jpg" alt="" class="action-img" />
+          <img src="./assets/images/color-guard-field.webp" alt="" class="action-img" />
           <span>New Recruits</span>
         </a>
       </section>
@@ -213,7 +220,7 @@
           <h2>Chart Your Course.</h2>
           <div class="chart-grid">
             <div class="chart-card">
-              <img src="./assets/images/color-guard-field.jpg" alt="Volunteers with the Sullivans Division" loading="lazy" />
+              <img src="./assets/images/color-guard-field.webp" alt="Volunteers with the Sullivans Division" loading="lazy" />
               <div class="chart-card-body">
                 <h3>Become a Volunteer</h3>
                 <p>Support the division as an adult volunteer, instructor, or staff officer. Your skills and dedication make a direct impact on every cadet.</p>
@@ -221,7 +228,7 @@
               <a href="https://www.seacadets.org/get-involved/become-a-volunteer/" target="_blank" rel="noopener" class="chart-card-cta">Get Involved →</a>
             </div>
             <div class="chart-card">
-              <img src="./assets/images/cadets-deck-formation.png" alt="Sea Cadets in formation on deck" loading="lazy" />
+              <img src="./assets/images/cadets-deck-formation.webp" alt="Sea Cadets in formation on deck" loading="lazy" />
               <div class="chart-card-body">
                 <h3>Become a Cadet</h3>
                 <p>Join the Sullivans Division and begin your journey in leadership, seamanship, and naval tradition. Open to young people ages 10 through 17.</p>
@@ -229,7 +236,7 @@
               <a href="https://www.seacadets.org/join" target="_blank" rel="noopener" class="chart-card-cta">Join Now →</a>
             </div>
             <div class="chart-card">
-              <img src="./assets/images/cadets-aboard-ship.jpg" alt="Cadets aboard ship" loading="lazy" />
+              <img src="./assets/images/cadets-aboard-ship.webp" alt="Cadets aboard ship" loading="lazy" />
               <div class="chart-card-body">
                 <h3>Become a Donor</h3>
                 <p>Help fund uniforms, training, travel, and equipment for Buffalo's Sea Cadets. Every contribution directly supports the next generation of leaders.</p>

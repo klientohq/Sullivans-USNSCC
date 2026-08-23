@@ -1195,10 +1195,17 @@ p {
   display: none;
 }
 
-/* If video fails to load, show fallback image */
+/* No src means the video was never worth its bytes here (see main.js), or it
+   failed to load. Either way the hero still needs a background, so hide the
+   video element and let the poster image behind it show through. */
 .hero-video:not([src]),
 .hero-video[src=""] {
   display: none;
+}
+
+.hero:has(.hero-video:not([src])) .hero-fallback,
+.hero:has(.hero-video[src=""]) .hero-fallback {
+  display: block;
 }
 
 /* ── Stats Bar ── */
@@ -1491,7 +1498,7 @@ p {
   .hero {
     background:
       linear-gradient(rgba(7, 19, 38, 0.6), rgba(7, 19, 38, 0.6)),
-      url("./assets/images/cadets-aboard-ship.jpg") center / cover;
+      url("./assets/images/cadets-aboard-ship.webp") center / cover;
   }}
 
 @media (max-width: 1279px) {

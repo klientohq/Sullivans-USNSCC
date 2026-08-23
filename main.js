@@ -213,18 +213,41 @@
     });
   }
 
-  /* --- Respect prefers-reduced-motion for the hero video ------------------ */
+  /* --- Hero video: decide whether it is worth its bytes -------------------
+     The file is 20 MB. Pausing an already-downloading video saves nothing, so
+     the decision has to happen before the src is set: the markup ships a
+     data-src and we promote it to src only when all three hold.
+
+       wide viewport   a phone gets the 214 KB poster instead
+       motion allowed  prefers-reduced-motion means no video at all
+       no Save-Data    the visitor has asked us not to spend their data
+
+     While there is no src, `.hero-video:not([src])` keeps the element hidden
+     and the poster image stands in, so the hero always has a background. */
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const wideEnough = window.matchMedia("(min-width: 900px)");
+
+  const cheapConnection = () => {
+    const c = navigator.connection;
+    if (!c) return false;
+    return Boolean(c.saveData) || /^([23]g|slow-2g)$/.test(c.effectiveType || "");
+  };
+
   const applyMotionPreference = () => {
-    for (const video of document.querySelectorAll("video[autoplay]")) {
-      if (reduceMotion.matches) {
+    const allowed = !reduceMotion.matches && wideEnough.matches && !cheapConnection();
+    for (const video of document.querySelectorAll("video[data-src]")) {
+      if (allowed) {
+        if (!video.getAttribute("src")) video.setAttribute("src", video.dataset.src);
+        if (video.paused) video.play().catch(() => {});
+      } else {
         video.pause();
-        video.removeAttribute("autoplay");
-      } else if (video.paused) {
-        video.play().catch(() => {});
+        // Removing the src also cancels an in-flight download.
+        video.removeAttribute("src");
+        video.load();
       }
     }
   };
   applyMotionPreference();
   reduceMotion.addEventListener("change", applyMotionPreference);
+  wideEnough.addEventListener("change", applyMotionPreference);
 })();
