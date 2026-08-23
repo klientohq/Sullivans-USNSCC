@@ -13,8 +13,8 @@
      Text:    Public Sans, the U.S. Web Design System typeface - the face of
               federal government sites, which is what a congressionally
               chartered program should read like. */
-  --font-display: "Newsreader", Georgia, "Times New Roman", serif;
-  --font-text: "Public Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Newsreader", "Newsreader Fallback", Georgia, "Times New Roman", serif;
+  --font-text: "Public Sans", "Public Sans Fallback", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
 
   /* Fluid type scale, 1.25 minor third at mobile opening to 1.333 at desktop.
