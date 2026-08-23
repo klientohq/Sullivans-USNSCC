@@ -61,7 +61,7 @@ for (const file of builtPages) {
 const FORBIDDEN = [
   'Preview Only', 'Online payment is being set up', 'Details saved.',
   'Payment options coming soon', 'Cadet dashboard coming next.', '>Cadet Login<',
-  'Lorem ipsum', 'empowering tomorrow', 'since 1961', 'TODO', 'FIXME', 'XXX',
+  'Lorem ipsum', 'empowering tomorrow', '1961', 'federally chartered', 'TODO', 'FIXME', 'XXX',
 ];
 for (const file of builtPages) {
   const source = read(path.join(ROOT, file));
