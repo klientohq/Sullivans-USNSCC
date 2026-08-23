@@ -26,6 +26,10 @@
     <link rel="apple-touch-icon" href="./assets/images/logo.webp" />
 
     <link rel="preconnect" href="https://klientohq.github.io" />
-    <link rel="preload" href="./assets/fonts/{{ site.preloadFont }}" as="font" type="font/woff2" crossorigin />
+    <!-- Both families, not just the text one. Newsreader sets every h1, so
+         discovering it only after the stylesheet parses reflowed the masthead
+         when it swapped in: measured CLS 0.059 on About at 412px. -->
+    {{#each site.preloadFonts}}<link rel="preload" href="./assets/fonts/{{ file }}" as="font" type="font/woff2" crossorigin />
+    {{/each}}
     <link rel="stylesheet" href="./styles.css?v={{ site.assetVersion }}" />
     <script type="application/ld+json">{{{ jsonld }}}</script>

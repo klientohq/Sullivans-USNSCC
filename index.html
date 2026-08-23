@@ -28,7 +28,12 @@
     <link rel="apple-touch-icon" href="./assets/images/logo.webp" />
 
     <link rel="preconnect" href="https://klientohq.github.io" />
+    <!-- Both families, not just the text one. Newsreader sets every h1, so
+         discovering it only after the stylesheet parses reflowed the masthead
+         when it swapped in: measured CLS 0.059 on About at 412px. -->
     <link rel="preload" href="./assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./assets/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin />
+
     <link rel="stylesheet" href="./styles.css?v=ed9fb98cfb" />
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"NGO","name":"The Sullivans Division, U.S. Naval Sea Cadet Corps","alternateName":"The Sullivans Division","url":"https://klientohq.github.io/Sullivans-USNSCC/","logo":"https://klientohq.github.io/Sullivans-USNSCC/assets/images/logo.webp","email":"info@thesullivansusnscc.com","areaServed":{"@type":"City","name":"Buffalo, New York"},"parentOrganization":{"@type":"NGO","name":"U.S. Naval Sea Cadet Corps","url":"https://www.seacadets.org/"},"sameAs":["https://www.instagram.com/seacadetsbuffalo_official/","https://www.tiktok.com/@seacadetsbuffalo","https://www.facebook.com/SeaCadetsBuffalo","https://www.youtube.com/@SeaCadetsBuffalo","https://nextdoor.com/profile/019jHtsYPfSp3x777"],"description":"A congressionally chartered non-profit youth program in Buffalo, New York for ages 10 through high school. Participation carries no military service obligation."}</script>
 
