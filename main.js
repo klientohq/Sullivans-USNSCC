@@ -290,14 +290,14 @@
     });
   }
 
-  /* --- Hero video: decide whether it is worth its bytes -------------------
-     The file is 20 MB. Pausing an already-downloading video saves nothing, so
-     the decision has to happen before the src is set: the markup ships a
-     data-src and we promote it to src only when all three hold.
+  /* --- Hero video: decide which file, or none ------------------------------
+     Pausing an already-downloading video saves nothing, so the decision has to
+     happen before the src is set. The markup ships the sources as data
+     attributes and we promote one of them:
 
-       wide viewport   a phone gets the 214 KB poster instead
-       motion allowed  prefers-reduced-motion means no video at all
-       no Save-Data    the visitor has asked us not to spend their data
+       reduced motion or Save-Data   nothing, the poster carries the hero
+       narrow viewport               data-src-narrow, a 20 second 2.1 MB loop
+       wide viewport                 data-src, the full 20 MB montage
 
      While there is no src, `.hero-video:not([src])` keeps the element hidden
      and the poster image stands in, so the hero always has a background. */
@@ -311,10 +311,19 @@
   };
 
   const applyMotionPreference = () => {
-    const allowed = !reduceMotion.matches && wideEnough.matches && !cheapConnection();
+    const allowed = !reduceMotion.matches && !cheapConnection();
     for (const video of document.querySelectorAll("video[data-src]")) {
-      if (allowed) {
-        if (!video.getAttribute("src")) video.setAttribute("src", video.dataset.src);
+      const wanted = wideEnough.matches
+        ? video.dataset.src
+        : video.dataset.srcNarrow || video.dataset.src;
+
+      if (allowed && wanted) {
+        // Reassigning on a breakpoint change would restart the download for no
+        // visible gain, so only touch src when it is actually wrong.
+        if (video.getAttribute("src") !== wanted) {
+          video.setAttribute("src", wanted);
+          video.load();
+        }
         if (video.paused) video.play().catch(() => {});
       } else {
         video.pause();

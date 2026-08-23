@@ -13,16 +13,23 @@
 ---
 <!-- HERO with video background.
 
-     The source is in data-src, not src, on purpose. header-video.mp4 is 20 MB,
-     and most recruiting traffic arrives on a phone from a flyer QR code, where
-     that is a genuine cost to the family. main.js attaches the src only on a
-     wide viewport, with motion allowed and Save-Data off. Until it does, the
-     video has no src, so `.hero-video:not([src])` hides it and the poster image
-     below carries the hero for 214 KB instead of 20 MB. -->
+     The source is in data-src, not src, on purpose. main.js picks which file to
+     attach, or none at all, because the full montage runs 2m46s and weighs 20 MB
+     and most recruiting traffic arrives on a phone from a flyer QR code.
+
+       desktop          header-video.mp4        the full montage, 20 MB
+       phone            header-video-short.mp4  a 20 second loop, 2.1 MB
+       reduced motion   nothing
+       Save-Data        nothing
+
+     Until a src is attached the video has no src at all, so
+     `.hero-video:not([src])` hides it and the poster image below carries the
+     hero on its own. -->
       <section class="hero">
         <video
           class="hero-video"
           data-src="./assets/video/header-video.mp4"
+          data-src-narrow="./assets/video/header-video-short.mp4"
           autoplay
           muted
           loop
@@ -65,7 +72,7 @@
           <div class="stat-divider"></div>
           <div class="stat-item">
             <strong>Buffalo, NY</strong>
-            <span>Naval Marina Park</span>
+            <span>Naval &amp; Military Park</span>
           </div>
           <div class="stat-divider"></div>
           <div class="stat-item">
@@ -257,9 +264,9 @@
         <div class="where-grid">
           <div class="where-info">
             <div class="where-card">
-              <span>Unit Address</span>
-              <strong>1 Naval Marina Park S<br>Buffalo, NY 14202</strong>
-              <a href="https://maps.google.com/?q=1+Naval+Marina+Park+S+Buffalo+NY+14202" target="_blank" rel="noopener">Get directions →</a>
+              <span>Based at</span>
+              <strong>Buffalo and Erie County<br>Naval &amp; Military Park</strong>
+              <a href="https://maps.google.com/?q=Buffalo+and+Erie+County+Naval+%26+Military+Park+Buffalo+NY+14202" target="_blank" rel="noopener">See the park on a map →</a>
             </div>
             <div class="where-card">
               <span>Contact</span>
