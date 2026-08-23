@@ -96,8 +96,9 @@
 }
 
 /* --- Unit essentials --------------------------------------------------------
-   A list, not cards. There are four items and no prices to publish yet, so a
-   card grid would be four decorated boxes containing one sentence each. */
+   A price list, not cards. Nine priced rows read as an institution publishing its
+   figures; nine decorated boxes would read as a marketing page. The price sits in
+   its own column so the numbers align down the page and stay scannable. */
 .essentials-list {
   list-style: none;
   margin: var(--space-xl) 0 0;
@@ -117,8 +118,18 @@
 .essentials-list h3 { margin: 0; font-size: var(--text-md); }
 .essentials-list p { margin: 0; color: var(--ink-secondary); }
 
+.essentials-price {
+  color: var(--ink);
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
 @media (min-width: 720px) {
-  .essentials-list li { grid-template-columns: minmax(12rem, 18rem) 1fr; }
+  .essentials-list li {
+    grid-template-columns: minmax(12rem, 18rem) 1fr minmax(5rem, auto);
+    align-items: baseline;
+  }
+  .essentials-price { text-align: right; }
 }
 
 .store-cta-row {
@@ -224,16 +235,6 @@
 
 .page-store .button.primary:hover,
 .page-cadet-dashboard .button.primary:hover { background: var(--accent-hover); }
-
-.page-store .button.secondary,
-.page-cadet-dashboard .button.secondary {
-  background: transparent;
-  color: var(--ink);
-  border-color: var(--line-strong);
-}
-
-.page-store .button.secondary:hover,
-.page-cadet-dashboard .button.secondary:hover { border-color: var(--ink); background: var(--white); }
 
 /* ============================================================================
    CADET AND FAMILY ACCESS (ADR-009)

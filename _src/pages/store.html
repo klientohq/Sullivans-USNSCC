@@ -32,9 +32,10 @@
       </section>
 
       <!-- Unit essentials. ADR-005 routes these to Square hosted checkout, which
-           the commanding officer must create first. Until that account exists we
-           publish what is true today and no prices, since costs to families are
-           not confirmed (Rule 3). -->
+           the commanding officer must create first. Prices ARE confirmed as of
+           2026-08-23: they come from the unit's own live store and live in
+           _src/data/essentials.json, so publishing them satisfies Rule 3. Only
+           the checkout is still pending. -->
       <section class="store-section" id="essentials" aria-labelledby="essentials-title">
         <div class="store-section-inner">
           <header class="store-section-head">
@@ -42,21 +43,22 @@
             <p class="store-section-meta">Handled by the division</p>
           </header>
           <p class="store-section-lede">
-            Cadet ID cards, drill meals, the sea bag, and uniform items are issued by the division
-            and handed over at drill rather than shipped. Ask the unit for current pricing and to
-            arrange payment.
+            Dues, drill meals, the sea bag, and cadet ID cards are handled by the division and handed
+            over at drill rather than shipped. These are the division's current figures, checked
+            against the unit's own store on {{ essentials.verifiedOn }}.
           </p>
 
           <ul class="essentials-list">
-            <li><h3>Cadet ID card</h3><p>Issued by the division for new and renewing cadets.</p></li>
-            <li><h3>Drill meals</h3><p>Meal plan covering scheduled drill weekends.</p></li>
-            <li><h3>Sea bag</h3><p>The standard issue kit bag cadets carry to training.</p></li>
-            <li><h3>Uniform items</h3><p>Uniform components issued and fitted through the unit.</p></li>
+            {{#each essentials.items}}<li>
+              <h3>{{ name }}</h3>
+              <p>{{ note }}</p>
+              <p class="essentials-price">{{ price }}</p>
+            </li>{{/each}}
           </ul>
 
           <div class="store-cta-row">
-            <a class="button primary" href="mailto:{{ site.email }}?subject=Unit%20essentials%20enquiry">Ask about unit essentials</a>
-            <p class="store-note">Online payment for these items is being set up with the division's payment provider. Until then the unit arranges it directly.</p>
+            <a class="button primary" href="mailto:{{ site.email }}?subject=Unit%20essentials%20enquiry">Arrange payment with the unit</a>
+            <p class="store-note">Online checkout for these items is being set up with the division's payment provider. Until it is live, the unit takes payment directly at drill or by arrangement.</p>
           </div>
         </div>
       </section>

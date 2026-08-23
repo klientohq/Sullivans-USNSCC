@@ -113,6 +113,16 @@
   font-weight: var(--weight-bold);
 }
 
+/* Multi-paragraph answers: the cost answer states real figures, which needs more
+   than one sentence. Spacing comes from the paragraph, not a wrapper. */
+.answer dd > p { margin: 0; }
+.answer dd > p + p { margin-block-start: var(--space-sm); }
+
+.answer-aside {
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+}
+
 @media (min-width: 860px) {
   .answer { grid-template-columns: minmax(16rem, 22rem) 1fr; }
 }

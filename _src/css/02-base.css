@@ -171,6 +171,7 @@ p {
   --ink-muted: var(--ink-inverse-muted);
   --muted: var(--ink-inverse-muted);
   --accent: var(--accent-on-dark);
+  --button-ghost-bg: rgba(255, 255, 255, 0.14);
   --line: var(--line-inverse);
   --line-strong: rgba(255, 255, 255, 0.42);
   color: var(--ink);

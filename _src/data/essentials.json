@@ -1,0 +1,16 @@
+{
+  "source": "https://thesullivansusnscc.com/product/<slug>/ (WooCommerce Product schema)",
+  "verifiedOn": "2026-08-23",
+  "note": "Prices the unit already publishes on its own live store, so they are confirmed facts, not invented (Rule 3). Re-verify against the live product pages before any change. Checkout is not wired yet: ADR-005 routes these to a hosted checkout the CO must create.",
+  "items": [
+    { "slug": "sea-cadet-league-cadet-dues",    "name": "Sea Cadet and League Cadet Dues", "price": "$150.00", "note": "Annual dues" },
+    { "slug": "officer-dues",                   "name": "Officer Dues",                    "price": "$50.00",  "note": "Annual dues, adult officers" },
+    { "slug": "officer-child-dues",             "name": "Officer Child Dues",              "price": "$125.00", "note": "Annual dues" },
+    { "slug": "replacement-id-card",            "name": "Replacement ID",                  "price": "$10.00",  "note": "Replacement cadet ID card" },
+    { "slug": "sea-cadet-sea-bag",              "name": "Sea Cadet Sea Bag",               "price": "$150.00", "note": "Issued kit bag" },
+    { "slug": "league-cadet-sea-bag",           "name": "League Cadet Sea Bag",            "price": "$75.00",  "note": "Issued kit bag" },
+    { "slug": "league-cadet-promotion-sea-bag", "name": "League Cadet Promotion Sea Bag",  "price": "$75.00",  "note": "Issued on advancement" },
+    { "slug": "daily-meals-day-drills",         "name": "Daily Meals, Day Drills",         "price": "$5.00",   "note": "Per day drill" },
+    { "slug": "overnight-meals-weekend-drills", "name": "Overnight Meals, Weekend Drills", "price": "$20.00",  "note": "Per weekend drill" }
+  ]
+}

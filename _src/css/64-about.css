@@ -1,0 +1,305 @@
+/* =============================================================================
+   ABOUT - rebuilt 2026-08-23
+   Replaces the icon triad and the alternating 50/50 block, both banned in
+   design-system.md. The page is now photograph, narrative, comparison, list.
+   Four different layout families, so the page has a cadence rather than a loop.
+   ========================================================================== */
+
+/* The header is fixed, so pages without a full-bleed hero clear it on main.
+   Same convention as .page-join, .page-store, .page-404. */
+.page-about main { padding-top: var(--header-height); }
+
+.about-masthead {
+  padding: var(--section-y) var(--gutter) var(--section-y-tight);
+}
+
+.about-masthead-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.about-masthead h1 {
+  margin: 0;
+  max-width: 18ch;
+  font-size: var(--text-4xl);
+  line-height: var(--leading-4xl);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+.about-masthead .lede {
+  margin: var(--space-lg) 0 0;
+}
+
+.about-masthead-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-xl);
+}
+
+/* --- The plate --------------------------------------------------------------
+   One photograph at full width, with the caption underneath in a reading
+   column. Deliberately NOT the two-column dark plate the Join page uses; two
+   pages sharing one layout family is how a site starts to loop. */
+.about-plate {
+  margin: 0;
+  display: grid;
+  gap: 0;
+}
+
+.about-plate img {
+  width: 100%;
+  /* height:auto is load-bearing. The img carries width/height attributes so the
+     browser can reserve space and avoid a layout shift, but those attributes act
+     as a definite height, which makes aspect-ratio a no-op. Without this the
+     photograph rendered 900px tall regardless of the ratio below. */
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+/* The caption has to sit on the same left edge as every other section. Those
+   sections pad by --gutter and then centre a --max inner box, so the caption
+   centres a box of (--max + 2 * --gutter) and pads inside it. Centring --max
+   directly, then padding, pushed it a gutter's width off the page grid. */
+.about-plate figcaption {
+  width: 100%;
+  max-width: min(calc(var(--max) + (2 * var(--gutter))), 100%);
+  margin-inline: auto;
+  padding: var(--space-md) var(--gutter) 0;
+  color: var(--ink-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+}
+
+@media (min-width: 900px) {
+  .about-plate img { aspect-ratio: 21 / 9; }
+}
+
+/* --- Narrative --------------------------------------------------------------
+   Prose, set at a real reading measure. This is the section that does the work
+   the three icon cards were pretending to do. */
+.about-narrative {
+  padding: var(--section-y) var(--gutter);
+}
+
+.about-narrative-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.about-narrative h2,
+.about-eligibility h2,
+.about-training h2 {
+  margin: 0;
+  max-width: 20ch;
+  font-size: var(--text-2xl);
+  line-height: var(--leading-2xl);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+.about-prose {
+  margin-top: var(--space-xl);
+  max-width: var(--measure);
+}
+
+.about-prose p {
+  margin: 0;
+  font-size: var(--text-md);
+  line-height: var(--leading-md);
+  color: var(--ink-secondary);
+}
+
+.about-prose p + p { margin-top: var(--space-md); }
+.about-prose strong { color: var(--ink); font-weight: var(--weight-semibold); }
+
+.about-section-lede {
+  margin: var(--space-md) 0 0;
+  max-width: var(--measure);
+  color: var(--ink-secondary);
+}
+
+/* --- Eligibility comparison -------------------------------------------------
+   A real table, because this is genuinely tabular: two programmes compared on
+   the same four axes. Two decorated cards forced the reader to hold one column
+   in their head while reading the other. On narrow screens the table becomes
+   stacked blocks, with each cell labelled by its row header. */
+.about-eligibility {
+  padding: var(--section-y) var(--gutter);
+  background: var(--surface-sunken);
+}
+
+.about-eligibility-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.compare {
+  width: 100%;
+  margin-top: var(--space-2xl);
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.compare th,
+.compare td {
+  padding: var(--space-md) var(--space-md) var(--space-md) 0;
+  vertical-align: top;
+  border-top: var(--border);
+}
+
+.compare thead th { border-top: 0; padding-top: 0; }
+
+.compare-name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  line-height: var(--leading-lg);
+  letter-spacing: var(--tracking-snug);
+  color: var(--ink);
+}
+
+.compare-sub {
+  display: block;
+  margin-top: var(--space-3xs);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  font-weight: var(--weight-regular);
+  color: var(--ink-muted);
+}
+
+.compare tbody th {
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+
+.compare tbody td { color: var(--ink-secondary); }
+
+@media (max-width: 719px) {
+  .compare thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .compare, .compare tbody, .compare tr, .compare th, .compare td { display: block; }
+  .compare tr { padding-block: var(--space-md); border-top: var(--border); }
+  .compare th, .compare td { border-top: 0; padding: 0; }
+  .compare tbody th { margin-bottom: var(--space-2xs); }
+  .compare tbody td { padding-block: var(--space-2xs); }
+  /* Without the header row, each cell has to name its own programme. */
+  .compare tbody td::before {
+    content: attr(data-label) ": ";
+    font-weight: var(--weight-semibold);
+    color: var(--ink);
+  }
+}
+
+@media (min-width: 720px) {
+  .compare { table-layout: fixed; }
+  .compare th:first-child { width: 11rem; }
+}
+
+.about-requirements {
+  list-style: none;
+  margin: var(--space-2xl) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.about-requirements li { display: grid; gap: var(--space-3xs); }
+
+.about-requirements span {
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.about-requirements p { margin: 0; color: var(--ink-secondary); }
+
+@media (min-width: 720px) {
+  .about-requirements { grid-template-columns: repeat(3, 1fr); gap: var(--space-xl); }
+}
+
+/* --- Training ---------------------------------------------------------------
+   Three grouped lists, not three cards. The grouping is the information; a card
+   around each one would add a box and nothing else. */
+.about-training {
+  padding: var(--section-y) var(--gutter);
+}
+
+.about-training-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.training-groups {
+  margin-top: var(--space-2xl);
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.training-group h3 {
+  margin: 0 0 var(--space-sm);
+  padding-bottom: var(--space-2xs);
+  border-bottom: var(--border-strong);
+  font-size: var(--text-base);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  font-family: var(--font-text);
+  font-weight: var(--weight-semibold);
+}
+
+.training-group ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2xs);
+  color: var(--ink-secondary);
+}
+
+@media (min-width: 720px) {
+  .training-groups { grid-template-columns: repeat(3, 1fr); gap: var(--space-2xl); }
+}
+
+/* --- Close ------------------------------------------------------------------ */
+.about-close {
+  padding: var(--section-y) var(--gutter);
+  background: var(--surface-inverse);
+}
+
+.about-close-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.about-close h2 {
+  margin: 0;
+  max-width: 22ch;
+  font-size: var(--text-2xl);
+  line-height: var(--leading-2xl);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+  color: var(--ink);
+}
+
+.about-close p {
+  margin: var(--space-md) 0 0;
+  max-width: var(--measure);
+  color: var(--ink-secondary);
+}
+
+.about-close-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-xl);
+}

@@ -133,6 +133,11 @@
   --radius-lg: 14px;
   --radius-pill: 999px;
 
+  /* Ghost button ground. Transparent on light surfaces; the inverted-surface
+     block in 02-base.css gives it a translucent white so the button still
+     reads over the hero video. */
+  --button-ghost-bg: transparent;
+
   --border: 1px solid var(--line);
   --border-strong: 1px solid var(--line-strong);
 

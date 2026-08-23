@@ -9,166 +9,194 @@
   "ogImageAlt": "Cadets of The Sullivans Division, U.S. Naval Sea Cadet Corps, in formation."
 }
 ---
+<!-- Rebuilt 2026-08-23. Replaces the icon triad and the 50/50 image-text block,
+     both banned in design-system.md. The order is photograph, then narrative,
+     then the eligibility comparison, then training. Every fact here is either
+     confirmed in references/program.md or is a description of a photograph the
+     unit took. Nothing is invented (Rule 3, ADR-011). -->
 <section class="about-masthead">
-        <div class="about-kicker">
-          <span>Buffalo, New York</span>
-          <span>U.S. Naval Sea Cadet Corps</span>
-        </div>
-        <h1>More than a youth program. A place to grow.</h1>
-        <p>
-          The Sullivans Division gives young people a structured, challenging, and supportive place to practice
-          responsibility, teamwork, naval tradition, and service.
-        </p>
-        <div class="about-join-buttons u-mt-lg">
-          <a class="button gold" href="https://www.seacadets.org/join" target="_blank" rel="noopener">Join Now</a>
-          <a class="button primary" href="./resource-hub.html">Explore Resources</a>
-        </div>
-      </section>
-
-      <section class="about-feature">
-        <img src="./assets/images/cadets-aboard-ship.jpg" alt="The Sullivans Division cadets aboard a ship in Buffalo" />
-        <div class="about-feature-card">
-          <p class="eyebrow">What families should know</p>
-          <h2>Clear expectations. Real mentorship. A team that sticks together.</h2>
-          <p>
-            Cadets learn by showing up prepared, following standards, supporting one another, and serving the community.
-            The program is designed to build habits that carry beyond drill weekends.
+        <div class="about-masthead-inner">
+          <h1>Named for five brothers who served together.</h1>
+          <p class="lede">
+            The Sullivans Division trains young people in Buffalo, New York, in the customs,
+            seamanship, and standards of the sea services. We are part of the U.S. Naval Sea
+            Cadet Corps. Joining does not enlist your child in anything.
           </p>
-          <div class="u-mt-md">
-            <a class="button gold" href="./contact.html">Ask About Joining</a>
+          <div class="about-masthead-actions">
+            <a class="button primary" href="./join.html">How to join</a>
+            <a class="button secondary" href="./contact.html">Ask a question first</a>
           </div>
         </div>
       </section>
 
-      <section class="section about-principles" aria-label="Division principles">
-        <div>
-          <span>01</span>
-          <h3>Discipline</h3>
-          <p>Uniform standards, drill, and accountability teach consistency.</p>
-        </div>
-        <div>
-          <span>02</span>
-          <h3>Service</h3>
-          <p>Cadets represent the division through public events and community support.</p>
-        </div>
-        <div>
-          <span>03</span>
-          <h3>Confidence</h3>
-          <p>Leadership practice helps young people speak, plan, and act with purpose.</p>
+      <!-- One photograph at scale, captioned with what is actually happening in it.
+           Photography carries the page; this is the credibility no illustration buys. -->
+      <figure class="about-plate">
+        <img
+          src="./assets/images/cadets-deck-training.jpg"
+          alt="Cadets of The Sullivans Division working on deck during training."
+          width="1600" height="900" fetchpriority="high" decoding="async" />
+        <figcaption>
+          Cadets on deck during training. Drill is hands on: line handling, damage control,
+          first aid, and the parts of seamanship you cannot learn from a book.
+        </figcaption>
+      </figure>
+
+      <section class="about-narrative" aria-labelledby="narrative-title">
+        <div class="about-narrative-inner">
+          <h2 id="narrative-title">What the division is</h2>
+          <div class="about-prose">
+            <p>
+              The U.S. Naval Sea Cadet Corps is a congressionally chartered non-profit youth
+              program supported by the Navy and the Coast Guard. It is not military enlistment.
+              Cadets carry no service obligation, and most go on to college or a civilian career.
+              That decision stays entirely theirs.
+            </p>
+            <p>
+              A division is the local unit, and ours is named for the five Sullivan brothers, who
+              were lost together aboard USS Juneau in 1942. Their words are on our patch:
+              <strong>we stick together</strong>. USS The Sullivans is berthed a few minutes away
+              at Buffalo's Naval and Military Park, so the name is not an abstraction here. It is
+              a ship our cadets can stand on.
+            </p>
+            <p>
+              What cadets do at drill is ordinary and demanding at the same time. They learn to
+              wear a uniform correctly and to stand a watch. They practise drill and ceremony,
+              basic seamanship, first aid and CPR, and the chain of command. Older cadets take
+              billets and become responsible for younger ones. Some of it is classroom work. Some
+              of it is standing in formation in the cold. The point is not the tasks. The point is
+              that a young person learns to be counted on.
+            </p>
+            <p>
+              Beyond drill, cadets compete for advancement and for summer training courses run
+              across the country, from seamanship and small boat operations to aviation ground
+              school and cybersecurity. Those are earned, not bought.
+            </p>
+          </div>
         </div>
       </section>
 
-      <!-- WHO CAN JOIN -->
-      <section class="who-join-section">
-        <div class="who-join-inner">
-          <p class="eyebrow">Eligibility</p>
-          <h2>Who Can Join Sea Cadets?</h2>
-          <div class="who-join-grid">
-            <div class="who-join-card nlcc">
-              <span class="age-badge age-badge--nlcc">Ages 10–12 · Grades 5–8</span>
-              <h3>Navy League Cadet Corps</h3>
-              <p class="grade-label">NLCC: Entry Level Program</p>
-              <ul>
-                <li>Minimum age: 10 years old</li>
-                <li>5th through 8th grade students</li>
-                <li>Introduction to naval customs and drill</li>
-                <li>Basic seamanship and team skills</li>
-                <li>Foundation for advancing to Sea Cadets</li>
-              </ul>
-              <a class="button primary" href="https://www.seacadets.org/join" target="_blank" rel="noopener">Ask About NLCC</a>
-            </div>
-            <div class="who-join-card nscc">
-              <span class="age-badge age-badge--nscc">Ages 13–17 · Grades 9–12</span>
-              <h3>Naval Sea Cadet Corps</h3>
-              <p class="grade-label">NSCC: Full Sea Cadet Program</p>
-              <ul>
-                <li>Minimum age: 13 years old</li>
-                <li>9th through 12th grade students</li>
-                <li>Advanced naval and maritime training</li>
-                <li>Leadership billets and chain of command</li>
-                <li>Summer training programs nationwide</li>
-              </ul>
-              <a class="button primary" href="https://www.seacadets.org/join" target="_blank" rel="noopener">Ask About Sea Cadets</a>
-            </div>
-          </div>
-          <div class="who-join-requirements">
-            <div class="who-req-item">
+      <section class="about-eligibility" aria-labelledby="eligibility-title">
+        <div class="about-eligibility-inner">
+          <h2 id="eligibility-title">Who can join</h2>
+          <p class="about-section-lede">
+            There are two programs under the same roof. Which one your child enters depends on
+            age and grade.
+          </p>
+
+          <table class="compare">
+            <caption class="u-visually-hidden">
+              A comparison of the Navy League Cadet Corps and the Naval Sea Cadet Corps by age,
+              grade, and what cadets do in each.
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col"><span class="u-visually-hidden">Programme detail</span></th>
+                <th scope="col">
+                  <span class="compare-name">Navy League Cadet Corps</span>
+                  <span class="compare-sub">NLCC, the entry programme</span>
+                </th>
+                <th scope="col">
+                  <span class="compare-name">Naval Sea Cadet Corps</span>
+                  <span class="compare-sub">NSCC, the full programme</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Age</th>
+                <td data-label="NLCC">10 to 12</td>
+                <td data-label="NSCC">13 to 17</td>
+              </tr>
+              <tr>
+                <th scope="row">Grade</th>
+                <td data-label="NLCC">5th through 8th</td>
+                <td data-label="NSCC">9th through 12th</td>
+              </tr>
+              <tr>
+                <th scope="row">What cadets do</th>
+                <td data-label="NLCC">Naval customs, drill and ceremony, basic seamanship, and team skills.</td>
+                <td data-label="NSCC">Advanced naval and maritime training, plus leadership billets in the chain of command.</td>
+              </tr>
+              <tr>
+                <th scope="row">Summer training</th>
+                <td data-label="NLCC">Introductory courses, building toward the Sea Cadet programme.</td>
+                <td data-label="NSCC">Training courses nationwide, competed for and earned.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <ul class="about-requirements">
+            <li>
               <span>Citizenship</span>
-              <strong>U.S. citizens or permanent legal residents</strong>
-            </div>
-            <div class="who-req-item">
-              <span>Academic Standing</span>
-              <strong>Students in good academic standing</strong>
-            </div>
-            <div class="who-req-item">
-              <span>Location</span>
-              <strong>Buffalo, NY area: Naval Marina Park</strong>
-            </div>
-          </div>
+              <p>U.S. citizens and permanent legal residents.</p>
+            </li>
+            <li>
+              <span>School</span>
+              <p>Students in good academic standing.</p>
+            </li>
+            <li>
+              <span>Where we drill</span>
+              <p>The Buffalo area. We give families the exact location and dates when they contact us.</p>
+            </li>
+          </ul>
         </div>
       </section>
 
-      <!-- ADVANCED TRAINING TABLE -->
-      <section class="training-section">
-        <div class="training-inner">
-          <p class="eyebrow">Beyond the basics</p>
-          <h2>Advanced Training May Include</h2>
-          <div class="training-grid">
-            <div class="training-col">
-              <div class="training-col-head">
-                <span class="training-cat">Training at Sea</span>
-                <strong>Maritime &amp; Naval Skills</strong>
-              </div>
+      <section class="about-training" aria-labelledby="training-title">
+        <div class="about-training-inner">
+          <h2 id="training-title">What cadets can train in</h2>
+          <p class="about-section-lede">
+            Advanced training runs nationwide during school breaks. Availability changes year to
+            year, and every course is competitive. This is what the catalogue has included.
+          </p>
+          <div class="training-groups">
+            <section class="training-group" aria-labelledby="tg-sea">
+              <h3 id="tg-sea">At sea</h3>
               <ul>
                 <li>Seamanship</li>
                 <li>Sailing</li>
-                <li>Small Boat Operations</li>
+                <li>Small boat operations</li>
                 <li>Fleet Week</li>
-                <li>Submarine Seminar</li>
-                <li>SCUBA Diving</li>
+                <li>Submarine seminar</li>
+                <li>SCUBA diving</li>
               </ul>
-            </div>
-            <div class="training-col">
-              <div class="training-col-head">
-                <span class="training-cat">Training in the Air</span>
-                <strong>Aviation &amp; Aerospace</strong>
-              </div>
+            </section>
+            <section class="training-group" aria-labelledby="tg-air">
+              <h3 id="tg-air">In the air</h3>
               <ul>
-                <li>Aviation Orientation</li>
-                <li>Airman Training</li>
-                <li>FAA Ground School</li>
-                <li>Aviation Maintenance</li>
-                <li>Drone Operations</li>
+                <li>Aviation orientation</li>
+                <li>Airman training</li>
+                <li>FAA ground school</li>
+                <li>Aviation maintenance</li>
+                <li>Drone operations</li>
               </ul>
-            </div>
-            <div class="training-col">
-              <div class="training-col-head">
-                <span class="training-cat">Training on Land</span>
-                <strong>Technical &amp; Leadership</strong>
-              </div>
+            </section>
+            <section class="training-group" aria-labelledby="tg-land">
+              <h3 id="tg-land">On land</h3>
               <ul>
                 <li>Shipbuilding</li>
-                <li>Trade / Technical Skills</li>
-                <li>Special Operations</li>
-                <li>Public Safety</li>
+                <li>Trade and technical skills</li>
+                <li>Special operations</li>
+                <li>Public safety</li>
                 <li>Cybersecurity</li>
-                <li>Recruit &amp; Leadership Training</li>
+                <li>Recruit and leadership training</li>
               </ul>
-            </div>
+            </section>
           </div>
         </div>
       </section>
 
-      <!-- JOIN CTA -->
-      <section class="section about-join-cta">
-        <p class="eyebrow">Ready to start?</p>
-        <h2>Your cadet's first step is a simple one.</h2>
-        <p>
-          Send a message to the unit, ask your questions, and get guidance on what to expect before visiting or
-          starting the enrollment process. Families are welcomed and supported every step of the way.
-        </p>
-        <div class="about-join-buttons">
-          <a class="button gold" href="https://www.seacadets.org/join" target="_blank" rel="noopener">Join Now</a>
-          <a class="button primary" href="./resource-hub.html">Explore the Resource Hub</a>
+      <section class="about-close u-on-dark" aria-labelledby="close-title">
+        <div class="about-close-inner">
+          <h2 id="close-title">The first step is a question, not a commitment.</h2>
+          <p>
+            Ask us what a drill weekend looks like, what it costs, or whether it suits your child.
+            A person from the division answers, usually within two days.
+          </p>
+          <div class="about-close-actions">
+            <a class="button primary" href="./join.html">How to join</a>
+            <a class="button secondary" href="./contact.html">Contact the division</a>
+          </div>
         </div>
       </section>

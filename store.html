@@ -29,7 +29,7 @@
 
     <link rel="preconnect" href="https://klientohq.github.io" />
     <link rel="preload" href="./assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="./styles.css?v=f52db87f06" />
+    <link rel="stylesheet" href="./styles.css?v=d30b32c81e" />
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://klientohq.github.io/Sullivans-USNSCC/"},{"@type":"ListItem","position":2,"name":"Division Store","item":"https://klientohq.github.io/Sullivans-USNSCC/store.html"}]}</script>
 
   </head>
@@ -93,9 +93,10 @@
       </section>
 
       <!-- Unit essentials. ADR-005 routes these to Square hosted checkout, which
-           the commanding officer must create first. Until that account exists we
-           publish what is true today and no prices, since costs to families are
-           not confirmed (Rule 3). -->
+           the commanding officer must create first. Prices ARE confirmed as of
+           2026-08-23: they come from the unit's own live store and live in
+           _src/data/essentials.json, so publishing them satisfies Rule 3. Only
+           the checkout is still pending. -->
       <section class="store-section" id="essentials" aria-labelledby="essentials-title">
         <div class="store-section-inner">
           <header class="store-section-head">
@@ -103,21 +104,54 @@
             <p class="store-section-meta">Handled by the division</p>
           </header>
           <p class="store-section-lede">
-            Cadet ID cards, drill meals, the sea bag, and uniform items are issued by the division
-            and handed over at drill rather than shipped. Ask the unit for current pricing and to
-            arrange payment.
+            Dues, drill meals, the sea bag, and cadet ID cards are handled by the division and handed
+            over at drill rather than shipped. These are the division's current figures, checked
+            against the unit's own store on 2026-08-23.
           </p>
 
           <ul class="essentials-list">
-            <li><h3>Cadet ID card</h3><p>Issued by the division for new and renewing cadets.</p></li>
-            <li><h3>Drill meals</h3><p>Meal plan covering scheduled drill weekends.</p></li>
-            <li><h3>Sea bag</h3><p>The standard issue kit bag cadets carry to training.</p></li>
-            <li><h3>Uniform items</h3><p>Uniform components issued and fitted through the unit.</p></li>
+            <li>
+              <h3>Sea Cadet and League Cadet Dues</h3>
+              <p>Annual dues</p>
+              <p class="essentials-price">$150.00</p>
+            </li><li>
+              <h3>Officer Dues</h3>
+              <p>Annual dues, adult officers</p>
+              <p class="essentials-price">$50.00</p>
+            </li><li>
+              <h3>Officer Child Dues</h3>
+              <p>Annual dues</p>
+              <p class="essentials-price">$125.00</p>
+            </li><li>
+              <h3>Replacement ID</h3>
+              <p>Replacement cadet ID card</p>
+              <p class="essentials-price">$10.00</p>
+            </li><li>
+              <h3>Sea Cadet Sea Bag</h3>
+              <p>Issued kit bag</p>
+              <p class="essentials-price">$150.00</p>
+            </li><li>
+              <h3>League Cadet Sea Bag</h3>
+              <p>Issued kit bag</p>
+              <p class="essentials-price">$75.00</p>
+            </li><li>
+              <h3>League Cadet Promotion Sea Bag</h3>
+              <p>Issued on advancement</p>
+              <p class="essentials-price">$75.00</p>
+            </li><li>
+              <h3>Daily Meals, Day Drills</h3>
+              <p>Per day drill</p>
+              <p class="essentials-price">$5.00</p>
+            </li><li>
+              <h3>Overnight Meals, Weekend Drills</h3>
+              <p>Per weekend drill</p>
+              <p class="essentials-price">$20.00</p>
+            </li>
           </ul>
 
           <div class="store-cta-row">
-            <a class="button primary" href="mailto:info@thesullivansusnscc.com?subject=Unit%20essentials%20enquiry">Ask about unit essentials</a>
-            <p class="store-note">Online payment for these items is being set up with the division's payment provider. Until then the unit arranges it directly.</p>
+            <a class="button primary" href="mailto:info@thesullivansusnscc.com?subject=Unit%20essentials%20enquiry">Arrange payment with the unit</a>
+            <p class="store-note">Online checkout for these items is being set up with the division's payment provider. Until it is live, the unit takes payment directly at drill or by arrangement.</p>
           </div>
         </div>
       </section>
@@ -439,7 +473,7 @@
 
     <!-- Cloudflare Web Analytics: no cookies, no consent banner needed (ADR: Phase 4) -->
     <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "22ea3736346a4de7a2803c250f422bff"}'></script>
-    <script src="./main.js?v=f52db87f06"></script>
+    <script src="./main.js?v=d30b32c81e"></script>
 
   </body>
 </html>
