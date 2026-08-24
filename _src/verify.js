@@ -70,6 +70,45 @@ for (const file of builtPages) {
   }
 }
 
+// --- 4b. Confirmed unit facts, and the one funnel rule (ADR-018) -------------
+// The "1961" claim survived a whole session because the gate banned only the
+// exact string "since 1961". These are written as patterns for that reason.
+
+// Ages confirmed by MIDN Rivas, PAO, 2026-08-24: NLCC 10 to 13, NSCC 13 through
+// high school graduation. A bare upper age of 17 excludes an eighteen-year-old
+// senior, and "10 to 12" / "13 to 17" were live on three pages until 2026-08-24.
+const AGE_CLAIMS = [
+  [/\b10\s*(?:to|-|through|\u2013)\s*12\b/i, 'NLCC upper age is 13, not 12'],
+  [/\b13\s*(?:to|-|through|\u2013)\s*17\b/i, 'Sea Cadets run to 18 or high school graduation, not 17'],
+  [/ages?\s+10\s*(?:to|-|through|\u2013)\s*17\b/i, 'excludes an eighteen-year-old senior'],
+];
+for (const file of builtPages) {
+  const source = read(path.join(ROOT, file));
+  for (const [pattern, why] of AGE_CLAIMS) {
+    const hit = source.match(pattern);
+    if (hit) fail(`${file}: unconfirmed age range "${hit[0]}" - ${why}. See references/program.md`);
+  }
+}
+
+// ADR-018: seacadets.org/join is a NATIONAL UNIT PICKER. A visitor who lands
+// there can select any unit, so every recruiting CTA must route through our own
+// Join page, which names The Sullivans Division. Two doors are permitted: the
+// handoff on join.html itself, and the footer's clearly labelled national link.
+const NATIONAL_JOIN = /seacadets\.org\/join/g;
+const JOIN_EXEMPT = new Set(['join.html']);
+for (const file of builtPages) {
+  if (JOIN_EXEMPT.has(file)) continue;
+  const source = read(path.join(ROOT, file));
+  // strip the footer, whose labelled national link is the permitted exception
+  const body = source.replace(/<footer[\s\S]*?<\/footer>/gi, '');
+  // JSON-LD may describe the national process in prose; only <a href> is a door
+  const hrefs = body.match(/href="[^"]*seacadets\.org\/join[^"]*"/gi) || [];
+  if (hrefs.length) {
+    fail(`${file}: ${hrefs.length} link(s) straight to the national unit picker - ADR-018 routes every join CTA through ./join.html`);
+  }
+  NATIONAL_JOIN.lastIndex = 0;
+}
+
 // --- 5. Secrets never reach a public repo (Rule 4) ---------------------------
 const SECRET_PATTERNS = [
   [/sk_live_[A-Za-z0-9]{8,}/, 'Stripe live secret key'],
