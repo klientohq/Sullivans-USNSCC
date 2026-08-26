@@ -90,6 +90,26 @@ for (const file of builtPages) {
   }
 }
 
+// Map embeds. Two separate defects, one on each page, found 2026-08-26:
+//  - contact used maps.google.com/maps?...&output=embed, the legacy form, which
+//    sets Google's NID THIRD-PARTY COOKIE. That is a Lighthouse best-practices
+//    failure and it made privacy.html's "no cookies" claim untrue.
+//  - index used the right form with a FABRICATED place reference: a null place
+//    id (:0x0) and coordinates a kilometre off, so the map showed Niagara Square
+//    beneath a heading saying the unit is based at the Naval & Military Park.
+// A wrong map is a wrong published fact (Rule 3), not a styling detail.
+for (const file of builtPages) {
+  const source = read(path.join(ROOT, file));
+  for (const [, src] of source.matchAll(/<iframe[^>]*\ssrc="([^"]*)"/gi)) {
+    if (/maps\.google\.com\/maps\?/.test(src) || /[?&]output=embed/.test(src)) {
+      fail(`${file}: legacy Google Maps embed (maps.google.com/...output=embed) sets the NID third-party cookie - use https://www.google.com/maps/embed?pb=`);
+    }
+    if (/\/maps\/embed/.test(src) && /!1s[^!]*(?:%3A|:)0x0(?:!|$)/.test(src)) {
+      fail(`${file}: Google Maps embed carries a null place id (:0x0), so it centres on raw coordinates with no marker - use the real place reference`);
+    }
+  }
+}
+
 // ADR-018: seacadets.org/join is a NATIONAL UNIT PICKER. A visitor who lands
 // there can select any unit, so every recruiting CTA must route through our own
 // Join page, which names The Sullivans Division. Two doors are permitted: the
