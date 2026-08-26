@@ -185,6 +185,25 @@ p {
   color: var(--ink);
 }
 
+/* A light island inside a dark section inherits the inverted roles, so its body
+   copy turns #c3ccd8 on white: 1.62:1. The three .chart-card panels did exactly
+   that the moment .chart-section joined the list above. This restores the
+   light-surface roles for any such island rather than re-colouring each element,
+   which is the same argument as the block above, pointed the other way. */
+.u-on-light,
+.chart-card {
+  --ink: var(--gray-900);
+  --ink-secondary: var(--gray-700);
+  --ink-muted: var(--gray-600);
+  --muted: var(--ink-muted);
+  --accent: var(--red-700);
+  --button-ghost-bg: transparent;
+  --line: rgba(10, 29, 58, 0.14);
+  --line-strong: rgba(10, 29, 58, 0.28);
+  --focus-ring: var(--blue-500);
+  color: var(--ink);
+}
+
 /* Utility spacing + the classes that replaced the last inline style attributes,
    so the CSP can ship without style-src-attr 'unsafe-inline'. */
 .u-mt-md { margin-top: var(--space-md); }
