@@ -4085,3 +4085,63 @@ p {
 }
 
 .policy-block p + p { margin-top: var(--space-sm); }
+
+/* ============================================================================
+   MAP, LOADED ON REQUEST
+   The button stands in for the frame at the same size, so nothing shifts when
+   the map arrives. It reads as a quiet panel rather than a call to action: the
+   real call to action on both pages is the join CTA, not the map.
+   ========================================================================= */
+
+.map-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  width: 100%;
+  min-height: 320px;
+  padding: var(--space-lg) var(--space-md);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-text);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-out),
+              background var(--duration-fast) var(--ease-out);
+}
+
+.map-loader:hover { border-color: var(--line-strong); background: var(--white); }
+
+.map-loader-place {
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-base);
+}
+
+.map-loader-action {
+  color: var(--blue-700);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-sm);
+}
+
+.map-loader-note {
+  margin-top: var(--space-2xs);
+  color: var(--ink-muted);
+  font-size: var(--text-sm);
+  max-width: 42ch;
+  text-wrap: balance;
+}
+
+/* The frame main.js swaps in. Matches the box the button occupied. */
+.map-frame {
+  display: block;
+  width: 100%;
+  height: 320px;
+  border: 0;
+  border-radius: var(--radius);
+}
+
+.contact-map .map-loader,
+.contact-map .map-frame { min-height: 360px; height: 360px; }

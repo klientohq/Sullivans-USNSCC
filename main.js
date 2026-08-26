@@ -290,6 +290,33 @@
     });
   }
 
+  /* --- Maps load on request, not on arrival --------------------------------
+     Every Google Maps iframe sets Google's NID cookie as soon as it loads, and
+     privacy.html states plainly that this site sets no cookies. Rather than
+     weaken the claim, the frame is not created until someone presses the button.
+     With this file blocked the button simply never appears as interactive and
+     the "See the park on a map" link beside it still does the job. */
+  for (const button of document.querySelectorAll("[data-map-embed]")) {
+    button.addEventListener(
+      "click",
+      () => {
+        const frame = document.createElement("iframe");
+        frame.className = "map-frame";
+        frame.src = button.dataset.src;
+        frame.title = button.dataset.frameTitle || "Map";
+        frame.loading = "lazy";
+        frame.referrerPolicy = "no-referrer-when-downgrade";
+        frame.allowFullscreen = true;
+        button.replaceWith(frame);
+        // The press moved focus into an element that no longer exists, so send
+        // it somewhere real rather than dropping it back to the top of the page.
+        frame.setAttribute("tabindex", "-1");
+        frame.focus();
+      },
+      { once: true }
+    );
+  }
+
   /* --- Hero video: decide which file, or none ------------------------------
      Pausing an already-downloading video saves nothing, so the decision has to
      happen before the src is set. The markup ships the sources as data

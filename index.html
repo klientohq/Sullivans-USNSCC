@@ -34,7 +34,7 @@
     <link rel="preload" href="./assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="./assets/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-    <link rel="stylesheet" href="./styles.css?v=070fef07d6" />
+    <link rel="stylesheet" href="./styles.css?v=9993288b4a" />
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"NGO","name":"The Sullivans Division, U.S. Naval Sea Cadet Corps","alternateName":"The Sullivans Division","url":"https://klientohq.github.io/Sullivans-USNSCC/","logo":"https://klientohq.github.io/Sullivans-USNSCC/assets/images/logo.webp","email":"info@thesullivansusnscc.com","areaServed":{"@type":"City","name":"Buffalo, New York"},"parentOrganization":{"@type":"NGO","name":"U.S. Naval Sea Cadet Corps","url":"https://www.seacadets.org/"},"sameAs":["https://www.instagram.com/seacadetsbuffalo_official/","https://www.tiktok.com/@seacadetsbuffalo","https://www.facebook.com/SeaCadetsBuffalo","https://www.youtube.com/@SeaCadetsBuffalo","https://nextdoor.com/profile/019jHtsYPfSp3x777"],"description":"A congressionally chartered non-profit youth program in Buffalo, New York for ages 10 through high school. Participation carries no military service obligation."}</script>
 
   </head>
@@ -328,17 +328,19 @@
               <a href="./contact.html">Ask for the schedule →</a>
             </div>
           </div>
+          <!-- Click to load. Any Google Maps iframe sets Google's NID cookie the
+               moment it loads, and privacy.html states the site sets none, so the
+               frame is not created until a visitor asks for it. The "See the park
+               on a map" link above is a plain navigation and always works, which
+               is also the no-JS path. -->
           <div class="map-embed">
-            <iframe
-              title="The Sullivans USNSCC location map"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2921.5!2d-78.8795832!3d42.8774914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d3130bd0d788f7%3A0x96418c93de9d7e!2sBuffalo%20and%20Erie%20County%20Naval%20%26%20Military%20Park!5e0!3m2!1sen!2sus!4v1"
-              width="100%"
-              height="320"
-              class="map-embed"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
+            <button type="button" class="map-loader" data-map-embed
+              data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2921.5!2d-78.8795832!3d42.8774914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d3130bd0d788f7%3A0x96418c93de9d7e!2sBuffalo%20and%20Erie%20County%20Naval%20%26%20Military%20Park!5e0!3m2!1sen!2sus!4v1"
+              data-frame-title="Map of the Buffalo and Erie County Naval &amp; Military Park">
+              <span class="map-loader-place">Buffalo and Erie County Naval &amp; Military Park</span>
+              <span class="map-loader-action">Show the map</span>
+              <span class="map-loader-note">The map loads from Google, which sets a cookie. Nothing loads until you ask for it.</span>
+            </button>
           </div>
         </div>
       </section>
@@ -413,7 +415,7 @@
 
     <!-- Cloudflare Web Analytics: no cookies, no consent banner needed (ADR: Phase 4) -->
     <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "22ea3736346a4de7a2803c250f422bff"}'></script>
-    <script src="./main.js?v=070fef07d6"></script>
+    <script src="./main.js?v=9993288b4a"></script>
 
   </body>
 </html>

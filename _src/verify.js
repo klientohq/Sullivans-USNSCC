@@ -110,6 +110,20 @@ for (const file of builtPages) {
   }
 }
 
+// No Google Maps frame may exist in the shipped HTML. Any Maps iframe sets
+// Google's NID cookie the instant it loads, and privacy.html tells families the
+// site sets none. The maps are click-to-load: main.js creates the frame only
+// after a press, so the claim stays true for anyone who does not ask for a map.
+for (const file of builtPages) {
+  const source = read(path.join(ROOT, file));
+  for (const [tag, src] of source.matchAll(/<iframe[^>]*\ssrc="([^"]*)"[^>]*>/gi)) {
+    if (/google\.com\/maps|maps\.google\.com/.test(src)) {
+      fail(`${file}: a Google Maps <iframe> ships in the HTML, so it loads on arrival and sets the NID cookie - use the click-to-load [data-map-embed] button instead`);
+    }
+    void tag;
+  }
+}
+
 // ADR-018: seacadets.org/join is a NATIONAL UNIT PICKER. A visitor who lands
 // there can select any unit, so every recruiting CTA must route through our own
 // Join page, which names The Sullivans Division. Two doors are permitted: the
