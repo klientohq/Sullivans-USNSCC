@@ -335,12 +335,6 @@ a {
   border-radius: var(--radius-xs);
 }
 
-.site-header :focus-visible,
-.site-footer :focus-visible,
-.hero :focus-visible {
-  outline-color: var(--focus-ring-inverse);
-}
-
 /* --- Headline system -------------------------------------------------------
    Display serif, tight tracking, deliberate scale. This is where the site's
    credibility is earned, not in decoration. */
@@ -440,12 +434,23 @@ p {
 
    Custom properties resolve where they are declared, so --muted is redefined
    here too; inheriting the alias alone would carry the light-surface value in. */
+/* Every dark surface belongs in this list. Two were missing (.callout and
+   .chart-section) and had per-element `color: white` overrides instead, which is
+   the exact pattern the block below exists to replace: it also meant --focus-ring
+   stayed on its light-surface value over navy, at 2.9:1. */
 .u-on-dark,
 .hero,
 .announce-bar,
 .site-header,
 .site-footer,
-.join-plate {
+.join-plate,
+.callout,
+.chart-section,
+.rh-closing,
+.sponsor-cta,
+/* Covered at runtime only because its markup happens to carry u-on-dark. Listed
+   so the styling does not depend on someone remembering the utility class. */
+.about-close {
   --ink: var(--white);
   --ink-secondary: var(--ink-inverse-muted);
   --ink-muted: var(--ink-inverse-muted);
@@ -454,6 +459,9 @@ p {
   --button-ghost-bg: rgba(255, 255, 255, 0.14);
   --line: var(--line-inverse);
   --line-strong: rgba(255, 255, 255, 0.42);
+  /* The focus ring is an ink role too: gold reads 8.5:1 on navy and 2.1:1 on
+     white, so it has to swap with the surface like every other role here. */
+  --focus-ring: var(--focus-ring-inverse);
   color: var(--ink);
 }
 
@@ -527,6 +535,7 @@ p {
 
 .nav-toggle {
   display: none;
+  flex-shrink: 0;
   width: 48px;
   height: 48px;
   border: 1px solid rgba(255, 255, 255, 0.28);
@@ -1363,7 +1372,12 @@ p {
   margin-bottom: 8px;
 }
 
+/* A standalone card CTA, not a link inline in a sentence, so it gets a real
+   target rather than 2.5.8's inline-link exception. */
 .where-card a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: var(--blue-700);
   font-weight: 850;
   font-size: 0.9rem;
@@ -1442,10 +1456,9 @@ p {
   color: var(--white);
 }
 
-:focus-visible {
-  outline: 3px solid var(--gold-500);
-  outline-offset: 3px;
-}
+/* The global focus ring lives in 02-base.css and reads --focus-ring, which dark
+   surfaces redefine. A hard-coded colour here overrode it site-wide and put a
+   2.19:1 ring on every light page. Deleted 2026-08-26; the gate now bans it. */
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -2299,7 +2312,17 @@ p {
 .info-card .info-ico svg { width: 19px; height: 19px; }
 .info-card h3 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: #6a7280; margin: 0; font-weight: 800; }
 .info-card strong { display: block; font-size: 1rem; color: var(--navy-950, #071326); line-height: 1.4; margin-bottom: 8px; }
-.info-card a.info-link { color: var(--navy-700, #0a1f4e); font-weight: 700; font-size: 0.9rem; text-decoration: none; }
+/* A standalone card CTA at 17px tall, not a link inline in a sentence, so
+   2.5.8's inline exception does not cover it. Same fix as .where-card a. */
+.info-card a.info-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--navy-700, #0a1f4e);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
 .info-card a.info-link:hover { text-decoration: underline; }
 .info-card p { margin: 0; color: #4a5160; font-size: 0.92rem; line-height: 1.55; }
 .info-social { display: flex; gap: 10px; flex-wrap: wrap; }
@@ -2614,6 +2637,9 @@ p {
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 .announce-link:hover { text-decoration-thickness: 2px; }
@@ -2702,6 +2728,9 @@ p {
   transition:
     opacity var(--duration) var(--ease-out),
     transform var(--duration) var(--ease-out),
+    /* Listed so the pill still fades OUT: visibility flips at the end of the
+       duration on the way to hidden, and at the start on the way back. */
+    visibility var(--duration) var(--ease-out),
     background var(--duration-fast) var(--ease-out);
 }
 
@@ -2720,12 +2749,17 @@ p {
     opacity: 0;
     transform: translateY(0.75rem);
     pointer-events: none;
+    /* Not just invisible: out of the focus order. opacity alone left a keyboard
+       visitor tabbing to a pill they could not see, with no visible ring.
+       Lighthouse does not test tab order against visibility. */
+    visibility: hidden;
   }
 
   .sticky-join.is-visible {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
+    visibility: visible;
   }
 }
 
@@ -3516,6 +3550,16 @@ p {
 .notfound-links a:last-child { border-bottom: var(--border); }
 .notfound-links a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 
+/* The privacy link sits in the small print rather than the nav: it is a thing a
+   parent looks for once, not a destination the site is steering anyone toward.
+   Underlined because at this size and weight colour alone would not mark it. */
+.footer-bottom p .footer-policy {
+  color: var(--white);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+
 
 /* @source _src/css/64-about.css */
 /* =============================================================================
@@ -3973,3 +4017,52 @@ p {
   gap: var(--space-sm);
   margin-top: var(--space-lg);
 }
+
+
+/* @source _src/css/66-policy.css */
+/* ============================================================================
+   PRIVACY PAGE
+   One column of prose, no cards, no icons. A parent scanning for "what do you
+   collect" should hit the answer in the first paragraph and be able to read the
+   rest like a letter. Type and measure carry it; nothing here is decorated.
+   ========================================================================= */
+
+.policy-masthead {
+  padding: var(--space-3xl) var(--gutter) var(--space-xl);
+  border-bottom: 1px solid var(--line);
+}
+
+.policy-masthead-inner,
+.policy-body {
+  max-width: var(--measure-wide);
+  margin-inline: auto;
+}
+
+.policy-masthead .lede {
+  margin-top: var(--space-sm);
+  max-width: var(--measure);
+}
+
+.policy-updated {
+  margin-top: var(--space-md);
+  color: var(--ink-muted);
+  font-size: var(--text-sm);
+}
+
+.policy-body {
+  padding: var(--space-xl) var(--gutter) var(--space-3xl);
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.policy-block h2 {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-xs);
+}
+
+.policy-block p {
+  max-width: var(--measure);
+  color: var(--ink-secondary);
+}
+
+.policy-block p + p { margin-top: var(--space-sm); }

@@ -39,6 +39,9 @@
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 .announce-link:hover { text-decoration-thickness: 2px; }
@@ -127,6 +130,9 @@
   transition:
     opacity var(--duration) var(--ease-out),
     transform var(--duration) var(--ease-out),
+    /* Listed so the pill still fades OUT: visibility flips at the end of the
+       duration on the way to hidden, and at the start on the way back. */
+    visibility var(--duration) var(--ease-out),
     background var(--duration-fast) var(--ease-out);
 }
 
@@ -145,12 +151,17 @@
     opacity: 0;
     transform: translateY(0.75rem);
     pointer-events: none;
+    /* Not just invisible: out of the focus order. opacity alone left a keyboard
+       visitor tabbing to a pill they could not see, with no visible ring.
+       Lighthouse does not test tab order against visibility. */
+    visibility: hidden;
   }
 
   .sticky-join.is-visible {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
+    visibility: visible;
   }
 }
 

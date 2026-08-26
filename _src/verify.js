@@ -109,6 +109,40 @@ for (const file of builtPages) {
   NATIONAL_JOIN.lastIndex = 0;
 }
 
+// Grade bands were published as official eligibility ("5th through 8th" /
+// "9th through 12th") with no source, and they contradicted the confirmed ages:
+// a thirteen-year-old NSCC cadet is usually in 7th or 8th grade. Removed
+// 2026-08-26 on Camilo's ruling. Ages are the only bracket the site publishes.
+const GRADE_CLAIMS = /\b(?:5th|6th|7th|8th|9th|10th|11th|12th)\s*(?:to|-|through|–)\s*(?:5th|6th|7th|8th|9th|10th|11th|12th)\b/i;
+for (const file of builtPages) {
+  const hit = read(path.join(ROOT, file)).match(GRADE_CLAIMS);
+  if (hit) fail(`${file}: publishes a school grade band "${hit[0]}" - only the confirmed AGE ranges are published (references/program.md)`);
+}
+
+// One reply-time promise, not several. The site carried "usually within two
+// days" on four pages and "within a few days" on two, which is a promise a
+// parent can catch us breaking. Any new phrasing has to join the same wording.
+const REPLY_CLAIM = /(?:reply|answers?|respond|get back to you)[^.<]{0,60}?within\s+(?:a\s+few\s+days|[a-z]+\s+days|\d+\s+days)/gi;
+const replyPhrases = new Set();
+for (const file of builtPages) {
+  for (const m of read(path.join(ROOT, file)).matchAll(REPLY_CLAIM)) {
+    replyPhrases.add(m[0].replace(/\s+/g, ' ').toLowerCase().replace(/^.*?(within .*)$/, '$1'));
+  }
+}
+if (replyPhrases.size > 1) {
+  fail(`the site makes ${replyPhrases.size} different reply-time promises (${[...replyPhrases].join(' / ')}) - pick one wording`);
+}
+
+// A privacy page is the site's only statement that it collects nothing, so it
+// has to exist and stay reachable from every page rather than be orphaned.
+if (!builtPages.includes('privacy.html')) fail('privacy.html is missing');
+for (const file of builtPages) {
+  if (file === 'privacy.html' || file === '404.html') continue;
+  if (!/href="\.\/privacy\.html"/.test(read(path.join(ROOT, file)))) {
+    fail(`${file}: no link to the privacy page - it is reachable only from pages that link it`);
+  }
+}
+
 // --- 5. Secrets never reach a public repo (Rule 4) ---------------------------
 const SECRET_PATTERNS = [
   [/sk_live_[A-Za-z0-9]{8,}/, 'Stripe live secret key'],
@@ -218,6 +252,55 @@ if (rawZ.length) {
   fail(`styles.css: ${rawZ.length} hard-coded z-index values (${rawZ.slice(0, 6).map((m) => m[1]).join(', ')}) - use the --z-* ladder`);
 }
 if (/z-index:[^;]*!important/.test(css)) fail('styles.css: z-index with !important - the ladder should make this unnecessary');
+
+// The focus ring is a token, not a colour typed at a call site. A stale
+// `:focus-visible { outline: 3px solid var(--gold-500) }` in the legacy sheet
+// silently overrode the tokenised rule and put a 2.19:1 ring on every light
+// page, three of them 1:1 on a gold button. Lighthouse has no audit for focus
+// contrast, so 100/100/100 held the whole time (WCAG 2.2 AA 1.4.11).
+for (const m of css.matchAll(/:focus-visible[^{]*\{([^}]*)\}/g)) {
+  const block = m[1];
+  const outline = block.match(/outline(?:-color)?:\s*([^;]+)/);
+  if (!outline) continue;
+  if (!/var\(--focus-ring/.test(outline[1])) {
+    fail(`styles.css: a :focus-visible rule sets "outline: ${outline[1].trim()}" instead of var(--focus-ring) - dark surfaces redefine that token, a literal colour cannot follow the surface`);
+  }
+}
+
+// A dark section that is not in the inverted-surface list keeps the LIGHT ink
+// roles, including --focus-ring, so a focus ring lands at 2.9:1 on navy. Two
+// sections (.callout, .chart-section) had drifted out of that list and were
+// papering over it with per-element `color: white`, which is the exact pattern
+// the token block replaced. Any new dark section joins the list or the
+// allowlist below, which is where the "nothing focusable in it" judgement lives.
+const DARK_BG = /background(?:-color)?:\s*[^;]*var\(--(?:navy-800|navy-900|navy-950|surface-inverse)\)/;
+const NOTHING_FOCUSABLE = new Set([
+  '.media-band figure', '.stats-bar', '.primary-command', '.tier-card.tier-feature',
+  '.join-hero-media', '.recruit-card a', '.info-social a:hover',
+]);
+const invertedBlock = css.match(/([^{}@]+)\{[^{}]*--focus-ring:\s*var\(--focus-ring-inverse\)/);
+const inverted = new Set(
+  (invertedBlock ? invertedBlock[1] : '').split(',').map((t) => t.replace(/\/\*[\s\S]*?\*\//g, '').trim()).filter(Boolean)
+);
+if (!inverted.size) fail('styles.css: no inverted-surface block declares --focus-ring - the ring can no longer follow the surface');
+for (const m of css.matchAll(/([^{}@]+)\{([^{}]*)\}/g)) {
+  const selector = m[1].replace(/\/\*[\s\S]*?\*\//g, '').replace(/\s+/g, ' ').trim();
+  if (!selector || selector.startsWith('@') || !DARK_BG.test(m[2])) continue;
+  for (const one of selector.split(',').map((t) => t.trim())) {
+    if (!one || one.includes(':hover') || one.includes('::')) continue;
+    if (inverted.has(one) || NOTHING_FOCUSABLE.has(one)) continue;
+    // a compound like `.site-header.is-scrolled` counts if its base is listed
+    if ([...inverted].some((known) => one.startsWith(known + '.') || one.startsWith(known + ':') || one.startsWith(known + ' '))) continue;
+    fail(`styles.css: "${one}" paints a dark background but is not an inverted surface - add it beside .u-on-dark in 02-base.css so --ink and --focus-ring follow it`);
+  }
+}
+
+// A control hidden with opacity alone stays in the tab order, so a keyboard
+// visitor lands on something invisible. The sticky Join pill did exactly that.
+const stickyHidden = css.match(/\.sticky-join\s*\{[^}]*opacity:\s*0[^}]*\}/);
+if (stickyHidden && !/visibility:\s*hidden/.test(stickyHidden[0])) {
+  fail('styles.css: .sticky-join is hidden with opacity:0 but stays focusable - add visibility:hidden so it leaves the tab order');
+}
 
 // --- 9b. Cache busting actually busts ----------------------------------------
 // A stale ?v= string serves old CSS to every returning visitor after a deploy.

@@ -58,6 +58,7 @@
 
 .nav-toggle {
   display: none;
+  flex-shrink: 0;
   width: 48px;
   height: 48px;
   border: 1px solid rgba(255, 255, 255, 0.28);
@@ -894,7 +895,12 @@ p {
   margin-bottom: 8px;
 }
 
+/* A standalone card CTA, not a link inline in a sentence, so it gets a real
+   target rather than 2.5.8's inline-link exception. */
 .where-card a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: var(--blue-700);
   font-weight: 850;
   font-size: 0.9rem;
@@ -973,10 +979,9 @@ p {
   color: var(--white);
 }
 
-:focus-visible {
-  outline: 3px solid var(--gold-500);
-  outline-offset: 3px;
-}
+/* The global focus ring lives in 02-base.css and reads --focus-ring, which dark
+   surfaces redefine. A hard-coded colour here overrode it site-wide and put a
+   2.19:1 ring on every light page. Deleted 2026-08-26; the gate now bans it. */
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -1830,7 +1835,17 @@ p {
 .info-card .info-ico svg { width: 19px; height: 19px; }
 .info-card h3 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: #6a7280; margin: 0; font-weight: 800; }
 .info-card strong { display: block; font-size: 1rem; color: var(--navy-950, #071326); line-height: 1.4; margin-bottom: 8px; }
-.info-card a.info-link { color: var(--navy-700, #0a1f4e); font-weight: 700; font-size: 0.9rem; text-decoration: none; }
+/* A standalone card CTA at 17px tall, not a link inline in a sentence, so
+   2.5.8's inline exception does not cover it. Same fix as .where-card a. */
+.info-card a.info-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--navy-700, #0a1f4e);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
 .info-card a.info-link:hover { text-decoration: underline; }
 .info-card p { margin: 0; color: #4a5160; font-size: 0.92rem; line-height: 1.55; }
 .info-social { display: flex; gap: 10px; flex-wrap: wrap; }

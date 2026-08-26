@@ -1,0 +1,46 @@
+/* ============================================================================
+   PRIVACY PAGE
+   One column of prose, no cards, no icons. A parent scanning for "what do you
+   collect" should hit the answer in the first paragraph and be able to read the
+   rest like a letter. Type and measure carry it; nothing here is decorated.
+   ========================================================================= */
+
+.policy-masthead {
+  padding: var(--space-3xl) var(--gutter) var(--space-xl);
+  border-bottom: 1px solid var(--line);
+}
+
+.policy-masthead-inner,
+.policy-body {
+  max-width: var(--measure-wide);
+  margin-inline: auto;
+}
+
+.policy-masthead .lede {
+  margin-top: var(--space-sm);
+  max-width: var(--measure);
+}
+
+.policy-updated {
+  margin-top: var(--space-md);
+  color: var(--ink-muted);
+  font-size: var(--text-sm);
+}
+
+.policy-body {
+  padding: var(--space-xl) var(--gutter) var(--space-3xl);
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.policy-block h2 {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-xs);
+}
+
+.policy-block p {
+  max-width: var(--measure);
+  color: var(--ink-secondary);
+}
+
+.policy-block p + p { margin-top: var(--space-sm); }

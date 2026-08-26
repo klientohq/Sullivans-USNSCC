@@ -55,12 +55,6 @@ a {
   border-radius: var(--radius-xs);
 }
 
-.site-header :focus-visible,
-.site-footer :focus-visible,
-.hero :focus-visible {
-  outline-color: var(--focus-ring-inverse);
-}
-
 /* --- Headline system -------------------------------------------------------
    Display serif, tight tracking, deliberate scale. This is where the site's
    credibility is earned, not in decoration. */
@@ -160,12 +154,23 @@ p {
 
    Custom properties resolve where they are declared, so --muted is redefined
    here too; inheriting the alias alone would carry the light-surface value in. */
+/* Every dark surface belongs in this list. Two were missing (.callout and
+   .chart-section) and had per-element `color: white` overrides instead, which is
+   the exact pattern the block below exists to replace: it also meant --focus-ring
+   stayed on its light-surface value over navy, at 2.9:1. */
 .u-on-dark,
 .hero,
 .announce-bar,
 .site-header,
 .site-footer,
-.join-plate {
+.join-plate,
+.callout,
+.chart-section,
+.rh-closing,
+.sponsor-cta,
+/* Covered at runtime only because its markup happens to carry u-on-dark. Listed
+   so the styling does not depend on someone remembering the utility class. */
+.about-close {
   --ink: var(--white);
   --ink-secondary: var(--ink-inverse-muted);
   --ink-muted: var(--ink-inverse-muted);
@@ -174,6 +179,9 @@ p {
   --button-ghost-bg: rgba(255, 255, 255, 0.14);
   --line: var(--line-inverse);
   --line-strong: rgba(255, 255, 255, 0.42);
+  /* The focus ring is an ink role too: gold reads 8.5:1 on navy and 2.1:1 on
+     white, so it has to swap with the surface like every other role here. */
+  --focus-ring: var(--focus-ring-inverse);
   color: var(--ink);
 }
 
