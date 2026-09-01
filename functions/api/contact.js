@@ -46,10 +46,30 @@ export async function onRequestPost({ request, env }) {
     return json(500, { ok: false, error: 'verification_unavailable' });
   }
 
+  // Bound the request before parsing it. Everything below this point is cheap,
+  // but request.json() will buffer whatever arrives, and the challenge cannot
+  // be checked first because the token is inside the body. A real submission is
+  // well under 8 KB; the cap is generous and still refuses a bot posting bulk.
+  // This is not rate limiting. A Cloudflare rate-limiting rule on /api/contact
+  // needs an ACTIVE zone, and the zone is still pending the nameserver change,
+  // so that rule is a cutover step (see BLOCKERS.md), not something forgotten.
+  const declared = Number(request.headers.get('content-length') || 0);
+  if (declared > 16384) return json(413, { ok: false, error: 'too_large' });
+
+  const contentType = request.headers.get('content-type') || '';
+  if (!contentType.toLowerCase().includes('application/json')) {
+    return json(415, { ok: false, error: 'unsupported_media_type' });
+  }
+
   let body;
   try {
-    body = await request.json();
+    const raw = await request.text();
+    if (raw.length > 16384) return json(413, { ok: false, error: 'too_large' });
+    body = JSON.parse(raw);
   } catch {
+    return json(400, { ok: false, error: 'bad_request' });
+  }
+  if (!body || typeof body !== 'object' || Array.isArray(body)) {
     return json(400, { ok: false, error: 'bad_request' });
   }
 
@@ -69,8 +89,20 @@ export async function onRequestPost({ request, env }) {
   form.append('response', token);
   const ip = request.headers.get('CF-Connecting-IP');
   if (ip) form.append('remoteip', ip);
-  // Lets a retry of the same token succeed rather than reading as a replay.
-  form.append('idempotency_key', crypto.randomUUID());
+  // NO idempotency_key here, deliberately. It used to send crypto.randomUUID()
+  // on every request under a comment claiming that let a retry of the same
+  // token succeed instead of reading as a replay. It did no such thing: a fresh
+  // random key each time is simply a new verification, so the call behaved
+  // exactly as if the field were absent.
+  //
+  // The field exists so that ONE siteverify call can be retried after a network
+  // failure using the SAME key and get the same answer back. We do not retry.
+  //
+  // Do not "fix" this by deriving the key from the token. Turnstile tokens are
+  // single-use by design: a replayed token returns timeout-or-duplicate, and
+  // that is the protection. A stable per-token key would cache the success and
+  // let one solved challenge be redeemed over and over, which becomes a real
+  // hole the moment the cutover below starts sending mail (ADR-017).
 
   let outcome;
   try {

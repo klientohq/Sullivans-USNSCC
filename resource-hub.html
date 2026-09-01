@@ -27,7 +27,14 @@
     <link rel="icon" href="./assets/images/logo.webp" type="image/webp" />
     <link rel="apple-touch-icon" href="./assets/images/logo.webp" />
 
-    <link rel="preconnect" href="https://klientohq.github.io" />
+    <!-- No cross-origin preconnect here, deliberately. This used to preconnect to
+         klientohq.github.io on every page of every host. On GitHub Pages that is
+         same-origin and redundant; on Cloudflare it opened a DNS + TCP + TLS
+         handshake to GitHub on arrival, for nothing, and handed GitHub the
+         visitor's IP before they had clicked anything. privacy.html says the map
+         is the only third party a page reaches, and the map is click-to-load
+         (ADR-022), so the code has to match the claim. Every asset this site
+         needs is same-origin. -->
     <!-- Both families, not just the text one. Newsreader sets every h1, so
          discovering it only after the stylesheet parses reflowed the masthead
          when it swapped in: measured CLS 0.059 on About at 412px. -->

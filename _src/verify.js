@@ -90,6 +90,22 @@ for (const file of builtPages) {
   }
 }
 
+// Cross-origin connection hints. A preconnect is a real network contact made on
+// arrival, before the visitor does anything, and it is invisible in the rendered
+// page. The site shipped `preconnect https://klientohq.github.io` on every page
+// of both hosts until 2026-09-01, which handed GitHub the visitor IP and made
+// privacy.html's "the map is the only third party" claim untrue (ADR-022).
+// Same class as the Maps cookie: a privacy claim is a claim about the code.
+for (const file of builtPages) {
+  const source = read(path.join(ROOT, file));
+  for (const [tag, rel, href] of source.matchAll(/<link[^>]*\srel="(preconnect|dns-prefetch|preload|prefetch|modulepreload)"[^>]*\shref="(https?:\/\/[^"]+)"/gi)) {
+    fail(`${file}: cross-origin ${rel} to ${href} - that contacts a third party on arrival, before the visitor acts. privacy.html says only the click-to-load map does that.`);
+  }
+  for (const [, href, rel] of source.matchAll(/<link[^>]*\shref="(https?:\/\/[^"]+)"[^>]*\srel="(preconnect|dns-prefetch|preload|prefetch|modulepreload)"/gi)) {
+    fail(`${file}: cross-origin ${rel} to ${href} - that contacts a third party on arrival, before the visitor acts. privacy.html says only the click-to-load map does that.`);
+  }
+}
+
 // Reply-time promise. The site said "usually within two days" in five places
 // plus the contact form's success message, and nobody had ever confirmed the
 // division could keep it. Camilo set it to a week on 2026-09-01. This is a
