@@ -281,7 +281,7 @@
       if (result && result.ok && result.delivered) {
         status.dataset.state = "ok";
         status.textContent =
-          "Thank you, your message is on its way to the division. We usually reply within two days.";
+          "Thank you, your message is on its way to the division. We usually reply within a week.";
         contactForm.reset();
         return;
       }

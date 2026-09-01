@@ -90,6 +90,19 @@ for (const file of builtPages) {
   }
 }
 
+// Reply-time promise. The site said "usually within two days" in five places
+// plus the contact form's success message, and nobody had ever confirmed the
+// division could keep it. Camilo set it to a week on 2026-09-01. This is a
+// promise made to a parent, so it is a published claim like any other: a
+// tighter number goes back in only when someone commits to answering that fast.
+const REPLY_PROMISE = /\b(?:within|in)\s+(?:two|2|three|3|a\s+few|24|48|72)\s*(?:-|\u2013)?\s*(?:days?|hours?|hrs?)\b/i;
+for (const file of [...builtPages, 'main.js']) {
+  const full = path.join(ROOT, file);
+  if (!fs.existsSync(full)) continue;
+  const hit = read(full).match(REPLY_PROMISE);
+  if (hit) fail(`${file}: reply-time promise "${hit[0]}" - only "within a week" is confirmed (Camilo, 2026-09-01). A faster promise needs someone who commits to keeping it.`);
+}
+
 // Map embeds. Two separate defects, one on each page, found 2026-08-26:
 //  - contact used maps.google.com/maps?...&output=embed, the legacy form, which
 //    sets Google's NID THIRD-PARTY COOKIE. That is a Lighthouse best-practices

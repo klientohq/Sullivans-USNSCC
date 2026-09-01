@@ -2344,6 +2344,7 @@ p {
 }
 .info-card a.info-link:hover { text-decoration: underline; }
 .info-card p { margin: 0; color: #4a5160; font-size: 0.92rem; line-height: 1.55; }
+.info-card p + .info-aside { margin-top: var(--space-sm); }
 .info-social { display: flex; gap: 10px; flex-wrap: wrap; }
 .info-social a {
   width: 40px; height: 40px;
@@ -4145,3 +4146,144 @@ p {
 
 .contact-map .map-loader,
 .contact-map .map-frame { min-height: 360px; height: 360px; }
+
+
+/* @source _src/css/67-roster.css */
+/* =============================================================================
+   LEADERSHIP ROSTER - built 2026-09-01
+   The page was four placeholder cards saying leadership information was not
+   available. It is now the division's own published staff list. Hairline rows,
+   same idiom as the resources index, because a roster is a list of facts and a
+   card grid would only pad it out. Rank is a fixed-width column on desktop so
+   the eye can scan ranks and names as two clean edges.
+   ========================================================================== */
+
+.page-leadership main { padding-top: var(--header-height); }
+
+.rost-masthead { padding: var(--section-y) var(--gutter) var(--section-y-tight); }
+
+.rost-masthead-inner { max-width: var(--max); margin: 0 auto; }
+
+.rost-masthead h1 {
+  margin: var(--space-2xs) 0 0;
+  font-size: var(--text-3xl);
+  line-height: var(--leading-3xl);
+  letter-spacing: var(--tracking-tight);
+}
+
+.rost-masthead .lede { margin: var(--space-md) 0 0; max-width: var(--measure); }
+
+.rost-index {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter) var(--section-y);
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+.rost-group-head h2 {
+  margin: 0;
+  font-size: var(--text-lg);
+  line-height: var(--leading-lg);
+  letter-spacing: var(--tracking-snug);
+}
+
+.rost-group-head p {
+  margin: var(--space-3xs) 0 0;
+  color: var(--ink-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  max-width: var(--measure-narrow);
+}
+
+.rost-list { list-style: none; margin: var(--space-md) 0 0; padding: 0; }
+
+.rost-list li {
+  display: grid;
+  gap: var(--space-3xs);
+  padding-block: var(--space-md);
+  border-top: var(--border);
+}
+
+.rost-list li:last-child { border-bottom: var(--border); }
+
+.rost-rank {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.rost-name {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  line-height: var(--leading-md);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-snug);
+  color: var(--ink);
+}
+
+.rost-role {
+  color: var(--ink-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  max-width: var(--measure);
+}
+
+.rost-mail {
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  word-break: break-word;
+}
+
+/* No published address for this officer. Not a link, and it says why, so the
+   absence never reads as a broken link. */
+.rost-mail-none { color: var(--ink-muted); }
+
+@media (min-width: 900px) {
+  .rost-index { gap: var(--space-3xl); }
+  .rost-group {
+    display: grid;
+    grid-template-columns: minmax(14rem, 20rem) 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+  .rost-list { margin-top: 0; }
+  .rost-list li {
+    grid-template-columns: 4.5rem minmax(10rem, 14rem) 1fr;
+    gap: var(--space-2xs) var(--space-lg);
+    align-items: baseline;
+  }
+  .rost-list .rost-role { grid-column: 3; grid-row: 1; }
+  .rost-list .rost-mail { grid-column: 3; grid-row: 2; }
+}
+
+/* --- Close ------------------------------------------------------------------ */
+.rost-close {
+  padding: var(--section-y) var(--gutter);
+  background: var(--surface-sunken);
+  border-top: var(--border);
+}
+
+.rost-close-inner { max-width: var(--max); margin: 0 auto; }
+
+.rost-close h2 {
+  margin: 0;
+  font-size: var(--text-xl);
+  line-height: var(--leading-xl);
+  letter-spacing: var(--tracking-tight);
+}
+
+.rost-close p {
+  margin: var(--space-sm) 0 0;
+  max-width: var(--measure);
+  color: var(--ink-secondary);
+}
+
+.rost-close-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
