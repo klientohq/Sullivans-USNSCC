@@ -10,11 +10,11 @@
 :root {
   /* --- Typography -----------------------------------------------------------
      Self-hosted variable faces, no third-party request (better CSP + privacy).
-     Display: Newsreader, an optical-size news serif - editorial authority.
+     Display: Libre Franklin, the American civic grotesque - poster authority.
      Text:    Public Sans, the U.S. Web Design System typeface - the face of
               federal government sites, which is what a congressionally
               chartered program should read like. */
-  --font-display: "Newsreader", "Newsreader Fallback", Georgia, "Times New Roman", serif;
+  --font-display: "Libre Franklin", "Libre Franklin Fallback", Arial, Helvetica, sans-serif;
   --font-text: "Public Sans", "Public Sans Fallback", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
 
@@ -196,14 +196,17 @@
    License 1.1, which permits self-hosting and redistribution.
    ========================================================================= */
 
-/* Newsreader - display. Variable optical size and weight. */
+/* Libre Franklin - display. Chosen by Camilo 2026-09-01 over Newsreader and
+   Source Serif 4. The unit's voice is a recruiting poster, not an editorial
+   page, and Franklin is the American civic/poster grotesque. It also happens to
+   be 29 KB against Newsreader's 132 KB. */
 @font-face {
-  font-family: "Newsreader";
+  font-family: "Libre Franklin";
   font-style: normal;
-  font-weight: 200 800;
+  font-weight: 100 900;
   font-stretch: normal;
   font-display: swap;
-  src: url("./assets/fonts/newsreader-latin.woff2") format("woff2");
+  src: url("./assets/fonts/libre-franklin-latin.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
     U+2212, U+2215, U+FEFF, U+FFFD;
@@ -251,7 +254,7 @@
    Measured in-browser against the real faces at 100px, same sample string:
      Public Sans vs system-ui   112.03%   <- this was the whole problem
      Public Sans vs Arial       103.49%
-     Newsreader  vs Georgia     100.60%
+     Libre Franklin vs Arial   100.61%   <- remeasured 2026-09-01 on the swap
 
    system-ui being 12% narrower changed how many lines the lede and the button
    row occupied, which moved everything below them. size-adjust corrects the
@@ -268,11 +271,11 @@
 }
 
 @font-face {
-  font-family: "Newsreader Fallback";
-  src: local("Georgia"), local("Times New Roman"), local("Liberation Serif");
-  size-adjust: 100.6%;
-  ascent-override: 92%;
-  descent-override: 24%;
+  font-family: "Libre Franklin Fallback";
+  src: local("Arial"), local("Helvetica Neue"), local("Helvetica"), local("Liberation Sans");
+  size-adjust: 100.61%;
+  ascent-override: 90%;
+  descent-override: 22%;
   line-gap-override: 0%;
 }
 
@@ -447,7 +450,6 @@ p {
 .callout,
 .chart-section,
 .rh-closing,
-.sponsor-cta,
 /* Covered at runtime only because its markup happens to carry u-on-dark. Listed
    so the styling does not depend on someone remembering the utility class. */
 .about-close {
@@ -489,8 +491,6 @@ p {
 .u-mt-md { margin-top: var(--space-md); }
 .u-mt-lg { margin-top: var(--space-lg); }
 .map-embed { border: 0; border-radius: var(--radius); }
-.age-badge--nlcc { background: var(--blue-100); color: var(--navy-600); }
-.age-badge--nscc { background: rgba(196, 18, 48, 0.08); color: var(--red-700); }
 
 
 /* @source _src/css/50-legacy.css */
@@ -619,12 +619,6 @@ p {
   line-height: 0.95;
   letter-spacing: 0;
   white-space: nowrap;
-}
-
-.page-hero h1 {
-  max-width: 680px;
-  font-size: clamp(2.35rem, 5vw, 4.6rem);
-  line-height: 1.02;
 }
 
 .hero-copy {
@@ -960,162 +954,8 @@ p {
   font-size: 1.08rem;
 }
 
-.command-card span,
-.blueprint article span {
-  color: var(--red-700);
-  font-weight: 950;
-  text-transform: uppercase;
-  font-size: 0.76rem;
-}
-
-.leadership-hero {
-  width: min(var(--max), calc(100% - 36px));
-  display: grid;
-  grid-template-columns: minmax(320px, 0.82fr) minmax(360px, 1.18fr);
-  gap: clamp(28px, 5vw, 64px);
-  align-items: end;
-  margin: 0 auto;
-  padding: 150px 0 60px;
-}
-
-.leadership-copy {
-  border-left: 8px solid var(--red-700);
-  padding-left: clamp(20px, 3vw, 34px);
-}
-
-.leadership-copy h1 {
-  margin: 0;
-  color: var(--navy-950);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.35rem, 5vw, 4.7rem);
-  line-height: 1.02;
-}
-
-.leadership-copy p {
-  max-width: 580px;
-  font-size: 1.06rem;
-}
-
-.leadership-hero figure {
-  margin: 0;
-}
-
-.leadership-hero img {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-.leadership-hero figcaption {
-  margin-top: 10px;
-  color: var(--muted);
-  font-size: 0.92rem;
-  font-weight: 750;
-}
-
-.command-board {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr 0.8fr;
-  gap: 14px;
-  padding-top: 0;
-}
-
-.command-card {
-  min-height: 220px;
-  padding: 26px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: 0 18px 46px rgba(7, 19, 38, 0.08);
-}
-
-.primary-command {
-  grid-row: span 2;
-  background: var(--navy-900);
-}
-
-.primary-command h2,
-.primary-command p {
-  color: var(--white);
-}
-
-.primary-command p {
-  color: rgba(255, 255, 255, 0.72);
-}
-
 .roadmap-page .site-footer {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.roadmap-hero {
-  width: min(980px, calc(100% - 36px));
-  margin: 0 auto;
-  padding: 154px 0 52px;
-  text-align: center;
-}
-
-.roadmap-hero h1 {
-  margin: 0;
-  color: var(--white);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.5rem, 6vw, 5.4rem);
-  line-height: 0.98;
-}
-
-.roadmap-hero p {
-  max-width: 720px;
-  margin: 22px auto 0;
-  color: rgba(255, 255, 255, 0.76);
-  font-size: 1.1rem;
-}
-
-.blueprint {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-  padding-top: 30px;
-}
-
-.blueprint-line {
-  position: absolute;
-  left: 8%;
-  right: 8%;
-  top: 68px;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.blueprint article {
-  position: relative;
-  min-height: 300px;
-  padding: 30px 24px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.blueprint article::before {
-  content: "";
-  position: absolute;
-  left: 24px;
-  top: -10px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--red-600);
-  box-shadow: 0 0 0 8px rgba(224, 27, 60, 0.18);
-}
-
-.blueprint h3 {
-  margin-top: 26px;
-  color: var(--white);
-}
-
-.blueprint p {
-  color: rgba(255, 255, 255, 0.72);
 }
 
 .cart-preview .button {
@@ -1144,26 +984,6 @@ p {
   align-items: center;
   color: rgba(255, 255, 255, 0.8);
   font-weight: 750;
-}
-
-.page-hero {
-  width: min(var(--max), calc(100% - 36px));
-  min-height: auto;
-  margin: 0 auto;
-  padding: 150px 0 64px;
-}
-
-.page-hero p {
-  max-width: 690px;
-  font-size: 1.05rem;
-}
-
-.page-hero img {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
 }
 
 /* ── Announcement Banner ── */
@@ -2460,146 +2280,8 @@ p {
   margin: 4px 0 0;
 }
 
-/* ── Sponsors page ── */
-.sponsor-intro {
-  max-width: 760px;
-}
-
-.sponsors-page .page-hero h1 {
-  white-space: normal;
-  text-wrap: balance;
-  font-size: clamp(2rem, 3.6vw, 3.3rem);
-  line-height: 1.05;
-}
-
 .sponsors-page .page-hero .hero-actions {
   margin-top: 28px;
-}
-
-.sponsor-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: clamp(28px, 4vw, 44px);
-}
-
-.sponsor-card {
-  padding: 28px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: 0 18px 46px rgba(7, 19, 38, 0.08);
-}
-
-.sponsor-card .sponsor-icon {
-  font-size: 1.7rem;
-  line-height: 1;
-  margin-bottom: 12px;
-}
-
-.sponsor-card h3 {
-  color: var(--navy-950);
-  font-size: 1.12rem;
-}
-
-.tier-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: clamp(28px, 4vw, 44px);
-  align-items: stretch;
-}
-
-.tier-card {
-  display: flex;
-  flex-direction: column;
-  padding: 30px 26px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-top: 5px solid var(--gold-500);
-  border-radius: var(--radius);
-  box-shadow: 0 18px 46px rgba(7, 19, 38, 0.08);
-}
-
-.tier-card.tier-feature {
-  background: var(--navy-900);
-  border-top-color: var(--red-600);
-}
-
-.tier-card.tier-feature h3,
-.tier-card.tier-feature li {
-  color: var(--white);
-}
-
-.tier-card.tier-feature li {
-  opacity: 0.86;
-}
-
-.tier-card h3 {
-  color: var(--navy-950);
-  font-size: 1.25rem;
-  margin-bottom: 6px;
-}
-
-.tier-card .tier-tag {
-  margin: 0 0 14px;
-  font-size: 0.72rem;
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--red-600);
-}
-
-.tier-card ul {
-  margin: 8px 0 0;
-  padding-left: 18px;
-  display: grid;
-  gap: 8px;
-}
-
-.tier-card li {
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
-.sponsor-wall {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 14px;
-  margin-top: clamp(24px, 3vw, 36px);
-}
-
-.sponsor-logo {
-  display: grid;
-  place-items: center;
-  min-height: 104px;
-  padding: 16px;
-  background: var(--white);
-  border: 1px dashed var(--line);
-  border-radius: var(--radius);
-  color: var(--muted);
-  font-weight: 700;
-  text-align: center;
-}
-
-.sponsor-cta {
-  width: min(var(--max), calc(100% - 36px));
-  margin: 0 auto clamp(72px, 9vw, 116px);
-  padding: clamp(36px, 5vw, 60px);
-  background: var(--navy-950);
-  border-radius: var(--radius);
-  text-align: center;
-  color: var(--white);
-}
-
-.sponsor-cta h2 {
-  color: var(--white);
-}
-
-.sponsor-cta p {
-  max-width: 620px;
-  margin: 12px auto 24px;
-  color: rgba(255, 255, 255, 0.76);
 }
 
 @media (max-width: 820px) {
@@ -2761,6 +2443,29 @@ p {
 }
 
 .sticky-join:hover { background: var(--accent-hover); }
+
+/* The one control on the site whose adjacent colour is not knowable from the
+   DOM. It floats over whatever happens to be scrolling beneath it, so unlike
+   every other element the surface behind its ring changes as the page moves.
+   Measured on the homepage at six scroll positions, 2026-09-01:
+
+     over a dark section   blue ring 2.90:1  FAIL   gold ring 8.76:1  pass
+     over a light section  blue ring 6.03:1  pass   gold ring 2.06:1  FAIL
+
+   So no single token can pass here, and the inverted-surface list in 02-base
+   cannot help: this element is inside neither surface. The fix is a two-tone
+   indicator. Gold and navy contrast strongly with each other, so whichever
+   surface it lands on, one of the two bands is doing the work and the ring is
+   never invisible. Keeps var(--focus-ring-inverse) rather than a literal colour,
+   so the gate still holds. The drop shadow is restated because box-shadow
+   replaces rather than adds. */
+.sticky-join:focus-visible {
+  outline: 3px solid var(--focus-ring-inverse);
+  outline-offset: 2px;
+  box-shadow:
+    0 0 0 8px var(--navy-950),
+    0 32px 90px rgba(7, 19, 38, 0.24);
+}
 
 /* Hidden-until-scrolled only where scripting can reveal it again. With JS
    unavailable the pill simply stays visible rather than becoming unreachable. */

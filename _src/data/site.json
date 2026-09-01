@@ -80,8 +80,12 @@
   ],
   "turnstileSitekey": "0x4AAAAAAEZXhSkyx-040huN",
   "preloadFonts": [
-    { "file": "public-sans-latin.woff2" },
-    { "file": "newsreader-latin.woff2" }
+    {
+      "file": "public-sans-latin.woff2"
+    },
+    {
+      "file": "libre-franklin-latin.woff2"
+    }
   ],
   "prettyUrls": false
 }

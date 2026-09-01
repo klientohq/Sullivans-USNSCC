@@ -33,7 +33,7 @@
          is the only third party a page reaches, and the map is click-to-load
          (ADR-022), so the code has to match the claim. Every asset this site
          needs is same-origin. -->
-    <!-- Both families, not just the text one. Newsreader sets every h1, so
+    <!-- Both families, not just the text one. Libre Franklin sets every h1, so
          discovering it only after the stylesheet parses reflowed the masthead
          when it swapped in: measured CLS 0.059 on About at 412px. -->
     {{#each site.preloadFonts}}<link rel="preload" href="./assets/fonts/{{ file }}" as="font" type="font/woff2" crossorigin />

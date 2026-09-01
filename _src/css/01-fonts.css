@@ -5,14 +5,17 @@
    License 1.1, which permits self-hosting and redistribution.
    ========================================================================= */
 
-/* Newsreader - display. Variable optical size and weight. */
+/* Libre Franklin - display. Chosen by Camilo 2026-09-01 over Newsreader and
+   Source Serif 4. The unit's voice is a recruiting poster, not an editorial
+   page, and Franklin is the American civic/poster grotesque. It also happens to
+   be 29 KB against Newsreader's 132 KB. */
 @font-face {
-  font-family: "Newsreader";
+  font-family: "Libre Franklin";
   font-style: normal;
-  font-weight: 200 800;
+  font-weight: 100 900;
   font-stretch: normal;
   font-display: swap;
-  src: url("./assets/fonts/newsreader-latin.woff2") format("woff2");
+  src: url("./assets/fonts/libre-franklin-latin.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
     U+2212, U+2215, U+FEFF, U+FFFD;
@@ -60,7 +63,7 @@
    Measured in-browser against the real faces at 100px, same sample string:
      Public Sans vs system-ui   112.03%   <- this was the whole problem
      Public Sans vs Arial       103.49%
-     Newsreader  vs Georgia     100.60%
+     Libre Franklin vs Arial   100.61%   <- remeasured 2026-09-01 on the swap
 
    system-ui being 12% narrower changed how many lines the lede and the button
    row occupied, which moved everything below them. size-adjust corrects the
@@ -77,10 +80,10 @@
 }
 
 @font-face {
-  font-family: "Newsreader Fallback";
-  src: local("Georgia"), local("Times New Roman"), local("Liberation Serif");
-  size-adjust: 100.6%;
-  ascent-override: 92%;
-  descent-override: 24%;
+  font-family: "Libre Franklin Fallback";
+  src: local("Arial"), local("Helvetica Neue"), local("Helvetica"), local("Liberation Sans");
+  size-adjust: 100.61%;
+  ascent-override: 90%;
+  descent-override: 22%;
   line-gap-override: 0%;
 }

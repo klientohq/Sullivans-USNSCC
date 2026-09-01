@@ -167,7 +167,6 @@ p {
 .callout,
 .chart-section,
 .rh-closing,
-.sponsor-cta,
 /* Covered at runtime only because its markup happens to carry u-on-dark. Listed
    so the styling does not depend on someone remembering the utility class. */
 .about-close {
@@ -209,5 +208,3 @@ p {
 .u-mt-md { margin-top: var(--space-md); }
 .u-mt-lg { margin-top: var(--space-lg); }
 .map-embed { border: 0; border-radius: var(--radius); }
-.age-badge--nlcc { background: var(--blue-100); color: var(--navy-600); }
-.age-badge--nscc { background: rgba(196, 18, 48, 0.08); color: var(--red-700); }

@@ -9,11 +9,11 @@
 :root {
   /* --- Typography -----------------------------------------------------------
      Self-hosted variable faces, no third-party request (better CSP + privacy).
-     Display: Newsreader, an optical-size news serif - editorial authority.
+     Display: Libre Franklin, the American civic grotesque - poster authority.
      Text:    Public Sans, the U.S. Web Design System typeface - the face of
               federal government sites, which is what a congressionally
               chartered program should read like. */
-  --font-display: "Newsreader", "Newsreader Fallback", Georgia, "Times New Roman", serif;
+  --font-display: "Libre Franklin", "Libre Franklin Fallback", Arial, Helvetica, sans-serif;
   --font-text: "Public Sans", "Public Sans Fallback", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
 

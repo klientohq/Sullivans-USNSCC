@@ -144,6 +144,29 @@
 
 .sticky-join:hover { background: var(--accent-hover); }
 
+/* The one control on the site whose adjacent colour is not knowable from the
+   DOM. It floats over whatever happens to be scrolling beneath it, so unlike
+   every other element the surface behind its ring changes as the page moves.
+   Measured on the homepage at six scroll positions, 2026-09-01:
+
+     over a dark section   blue ring 2.90:1  FAIL   gold ring 8.76:1  pass
+     over a light section  blue ring 6.03:1  pass   gold ring 2.06:1  FAIL
+
+   So no single token can pass here, and the inverted-surface list in 02-base
+   cannot help: this element is inside neither surface. The fix is a two-tone
+   indicator. Gold and navy contrast strongly with each other, so whichever
+   surface it lands on, one of the two bands is doing the work and the ring is
+   never invisible. Keeps var(--focus-ring-inverse) rather than a literal colour,
+   so the gate still holds. The drop shadow is restated because box-shadow
+   replaces rather than adds. */
+.sticky-join:focus-visible {
+  outline: 3px solid var(--focus-ring-inverse);
+  outline-offset: 2px;
+  box-shadow:
+    0 0 0 8px var(--navy-950),
+    0 32px 90px rgba(7, 19, 38, 0.24);
+}
+
 /* Hidden-until-scrolled only where scripting can reveal it again. With JS
    unavailable the pill simply stays visible rather than becoming unreachable. */
 @media (scripting: enabled) {
