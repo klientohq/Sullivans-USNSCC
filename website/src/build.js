@@ -3,7 +3,7 @@
  * The Sullivans USNSCC - static site build.
  *
  * Zero dependencies by design (ADR-013). Reads _src/pages/*.html, wraps each in
- * its layout, resolves partials, and writes plain HTML to the repo root so the
+ * its layout, resolves partials, and writes plain HTML to website/public so the
  * repo root stays the deployable artifact on both GitHub Pages and Cloudflare
  * Pages. Nothing here runs at request time.
  */
@@ -12,7 +12,7 @@ const crypto = require('node:crypto');
 const path = require('node:path');
 
 const SRC = __dirname;
-const ROOT = path.resolve(SRC, '..');
+const ROOT = path.resolve(SRC, '..', 'public');
 
 const read = (p) => fs.readFileSync(p, 'utf8');
 const site = JSON.parse(read(path.join(SRC, 'data', 'site.json')));
@@ -133,7 +133,7 @@ const cssDir = path.join(SRC, 'css');
 // Numeric filename prefixes are the cascade order: 00 tokens, 01 fonts,
 // 02 base, 50 legacy, 60+ rebuilt components that supersede legacy rules.
 const cssOrder = fs.readdirSync(cssDir).filter((n) => n.endsWith('.css')).sort();
-const cssBundle = cssOrder.map((n) => `/* @source _src/css/${n} */\n${read(path.join(cssDir, n))}`).join('\n\n');
+const cssBundle = cssOrder.map((n) => `/* @source website/src/css/${n} */\n${read(path.join(cssDir, n))}`).join('\n\n');
 fs.writeFileSync(path.join(ROOT, 'styles.css'), cssBundle);
 
 site.assetVersion = fingerprint(cssBundle + mainJs);

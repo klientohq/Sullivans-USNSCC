@@ -1,4 +1,4 @@
-/* @source _src/css/00-tokens.css */
+/* @source website/src/css/00-tokens.css */
 /* ============================================================================
    THE SULLIVANS DIVISION USNSCC - DESIGN TOKENS
    Single source of truth. No component may hard-code a value that lives here.
@@ -188,7 +188,7 @@
 }
 
 
-/* @source _src/css/01-fonts.css */
+/* @source website/src/css/01-fonts.css */
 /* ============================================================================
    SELF-HOSTED VARIABLE FONTS (ADR-007)
    Served from our own origin: no third-party request, which keeps the CSP tight
@@ -280,7 +280,7 @@
 }
 
 
-/* @source _src/css/02-base.css */
+/* @source website/src/css/02-base.css */
 /* ============================================================================
    BASE - element defaults built only from tokens.
    ========================================================================= */
@@ -493,7 +493,7 @@ p {
 .map-embed { border: 0; border-radius: var(--radius); }
 
 
-/* @source _src/css/50-legacy.css */
+/* @source website/src/css/50-legacy.css */
 /* ============================================================================
    LEGACY STYLESHEET
    The original hand-written CSS, kept intact and appended after the token,
@@ -2297,7 +2297,7 @@ p {
 }
 
 
-/* @source _src/css/60-header.css */
+/* @source website/src/css/60-header.css */
 /* ============================================================================
    HEADER STACK - announcement bar, masthead, primary navigation, sticky CTA.
    Rebuilt from tokens. Supersedes the legacy rules for these components; the
@@ -2553,7 +2553,7 @@ p {
 }
 
 
-/* @source _src/css/61-join.css */
+/* @source website/src/css/61-join.css */
 /* ============================================================================
    JOIN PAGE
    Mode: persuade. The reader is a parent deciding whether to trust this program
@@ -2867,7 +2867,7 @@ p {
 }
 
 
-/* @source _src/css/62-store.css */
+/* @source website/src/css/62-store.css */
 /* ============================================================================
    STORE
    ADR-005: one page, two clearly separated sections, no shared cart. The two
@@ -3148,7 +3148,7 @@ p {
 }
 
 
-/* @source _src/css/63-footer.css */
+/* @source website/src/css/63-footer.css */
 /* ============================================================================
    FOOTER
    Fixes the two pairs Lighthouse flagged as BUG-003, in the tokens rather than
@@ -3286,7 +3286,7 @@ p {
 }
 
 
-/* @source _src/css/64-about.css */
+/* @source website/src/css/64-about.css */
 /* =============================================================================
    ABOUT - rebuilt 2026-08-23
    Replaces the icon triad and the alternating 50/50 block, both banned in
@@ -3594,7 +3594,7 @@ p {
 }
 
 
-/* @source _src/css/65-resources.css */
+/* @source website/src/css/65-resources.css */
 /* =============================================================================
    RESOURCES - rebuilt 2026-08-23
    Was four identical icon cards. This is an index: hairline rows grouped by
@@ -3744,7 +3744,7 @@ p {
 }
 
 
-/* @source _src/css/66-policy.css */
+/* @source website/src/css/66-policy.css */
 /* ============================================================================
    PRIVACY PAGE
    One column of prose, no cards, no icons. A parent scanning for "what do you
@@ -3853,7 +3853,7 @@ p {
 .contact-map .map-frame { min-height: 360px; height: 360px; }
 
 
-/* @source _src/css/67-roster.css */
+/* @source website/src/css/67-roster.css */
 /* =============================================================================
    LEADERSHIP ROSTER - built 2026-09-01
    The page was four placeholder cards saying leadership information was not

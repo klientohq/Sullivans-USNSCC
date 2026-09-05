@@ -10,7 +10,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
-const ROOT = path.resolve(__dirname, '..');
+const ROOT = path.resolve(__dirname, '..', 'public');
 const SRC = __dirname;
 const failures = [];
 const warnings = [];
@@ -217,7 +217,7 @@ const SECRET_PATTERNS = [
 ];
 const scanForSecrets = (dir) => {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (['.git', 'node_modules', 'assets', 'USNSCC', 'project-work'].includes(entry.name)) continue;
+    if (['.git', 'node_modules', 'assets', 'functions'].includes(entry.name)) continue;
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) { scanForSecrets(full); continue; }
     if (!/\.(html|js|json|css|txt|md|xml)$/.test(entry.name)) continue;

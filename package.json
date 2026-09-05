@@ -2,11 +2,12 @@
   "name": "sullivans-usnscc-site",
   "version": "1.0.0",
   "private": true,
-  "description": "The Sullivans Division USNSCC - static site. Source in _src/, built output at the repo root.",
+  "description": "The Sullivans Division USNSCC static site. Source in website/src, deployable output in website/public.",
   "scripts": {
-    "build": "node _src/build.js",
-    "verify": "node _src/verify.js",
-    "gate": "npm run build && npm run verify"
+    "build": "node website/src/build.js",
+    "verify": "node website/src/verify.js",
+    "gate": "npm run build && npm run verify",
+    "deploy": "bash website/src/deploy-cloudflare.sh"
   },
   "license": "UNLICENSED"
 }
